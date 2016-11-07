@@ -17,3 +17,16 @@ elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js');
 });
+
+elixir(function(mix) {
+    mix.styles([
+        'bootstrap.min.css',
+        'user.css'
+    ]);
+});
+
+elixir(function(mix) {
+    mix.browserSync({
+        proxy: 'localhost:8888'
+    });
+});

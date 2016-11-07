@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.home');
+});
+
+Route::group(['prefix' => 'category'], function() {
+  Route::get('{id}', function($id) {
+    return view('user.category')->with('id', $id);
+  });
 });

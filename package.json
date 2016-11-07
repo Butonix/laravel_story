@@ -6,13 +6,18 @@
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
+    "buble": "^0.14.2",
     "gulp": "^3.9.1",
     "jquery": "^3.1.0",
     "laravel-elixir": "^6.0.0-9",
+    "laravel-elixir-browsersync-official": "^1.0.0",
+    "laravel-elixir-livereload": "^1.1.6",
     "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
+    "sass-loader": "^4.0.2",
     "vue": "^2.0.1",
+    "vue-loader": "^9.8.1",
     "vue-resource": "^1.0.3"
   }
 }
