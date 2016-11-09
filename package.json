@@ -17,6 +17,7 @@
     "lodash": "^4.16.2",
     "sass-loader": "^4.0.2",
     "vue": "^2.0.1",
+    "vue-bootstrap-modal": "^0.1.13",
     "vue-loader": "^9.8.1",
     "vue-resource": "^1.0.3"
   }

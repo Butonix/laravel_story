@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,12 +10,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-});
+Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'category'], function() {
-  Route::get('{id}', function($id) {
-    return view('user.category')->with('id', $id);
-  });
+  Route::get('{id}', 'HomeController@getCategory');
 });
