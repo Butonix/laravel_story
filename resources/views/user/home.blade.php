@@ -3,6 +3,52 @@
 @section('content')
 <div class="row">
 
+  @if (session('status_all'))
+    <script type="text/javascript">
+      swal("", "ชื่อผู้ใช้งานและอีเมลนี้มีผู้อื่นใช้แล้ว", "error")
+
+      $(document).ready(function() {
+        $('#myModalRegister').modal();
+      });
+    </script>
+  @endif
+
+  @if (session('status_username'))
+    <script type="text/javascript">
+      swal("", "ชื่อผู้ใช้งานนี้มีผู้อื่นใช้แล้ว", "error")
+
+      $(document).ready(function() {
+        $('#myModalRegister').modal();
+      });
+    </script>
+  @endif
+
+  @if (session('status_email'))
+    <script type="text/javascript">
+      swal("", "อีเมลนี้มีผู้อื่นใช้แล้ว", "error")
+
+      $(document).ready(function() {
+        $('#myModalRegister').modal();
+      });
+    </script>
+  @endif
+
+  @if (session('status_success'))
+    <script type="text/javascript">
+      swal("", "สมัครสมาชิกสำเร็จ", "success")
+    </script>
+  @endif
+
+  @if (session('status_login'))
+    <script type="text/javascript">
+      swal("", "กรุณาตรวจสอบอีเมลและรหัสผ่านอีกครั้ง", "error")
+
+      $(document).ready(function() {
+        $('#myModalLogin').modal();
+      });
+    </script>
+  @endif
+
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -329,4 +375,25 @@
   </div>
 
 </div> <!-- end row -->
+
+<script>
+
+  $(document).ready(function() {
+
+    window.normal_register = function() {
+      $('#myModalLogin').modal('toggle');
+      $('#myModalRegister').modal();
+    }
+
+    $('#btn_close_modal').on('click', function() {
+      $('#myModalRegister').modal('toggle');
+    });
+
+    $('#btn-login').on('click', function() {
+      $('#myModalLogin').modal();
+    });
+
+  });
+
+</script>
 @endsection

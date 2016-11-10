@@ -40,26 +40,5 @@
       Copyright &copy; 2016 ...
     </div>
 
-    <script>
-
-      $(document).ready(function() {
-
-        window.normal_register = function() {
-          $('#myModalLogin').modal('toggle');
-          $('#myModalRegister').modal();
-        }
-
-        $('#btn_close_modal').on('click', function() {
-          $('#myModalRegister').modal('toggle');
-        });
-
-        $('#btn-login').on('click', function() {
-          $('#myModalLogin').modal();
-        });
-
-      });
-
-    </script>
-
   </body>
 </html>

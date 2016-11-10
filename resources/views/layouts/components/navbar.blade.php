@@ -18,9 +18,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;"><i class="fa fa-list"></i> หมวดหมู่นิยาย <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{!! url('category/1') !!}">นิยาย รักวัยรุ่น</a></li>
-            <li><a href="{!! url('category/2') !!}">นิยาย รัก,โรแมนติค</a></li>
-            <li><a href="{!! url('category/3') !!}">นิยาย ตลก,คอมเมดี้</a></li>
+            <li><a href="{{ url('category/1') }}">นิยาย รักวัยรุ่น</a></li>
+            <li><a href="{{ url('category/2') }}">นิยาย รัก,โรแมนติค</a></li>
+            <li><a href="{{ url('category/3') }}">นิยาย ตลก,คอมเมดี้</a></li>
           </ul>
         </li>
 
@@ -35,7 +35,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#login" id="btn-login" style="font-size: 18px;"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a></li>
+        @if (Auth::check() || Session::get('fb_user_access_token') != null)
+          <li><a href="{{ url('user/logout') }}" style="font-size: 18px;"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
+        @else
+          <li><a href="#login" id="btn-login" style="font-size: 18px;"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a></li>
+        @endif
       </ul>
 
     </div><!-- /.navbar-collapse -->

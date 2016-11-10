@@ -20,13 +20,15 @@ require('laravel-elixir-vue-2');
 elixir(function(mix) {
     mix.styles([
         'bootstrap.min.css',
-        'user.css'
+        'user.css',
+        'sweetalert.css'
     ]);
     mix.webpack('app.js');
     mix.scripts([
       'jquery-3.1.1.js',
       'bootstrap.min.js',
-      'vue-strap.min.js'
+      'vue-strap.min.js',
+      'sweetalert.min.js'
     ]);
     mix.browserSync({
         proxy: 'localhost:8888'

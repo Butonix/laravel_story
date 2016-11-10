@@ -13,9 +13,13 @@ return [
     |
     */
 
+    // 'defaults' => [
+    //     'guard' => 'web',
+    //     'passwords' => 'users',
+    // ],
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'tb_member',
     ],
 
     /*
@@ -36,16 +40,26 @@ return [
     */
 
     'guards' => [
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        // ],
+        //
+        // 'api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'users',
+        // ]
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-        ],
+            'provider' => 'tb_member',
+        ]
+        // 'facebook_login' => [
+        //     'driver' => 'session',
+        //     'provider' => 'facebook_logins',
+        // ]
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -65,15 +79,24 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
-
         // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'driver' => 'eloquent',
+        //     'model' => App\User::class,
         // ],
+
+        'tb_member' => [
+            'driver' => 'database',
+            'table' => 'tb_member',
+        ]
+        // 'facebook_logins' => [
+        //     'driver' => 'database',
+        //     'table' => 'facebook_logins',
+        // ]
+
+        // 'tb_member' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Member::class,
+        // ]
     ],
 
     /*
