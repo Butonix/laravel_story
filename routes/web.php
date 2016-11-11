@@ -31,7 +31,12 @@ Route::group(['prefix' => 'admin'], function() {
   Route::get('member/edit/{member_id}', 'AdminController@getEditMember');
   Route::post('member/edit', 'AdminController@postEditMember');
   Route::get('member/delete/{member_id}', 'AdminController@getDeleteMember');
-  Route::get('category/all', 'AdminController@getAllCategory');
+  Route::get('category/all', 'AdminController@getAllCategory')->name('category/all');
+  Route::get('category/add', 'AdminController@getAddCategory');
+  Route::post('category/add', 'AdminController@postAddCategory');
+  Route::get('category/edit/{category_id}', 'AdminController@getEditCategory');
+  Route::post('category/edit', 'AdminController@postEditCategory');
+  Route::get('category/delete/{category_id}', 'AdminController@getDeleteCategory');
 });
 
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {

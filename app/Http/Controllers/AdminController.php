@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\Category;
 use App\FacebookLogin;
 
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class AdminController extends Controller
 
     public function getAllMember() {
         Session::put('active_menu', 'member');
-        $member = new Member;
-        return view('admin.member.member')->with('members', $member->get());
+        $members = new Member;
+        return view('admin.member.member')->with('members', $members->get());
     }
 
     public function getAllFacebook() {
@@ -132,6 +133,58 @@ class AdminController extends Controller
 
     public function getAllCategory() {
         Session::put('active_menu', 'category');
-        return view('admin.category.category');
+        $categorys = new Category;
+        return view('admin.category.category')->with('categorys', $categorys->get());
+    }
+
+    public function getAddCategory() {
+        Session::put('active_menu', 'category');
+        return view('admin.category.add_category');
+    }
+
+    public function postAddCategory(Request $request) {
+        $category = new Category;
+        $check_category = $category::where('category_name', $request->category_name)->count();
+        if ($check_category > 0) {
+            return redirect()->back()
+            ->withInput()
+            ->with('status_category', 'fail');
+        } else {
+            $category->category_name = $request->category_name;
+            $category->save();
+            return redirect()->route('category/all')
+            ->with('status_category', 'done');
+        }
+
+    }
+
+    public function getEditCategory(Request $request) {
+        $category = new Category;
+        $category_name = $category::find($request->category_id);
+        return view('admin.category.edit_category')->with('category', $category_name);
+    }
+
+    public function postEditCategory(Request $request) {
+        $category = new Category;
+
+        $check_category = $category::where('category_name', $request->category_name)->count();
+        if ($check_category > 0) {
+            return redirect()->back()
+            ->withInput()
+            ->with('status_category', 'fail');
+        }
+
+        $category::where('id', $request->category_id)->update([
+            'category_name' => $request->category_name
+        ]);
+
+        return redirect()->route('category/all')
+        ->with('status_edit_category', 'done');
+    }
+
+    public function getDeleteCategory(Request $request) {
+        $category = new Category;
+        $category::where('id', $request->category_id)->delete();
+        return redirect()->back()->with('status_delete_category', 'done');
     }
 }

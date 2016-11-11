@@ -1,0 +1,20 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    protected $table = 'tb_category';
+
+    protected $fillable = [
+        'category_name'
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public $timestamps = true;
+}
