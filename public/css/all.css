@@ -92,6 +92,23 @@
 .slide-control{color:#fff;font-size:80px;left:30px;margin-top:-70px;position:absolute;top:50%;}
 .slide-control.right{left:auto;right:30px;}
 
+.font-size-normal {
+  font-size: 16px;
+}
+
+.font-size-normal ul,li,a {
+  font-size: 16px;
+}
+
+table tr,th {
+  text-align: center;
+  font-size: 16px;
+}
+
+table tr,td {
+  text-align: center;
+}
+
 body.stop-scrolling {
   height: 100%;
   overflow: hidden; }

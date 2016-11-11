@@ -22,6 +22,18 @@ Route::group(['prefix' => 'category'], function() {
   Route::get('{id}', 'HomeController@getCategory');
 });
 
+Route::group(['prefix' => 'admin'], function() {
+  Route::get('main', 'AdminController@main');
+  Route::get('member/all', 'AdminController@getAllMember')->name('member/all');
+  Route::get('member/facebook', 'AdminController@getAllFacebook');
+  Route::get('member/add', 'AdminController@getAddMember');
+  Route::post('member/add', 'AdminController@postAddMember');
+  Route::get('member/edit/{member_id}', 'AdminController@getEditMember');
+  Route::post('member/edit', 'AdminController@postEditMember');
+  Route::get('member/delete/{member_id}', 'AdminController@getDeleteMember');
+  Route::get('category/all', 'AdminController@getAllCategory');
+});
+
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     // $login_link = $fb->getRedirectLoginHelper()->getLoginUrl('https://localhost/', ['email', 'user_events']);
     // echo '<a href="' . $login_link . '">Log in with Facebook</a>';
