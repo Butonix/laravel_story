@@ -1,4 +1,6 @@
-@extends('layouts.user') @section('content')
+@extends('layouts.user')
+
+@section('content')
 
 <div class="row">
 

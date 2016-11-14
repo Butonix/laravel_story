@@ -1,6 +1,13 @@
 @extends('layouts.user')
 
 @section('content')
+
+@include('layouts.components.banner')
+@include('layouts.components.navbar')
+@include('layouts.components.modal_login')
+@include('layouts.components.modal_register')
+@include('layouts.components.carousel')
+
 <div class="row">
 
   @if (session('status_all'))
@@ -175,7 +182,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-left">
-        <span style="font-size: 22px;">จัดอันดับผู้อ่าน เรียงลำดับ มาก <i class="fa fa-angle-right"></i> น้อย</span>
+        <span style="font-size: 22px;">จัดอันดับผู้อ่าน</span>
       </div>
       <div class="body" style="background-color: #ffffe6;">
         <div class="media">
@@ -244,7 +251,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-left">
-        <span style="font-size: 22px;">จัดอันดับสนับสนุน เรียงลำดับ มาก <i class="fa fa-angle-right"></i> น้อย</span>
+        <span style="font-size: 22px;">จัดอันดับสนับสนุน</span>
       </div>
       <div class="body" style="background-color: #ffffe6;">
         <div class="media">
@@ -313,7 +320,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-left">
-        <span style="font-size: 22px;">จัดอันดับหัวใจ เรียงลำดับ มาก <i class="fa fa-angle-right"></i> น้อย</span>
+        <span style="font-size: 22px;">จัดอันดับหัวใจ</span>
       </div>
       <div class="body" style="background-color: #ffffe6;">
         <div class="media">
@@ -382,7 +389,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-left">
-        <span style="font-size: 22px;">อันดับนักเขียน (ได้รับยอดสูงสุด) มาก <i class="fa fa-angle-right"></i> น้อย</span>
+        <span style="font-size: 22px;">อันดับนักเขียน</span>
       </div>
       <div class="body" style="background-color: #ffffe6;">
         <div class="media">

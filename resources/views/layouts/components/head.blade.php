@@ -2,9 +2,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Story</title>
-  <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+  <link rel="stylesheet" href="{{ url('css/all.css') }}">
   <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
-  <script src="{{ elixir('js/all.js') }}"></script>
+  <script src="{{ url('js/all.js') }}"></script>
+  <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
+  <script>tinymce.init({ selector:'textarea', menubar: false, toolbar: false });</script>
   <!-- <script src="{{ elixir('js/app.js') }}"></script> -->
   <style media="screen">
     @font-face {

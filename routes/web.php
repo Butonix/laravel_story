@@ -10,16 +10,17 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', 'UserController@index')->name('index');
 
 Route::group(['prefix' => 'user'], function() {
   Route::post('register', 'UserController@postRegister');
   Route::post('login', 'UserController@postLogin');
   Route::get('logout', 'UserController@logout');
+  Route::get('profile', 'UserController@getProfile');
 });
 
 Route::group(['prefix' => 'category'], function() {
-  Route::get('{id}', 'HomeController@getCategory');
+  Route::get('{id}', 'UserController@getCategory');
 });
 
 Route::group(['prefix' => 'admin'], function() {

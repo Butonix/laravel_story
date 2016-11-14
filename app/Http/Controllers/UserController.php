@@ -10,6 +10,14 @@ use Session;
 
 class UserController extends Controller
 {
+    public function index() {
+        return view('user.home');
+    }
+
+    public function getCategory($id) {
+        return view('user.category')->with('id', $id);
+    }
+
     public function postRegister(Request $request) {
         $member = new Member;
         $check_username = $member::where('username', $request->username)->count();
@@ -54,5 +62,9 @@ class UserController extends Controller
         Auth::logout();
         Session::flush();
         return redirect()->route('index');
+    }
+
+    public function getProfile() {
+        return view('user.profile');
     }
 }
