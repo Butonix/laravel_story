@@ -11,13 +11,13 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="http://cdn-th.tunwalai.net/files/banner-25.jpg" alt="...">
+          <img src="{{ url('images/banner/Banner1.jpg') }}" alt="...">
         </div>
         <div class="item">
-          <img src="http://cdn-th.tunwalai.net/files/banner-story-12668.jpg" alt="...">
+          <img src="{{ url('images/banner/Banner2.jpg') }}" alt="...">
         </div>
         <div class="item">
-          <img src="http://cdn-th.tunwalai.net/files/banner-story-33353.jpg" alt="...">
+          <img src="{{ url('images/banner/Banner3.jpg') }}" alt="...">
         </div>
 
       </div>

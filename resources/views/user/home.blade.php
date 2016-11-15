@@ -69,7 +69,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="{{ url('user/read/story/1') }}">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125095/636136094357206955-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -86,7 +86,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125587/636137722619944097-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -103,7 +103,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125761/636138682021141824-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -123,7 +123,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -140,7 +140,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -157,7 +157,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -192,7 +192,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -209,7 +209,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -226,7 +226,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -261,7 +261,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -278,7 +278,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -295,7 +295,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -330,7 +330,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -347,7 +347,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -364,7 +364,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -399,7 +399,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -416,7 +416,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -433,7 +433,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -453,7 +453,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/113513/636082468242063747-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -470,7 +470,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/123285/636123880206411132-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
@@ -487,7 +487,7 @@
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="#">
-                    <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125622/636137852753451807-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">

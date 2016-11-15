@@ -1,5 +1,5 @@
 <div class="row">
   <div class="col-md-12">
-    <img src="" style="border: 1px solid #abc; background-color: #abc; width: 100%; height: 200px;" alt="">
+    <img src="{{ url('images/logo/PNG/Janjaow_Logo_Horizontal_brown.png') }}" style="height: 200px;" alt="">
   </div>
 </div>

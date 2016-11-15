@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ชื่อผู้ใช้งาน admin</a>
+      <a class="navbar-brand" href="{{ url('user/profile') }}">ชื่อผู้ใช้งาน admin</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
