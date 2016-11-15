@@ -67,4 +67,8 @@ class UserController extends Controller
     public function getProfile() {
         return view('user.profile');
     }
+
+    public function getReadStory() {
+        return view('user.read_story');
+    }
 }

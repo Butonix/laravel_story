@@ -6,7 +6,14 @@
   <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
   <script src="{{ url('js/all.js') }}"></script>
   <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
-  <script>tinymce.init({ selector:'textarea', menubar: false, toolbar: false });</script>
+  <script>
+    tinymce.init({
+      selector:'textarea',
+      content_style: "div, p { font-size: 16px; }",
+      menubar: false,
+      toolbar: false
+    });
+  </script>
   <!-- <script src="{{ elixir('js/app.js') }}"></script> -->
   <style media="screen">
     @font-face {
@@ -20,6 +27,5 @@
       font-family: 'Kanit', sans-serif;
       background-image: url("{{ url('images/background/school.png') }}");
     }
-
   </style>
 </head>

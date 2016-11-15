@@ -68,7 +68,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <div class="media-left media-middle">
-                  <a href="#">
+                  <a href="{{ url('user/read/story/1') }}">
                     <img class="media-object" src="http://cdn-th.tunwalai.net/files/story/125095/636136094357206955-story.jpg" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>

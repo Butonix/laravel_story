@@ -17,6 +17,7 @@ Route::group(['prefix' => 'user'], function() {
   Route::post('login', 'UserController@postLogin');
   Route::get('logout', 'UserController@logout');
   Route::get('profile', 'UserController@getProfile');
+  Route::get('read/story/{id}', 'UserController@getReadStory');
 });
 
 Route::group(['prefix' => 'category'], function() {
