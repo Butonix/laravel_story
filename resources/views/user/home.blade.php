@@ -61,7 +61,7 @@
       <div class="panel-heading text-center">
         <span style="font-size: 22px;"><!-- <i class="fa fa-newspaper-o fa-2x"></i> --> นิยายอัพเดตล่าสุด</span>
       </div>
-      <div class="body" style="background-color: #ffffe6;">
+      <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
           <div class="col-md-12" style="margin-top: 20px;">
@@ -184,7 +184,7 @@
       <div class="panel-heading text-left">
         <span style="font-size: 22px;">จัดอันดับผู้อ่าน</span>
       </div>
-      <div class="body" style="background-color: #ffffe6;">
+      <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
           <div class="col-md-12" style="margin-top: 20px;">
@@ -253,7 +253,7 @@
       <div class="panel-heading text-left">
         <span style="font-size: 22px;">จัดอันดับสนับสนุน</span>
       </div>
-      <div class="body" style="background-color: #ffffe6;">
+      <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
           <div class="col-md-12" style="margin-top: 20px;">
@@ -322,7 +322,7 @@
       <div class="panel-heading text-left">
         <span style="font-size: 22px;">จัดอันดับหัวใจ</span>
       </div>
-      <div class="body" style="background-color: #ffffe6;">
+      <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
           <div class="col-md-12" style="margin-top: 20px;">
@@ -391,7 +391,7 @@
       <div class="panel-heading text-left">
         <span style="font-size: 22px;">อันดับนักเขียน</span>
       </div>
-      <div class="body" style="background-color: #ffffe6;">
+      <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
           <div class="col-md-12" style="margin-top: 20px;">

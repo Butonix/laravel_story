@@ -81,6 +81,6 @@ class UserController extends Controller
     }
 
     public function getWriteStorySub() {
-        return view('user.write_story_sub');
+        return view('user.write_sub_story');
     }
 }
