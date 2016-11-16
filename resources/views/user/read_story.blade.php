@@ -21,6 +21,15 @@
   }
 </style>
 
+<script>
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      height: 150,
+      toolbar: false
+    });
+  });
+</script>
+
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-default">
@@ -132,6 +141,11 @@
             </table>
           </div>
         </div>
+
+        <div class="form-group text-center">
+          <a href="{{ url('user/write/story/sub/1') }}">เพิ่มตอนใหม่ <i class="fa fa-plus fa-lg"></i></a>
+        </div>
+
       </div>
     </div>
   </div>

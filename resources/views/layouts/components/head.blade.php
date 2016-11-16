@@ -5,15 +5,12 @@
   <link rel="stylesheet" href="{{ url('css/all.css') }}">
   <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
   <script src="{{ url('js/all.js') }}"></script>
-  <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
-  <script>
-    tinymce.init({
-      selector:'textarea',
-      content_style: "div, p { font-size: 16px; }",
-      menubar: false,
-      toolbar: false
-    });
-  </script>
+  <!-- <script src="{{ url('tinymce/tinymce.min.js') }}"></script> -->
+
+  <!-- include summernote css/js-->
+  <link href="{{ url('summernote/summernote.css') }}" rel="stylesheet">
+  <script src="{{ url('summernote/summernote.min.js') }}"></script>
+
   <!-- <script src="{{ elixir('js/app.js') }}"></script> -->
   <style media="screen">
     @font-face {

@@ -75,4 +75,12 @@ class UserController extends Controller
     public function getReadStoryDetail() {
         return view('user.story_detail');
     }
+
+    public function getWriteStory() {
+        return view('user.write_story');
+    }
+
+    public function getWriteStorySub() {
+        return view('user.write_story_sub');
+    }
 }

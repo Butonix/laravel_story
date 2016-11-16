@@ -19,6 +19,8 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('profile', 'UserController@getProfile');
   Route::get('read/story/{id}', 'UserController@getReadStory');
   Route::get('read/story/detail/{id}', 'UserController@getReadStoryDetail');
+  Route::get('write/story', 'UserController@getWriteStory');
+  Route::get('write/story/sub/{id}', 'UserController@getWriteStorySub');
 });
 
 Route::group(['prefix' => 'category'], function() {

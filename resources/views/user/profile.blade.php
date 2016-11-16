@@ -18,6 +18,15 @@
   }
 </style>
 
+<script>
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      height: 150,
+      toolbar: false
+    });
+  });
+</script>
+
 <div class="row" style="margin-top: 20px;">
   <div class="col-md-12">
     <ul class="nav nav-tabs">
@@ -78,7 +87,7 @@
     <div class="panel panel-info">
       <div class="panel-heading text-center">
         <span style="font-size: 20px;">เรื่องทั้งหมด</span>
-        <a href="#" class="pull-right"><span style="font-size: 20px;">เขียนนิยาย</span> <i class="fa fa-plus fa-lg"></i></a>
+        <a href="{{ url('user/write/story') }}" class="pull-right"><span style="font-size: 20px;">เขียนนิยาย</span> <i class="fa fa-plus fa-lg"></i></a>
       </div>
       <div class="panel-body">
         <div class="col-md-12">
@@ -147,7 +156,8 @@
         <form action="user/profile" method="get">
           {{ csrf_field() }}
           <div class="form-group">
-            <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea>
+            <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
+            <div id="summernote"></div>
           </div>
           <div class="form-group text-center">
             <button type="button" class="btn btn-success" style="font-size: 18px; width: 20%;">Post</button>
