@@ -16,10 +16,11 @@ Route::group(['prefix' => 'user'], function() {
   Route::post('register', 'UserController@postRegister');
   Route::post('login', 'UserController@postLogin');
   Route::get('logout', 'UserController@logout');
-  Route::get('profile', 'UserController@getProfile');
+  Route::get('profile', 'UserController@getProfile')->name('profile');
   Route::get('read/story/{id}', 'UserController@getReadStory');
   Route::get('read/story/detail/{id}', 'UserController@getReadStoryDetail');
   Route::get('write/story', 'UserController@getWriteStory');
+  Route::post('write/story', 'UserController@postWriteStory');
   Route::get('write/story/sub/{id}', 'UserController@getWriteStorySub');
 });
 

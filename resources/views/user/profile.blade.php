@@ -90,7 +90,25 @@
         <a href="{{ url('user/write/story') }}" class="pull-right"><span style="font-size: 20px;">เขียนนิยาย</span> <i class="fa fa-plus fa-lg"></i></a>
       </div>
       <div class="panel-body">
-        <div class="col-md-12">
+
+        @foreach ($storys as $story)
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="media-left media-middle">
+                <a href="#">
+                  <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
+                <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                <!-- <span style="font-size: 16px;">ยอดวิว 10 k</span> -->
+              </div>
+            </div>
+          </div>
+        @endforeach
+
+        <!-- <div class="col-md-12">
           <div class="form-group">
             <div class="media-left media-middle">
               <a href="#">
@@ -102,45 +120,10 @@
               <span style="font-size: 16px;">ตอน...</span><br>
               <span style="font-size: 16px;"><i class="fa fa-user"></i> admin</span><br>
               <span style="font-size: 16px;">ยอดวิว 10 k</span>
-              <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-              <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
             </div>
           </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <div class="media-left media-middle">
-              <a href="#">
-                <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">ชื่อเรื่อง...</h4>
-              <span style="font-size: 16px;">ตอน...</span><br>
-              <span style="font-size: 16px;"><i class="fa fa-user"></i> admin</span><br>
-              <span style="font-size: 16px;">ยอดวิว 10 k</span>
-              <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-              <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <div class="media-left media-middle">
-              <a href="#">
-                <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">ชื่อเรื่อง...</h4>
-              <span style="font-size: 16px;">ตอน...</span><br>
-              <span style="font-size: 16px;"><i class="fa fa-user"></i> admin</span><br>
-              <span style="font-size: 16px;">ยอดวิว 10 k</span>
-              <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-              <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-            </div>
-          </div>
-        </div>
+        </div> -->
+
       </div>
     </div>
   </div>

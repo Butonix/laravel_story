@@ -1,193 +1,170 @@
-@extends('layouts.user')
+@extends('layouts.user') @section('content') @include('layouts.components.banner') @include('layouts.components.navbar') @include('layouts.components.modal_login') @include('layouts.components.modal_register') @php $categorys = App\Category::all(); @endphp
 
-@section('content')
 
-@include('layouts.components.banner')
-@include('layouts.components.navbar')
-@include('layouts.components.modal_login')
-@include('layouts.components.modal_register')
 
 <div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a></li>
-    </ul>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <input type="text" class="form-control input-lg" placeholder="ชื่อเรื่อง ...">
-      </div>
-    </div>
-  </div>
-</div>
+    <form action="{{ url('user/write/story') }}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..." required>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
 
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a></li>
-    </ul>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <input type="text" class="form-control input-lg" placeholder="นามปากกา ...">
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- <div class="row" style="margin-top: 20px;"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <input type="text" name="story_author" class="form-control input-lg" placeholder="นามปากกา ..." required>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
 
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a></li>
-    </ul>
-    <div class="panel panel-default">
-      <div class="panel-body">
+        <!-- <div class="row" style="margin-top: 20px;"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-body">
 
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1" checked>
-          <span style="font-size: 16px;">นิยายรักโรแมนติก</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายอีโรติก 18+</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายโรมานซ์ 18+</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยาย y</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายแฟนฟิค</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายสืบสวน สอบสวน</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายสยองขวัญ</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายดราม่า, สะเทือนอารมณ์</span>
-        </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios0" value="option1">
-          <span style="font-size: 16px;">นิยายทั่วไป, ไม่มีหมวดหมู่</span>
-        </div>
+                    @foreach ($categorys as $category)
+                    <div class="form-group">
+                        <input type="radio" name="category_name" value="{{ $category->category_name }}" required>
+                        <span style="font-size: 16px;">{{ $category->category_name }}</span>
+                    </div>
+                    @endforeach
 
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <form action="user/profile" method="get">
-          {{ csrf_field() }}
-          <div class="form-group">
-            <!-- <textarea name="story_detail" id="summernote" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
-            <div id="summernote"></div>
-          </div>
-          <div class="form-group text-center">
-            <button type="button" class="btn btn-success" style="font-size: 18px; width: 20%;">Post</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
-    </ul>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <input type="file">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">Tag</span></a></li>
-    </ul>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="col-md-offset-1 col-md-2">
-          <input type="text" class="form-control">
+                </div>
+            </div>
         </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- </div> -->
 
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-          <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
+        <!-- <div class="row"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <!-- <textarea name="story_detail" id="summernote" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
+                        <div id="summernote"></div>
+                        <input type="hidden" name="story_outline" id="story_outline">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-          <span style="font-size: 16px;">ปิดรับความคิดเห็น</span>
+        <!-- </div> -->
+
+        <!-- <div class="row" style="margin-top: 20px;"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <input type="file" name="upload_picture" required>
+                </div>
+            </div>
         </div>
+        <!-- </div> -->
 
-        <hr>
-
-        <div class="form-group">
-          <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option1">
-          <span style="font-size: 16px;">เผยแพร่</span>
+        <!-- <div class="row" style="margin-top: 20px;"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">Tag</span></a></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-inline text-center">
+                        <div class="form-group" style="margin-right: 10px;">
+                            <input type="text" name="tag1" class="form-control" placeholder="tag 1">
+                        </div>
+                        <div class="form-group" style="margin-right: 10px;">
+                            <input type="text" name="tag2" class="form-control" placeholder="tag 2">
+                        </div>
+                        <div class="form-group" style="margin-right: 10px;">
+                            <input type="text" name="tag3" class="form-control" placeholder="tag 3">
+                        </div>
+                        <div class="form-group" style="margin-right: 10px;">
+                            <input type="text" name="tag4" class="form-control" placeholder="tag 4">
+                        </div>
+                        <div class="form-group" style="margin-right: 10px;">
+                            <input type="text" name="tag5" class="form-control" placeholder="tag 5">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option1">
-          <span style="font-size: 16px;">ปิดไว้</span>
+        <!-- </div> -->
+
+        <!-- <div class="row" style="margin-top: 20px;"> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <input type="radio" name="state_comment" value="1" checked>
+                        <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="state_comment" value="0">
+                        <span style="font-size: 16px;">ปิดรับความคิดเห็น</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <input type="radio" name="state_public" value="1" checked>
+                        <span style="font-size: 16px;">เผยแพร่</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="state_public" value="0">
+                        <span style="font-size: 16px;">ปิดไว้</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
+                        <div class="form-group text-center">
+                            <button type="submit" id="btn_submit" class="btn btn-success" style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
+                        <div class="form-group text-center">
+                            <button type="reset" class="btn btn-danger" style="font-size: 18px; width: 100%;"><i class="fa fa-ban"></i> ยกเลิก</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-
-        <hr>
-
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-success" style="font-size: 18px; width: 20%;"><i class="fa fa-upload"></i> อัพโหลด</button>
-        </div>
-
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-danger" style="font-size: 18px; width: 20%;"><i class="fa fa-ban"></i> ยกเลิก</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
+        <!-- </div> -->
+    </form>
 </div>
 
 <script>
-  $(document).ready(function() {
-    $('#summernote').summernote({
-      height: 300
+    $(document).ready(function() {
+
+        $('#summernote').summernote({
+            height: 300
+        });
+        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+            $('#story_outline').val(contents);
+            // console.log(contents);
+        });
+
+
     });
-  });
 </script>
 
 @endsection

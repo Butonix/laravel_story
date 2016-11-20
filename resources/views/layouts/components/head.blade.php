@@ -1,11 +1,12 @@
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Story</title>
   <link rel="stylesheet" href="{{ url('css/all.css') }}">
   <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
-  <script src="{{ url('js/all.js') }}"></script>
-  <!-- <script src="{{ url('tinymce/tinymce.min.js') }}"></script> -->
+  <script src="{{ url('js/jquery-3.1.1.js') }}" charset="utf-8"></script>
+  <script src="{{ url('js/bootstrap.min.js') }}" charset="utf-8"></script>
+  <script src="{{ url('js/sweetalert.min.js') }}" charset="utf-8"></script>
 
   <!-- include summernote css/js-->
   <link href="{{ url('summernote/summernote.css') }}" rel="stylesheet">

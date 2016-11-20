@@ -9,11 +9,8 @@ class Category extends Model
     protected $table = 'tb_category';
 
     protected $fillable = [
+        'id',
         'category_name'
-    ];
-
-    protected $hidden = [
-        'password', 'remember_token',
     ];
 
     public $timestamps = true;

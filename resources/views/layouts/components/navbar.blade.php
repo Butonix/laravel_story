@@ -1,3 +1,7 @@
+@php
+  $categorys = App\Category::all();
+@endphp
+
 <nav class="navbar navbar-default" style="border-radius: 0px; margin-bottom: 0px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header"  style="margin-left: 50px;">
@@ -7,7 +11,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url('user/profile') }}">ชื่อผู้ใช้งาน admin</a>
+      @if (Auth::check())
+        <a class="navbar-brand" href="{{ url('user/profile') }}">ชื่อผู้ใช้งาน {{ Auth::User()->username }}</a>
+      @endif
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,9 +24,9 @@
         <li class="dropdown" style="margin-right: 50px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 22px;"><i class="fa fa-list"></i> หมวดหมู่นิยาย <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url('category/1') }}">นิยาย รักวัยรุ่น</a></li>
-            <li><a href="{{ url('category/2') }}">นิยาย รัก,โรแมนติค</a></li>
-            <li><a href="{{ url('category/3') }}">นิยาย ตลก,คอมเมดี้</a></li>
+            @foreach ($categorys as $category)
+              <li><a href="{{ url('category/'.$category->id) }}">{{ $category->category_name }}</a></li>
+            @endforeach
           </ul>
         </li>
 

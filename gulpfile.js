@@ -31,6 +31,6 @@ elixir(function(mix) {
       'sweetalert.min.js'
     ]);
     mix.browserSync({
-        proxy: 'localhost'
+        proxy: 'localhost:8888'
     });
 });
