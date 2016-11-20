@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\Category;
 use App\FacebookLogin;
+use App\Story;
 
 use Illuminate\Http\Request;
 use Session;
@@ -186,5 +187,12 @@ class AdminController extends Controller
         $category = new Category;
         $category::where('id', $request->category_id)->delete();
         return redirect()->back()->with('status_delete_category', 'done');
+    }
+
+    public function getVisitAll() {
+        Session::put('active_menu', 'visit');
+        $storys = new Story;
+        $storys = $storys::orderBy('visit', 'desc')->get();
+        return view('admin.visit.visit')->with('storys', $storys);
     }
 }
