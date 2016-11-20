@@ -35,7 +35,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="col-md-12 text-center">
-          <span style="font-size: 40px;">ไฟรัก แรงแค้น</span><br><br>
+          <span style="font-size: 40px;">{{ $story->story_name }}</span><br><br>
           <div class="form-group">
             <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" class=""  style="width: 250px; height: 350px;" alt="">
           </div>
@@ -52,23 +52,23 @@
               <tbody>
                 <tr>
                   <td>นักเขียน</td>
-                  <td>Anny</td>
+                  <td>{{ $story->story_author }}</td>
                 </tr>
                 <tr>
                   <td>หมวดนิยาย</td>
-                  <td>รักโรแมนติก</td>
+                  <td>{{ $story->category_name }}</td>
                 </tr>
                 <tr>
                   <td>ยอดวิว</td>
-                  <td>1.5 m</td>
+                  <td>{{ $story->visit }}</td>
                 </tr>
                 <tr>
                   <td>ความคิดเห็น</td>
-                  <td>1.4 k</td>
+                  <td>none</td>
                 </tr>
                 <tr>
                   <td>อัพเดทล่าสุด</td>
-                  <td>01/01/59 12.30</td>
+                  <td>{{ date_format($story->created_at, 'Y/m/d') }}</td>
                 </tr>
               </tbody>
             </table>

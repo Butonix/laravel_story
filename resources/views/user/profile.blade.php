@@ -102,7 +102,7 @@
               <div class="media-body">
                 <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
                 <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                <!-- <span style="font-size: 16px;">ยอดวิว 10 k</span> -->
+                <span style="font-size: 16px;">ยอดวิว <span>{{ $story->visit }}</span></span>
               </div>
             </div>
           </div>

@@ -16,8 +16,12 @@ class UserController extends Controller
 {
     public function index() {
         $storys = new Story;
-        $storys = $storys::all();
-        return view('user.home')->with('storys', $storys);
+        $top_visits = $storys::all()->sortByDesc('visit');
+        $storys = $storys::orderBy('created_at', 'desc')->get();
+
+        return view('user.home')
+        ->with('storys', $storys)
+        ->with('top_visits', $top_visits);
     }
 
     public function getCategory($id) {
@@ -81,6 +85,12 @@ class UserController extends Controller
     public function getReadStory($id) {
         $storys = new Story;
         $storys = $storys::where('id', $id)->first();
+
+        // Update visit to story
+        $current_visit = $storys->visit;
+        $storys->visit = ++$current_visit;
+        $storys->save();
+
         return view('user.read_story')->with('story', $storys);
     }
 
@@ -111,6 +121,7 @@ class UserController extends Controller
 
         $story->state_comment = $request->state_comment;
         $story->state_public = $request->state_public;
+        $story->visit = 0;
         $story->save();
 
         $getStoryId = $story::where('story_name', $request->story_name)->first();
@@ -135,6 +146,7 @@ class UserController extends Controller
             $tag->tag5 = $request->tag5;
         }
         $tag->save();
+
         return redirect()->route('profile');
     }
 
