@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $table = 'tb_tag';
+    protected $table = 'tag';
     protected $fillable = [
       'story_id',
-      'tag_name'
+      'tag1',
+      'tag2',
+      'tag3',
+      'tag4',
+      'tag5'
     ];
     public $timestamps = true;
 }

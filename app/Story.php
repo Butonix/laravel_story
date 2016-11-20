@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Story extends Model
 {
-    protected $table = 'tb_story';
+    protected $table = 'story';
     protected $fillable = [
         'username',
         'story_name',

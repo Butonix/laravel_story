@@ -11,7 +11,7 @@ class Member extends Model
 
     }
 
-    protected $table = 'tb_member';
+    protected $table = 'member';
 
     protected $fillable = [
         'username', 'email', 'password'

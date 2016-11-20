@@ -19,7 +19,7 @@ return [
     // ],
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'tb_member',
+        'passwords' => 'member',
     ],
 
     /*
@@ -51,7 +51,7 @@ return [
         // ]
         'web' => [
             'driver' => 'session',
-            'provider' => 'tb_member',
+            'provider' => 'member',
         ]
         // 'facebook_login' => [
         //     'driver' => 'session',
@@ -84,9 +84,9 @@ return [
         //     'model' => App\User::class,
         // ],
 
-        'tb_member' => [
+        'member' => [
             'driver' => 'database',
-            'table' => 'tb_member',
+            'table' => 'member',
         ]
         // 'facebook_logins' => [
         //     'driver' => 'database',

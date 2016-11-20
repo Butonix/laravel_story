@@ -65,7 +65,7 @@
         <div class="media">
 
           @foreach ($storys as $story)
-            <div class="col-md-12" style="margin-top: 20px;">
+            <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="{{ url('user/read/story/'.$story->id) }}">
@@ -81,7 +81,9 @@
             </div>
           @endforeach
 
-          <a href="#" class="pull-right" style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <a href="#" class="pull-right" style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>
+          </div>
 
         </div>
       </div>

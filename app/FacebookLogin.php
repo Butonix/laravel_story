@@ -9,7 +9,7 @@ class FacebookLogin extends Model
 {
     use SyncableGraphNodeTrait;
 
-    protected $table = 'facebook_logins';
+    protected $table = 'facebook_login';
 
     protected $fillable = ['facebook_user_id', 'full_name', 'email'];
 
