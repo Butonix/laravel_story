@@ -64,113 +64,22 @@
       <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
-          <div class="col-md-12" style="margin-top: 20px;">
-            <div class="col-md-4">
+          @foreach ($storys as $story)
+            <div class="col-md-12" style="margin-top: 20px;">
               <div class="form-group">
                 <div class="media-left media-middle">
-                  <a href="{{ url('user/read/story/1') }}">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                  <a href="{{ url('user/read/story/'.$story->id) }}">
+                    <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
+                  <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
+                  <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                  <!-- <span style="font-size: 16px;">ยอดวิว 10 k</span> -->
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="#">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="#">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12" style="margin-top: 20px;">
-            <div class="col-md-4">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="#">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="#">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="#">
-                    <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง...</h4>
-                  <span>ตอน...</span><br>
-                  <i class="fa fa-user"></i> admin<br>
-                  <span>ยอดวิว 10 k</span>
-                  <!-- <span><i class="fa fa-comment-o"></i> 1</span><br>
-                  <span><i class="fa fa-clock-o"></i> 1 ชั่วโมงที่แล้ว</span> -->
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
 
           <a href="#" class="pull-right" style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>
 

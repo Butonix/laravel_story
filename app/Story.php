@@ -8,6 +8,7 @@ class Story extends Model
 {
     protected $table = 'tb_story';
     protected $fillable = [
+        'username',
         'story_name',
         'story_author',
         'category_name',

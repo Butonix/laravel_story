@@ -15,7 +15,9 @@ use Session;
 class UserController extends Controller
 {
     public function index() {
-        return view('user.home');
+        $storys = new Story;
+        $storys = $storys::all();
+        return view('user.home')->with('storys', $storys);
     }
 
     public function getCategory($id) {
@@ -72,12 +74,14 @@ class UserController extends Controller
 
     public function getProfile() {
         $storys = new Story;
-        $storys = $storys::all();
+        $storys = $storys::where('username', Auth::User()->username)->get();
         return view('user.profile')->with('storys', $storys);
     }
 
-    public function getReadStory() {
-        return view('user.read_story');
+    public function getReadStory($id) {
+        $storys = new Story;
+        $storys = $storys::where('id', $id)->first();
+        return view('user.read_story')->with('story', $storys);
     }
 
     public function getReadStoryDetail() {
@@ -90,6 +94,7 @@ class UserController extends Controller
 
     public function postWriteStory(Request $request) {
         $story = new Story;
+        $story->username = Auth::User()->username;
         $story->story_name = $request->story_name;
         $story->story_author = $request->story_author;
         $story->category_name = $request->category_name;

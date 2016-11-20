@@ -37,7 +37,7 @@
         <div class="col-md-12 text-center">
           <span style="font-size: 40px;">ไฟรัก แรงแค้น</span><br><br>
           <div class="form-group">
-            <img src="{{ url('images/story/example.jpg') }}" class=""  style="width: 250px; height: 350px;" alt="">
+            <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" class=""  style="width: 250px; height: 350px;" alt="">
           </div>
         </div>
         <div class="col-md-offset-4 col-md-4">
