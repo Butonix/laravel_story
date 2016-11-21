@@ -65,10 +65,11 @@
   </div>
 
   <div class="col-xs-12 col-sm-6 col-md-6" style="margin-top: 15px;">
-    <form action="#">
+    <form action="{{ url('user/search') }}" method="post">
+      {{ csrf_field() }}
       <div class="form-group">
             <div class="icon-addon addon-lg">
-                <input type="text" class="form-control" placeholder="ค้นหานิยาย / นักเขียน">
+                <input type="text" class="form-control" name="txt_search" id="txt_search" placeholder="ค้นหานิยาย / นักเขียน">
                 <i class="fa fa-search"></i>
             </div>
         </div>

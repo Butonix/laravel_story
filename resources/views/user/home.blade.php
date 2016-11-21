@@ -56,6 +56,12 @@
     </script>
   @endif
 
+  @if (session('status_search'))
+    <script type="text/javascript">
+      swal("", "ไม่พบข้อมูลการค้นหา", "error")
+    </script>
+  @endif
+
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-center">

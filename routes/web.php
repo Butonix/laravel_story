@@ -23,6 +23,7 @@ Route::group(['prefix' => 'user'], function() {
   Route::post('write/story', 'UserController@postWriteStory');
   Route::get('write/story/sub/{id}', 'UserController@getWriteStorySub');
   Route::get('love/story/{id}' ,'UserController@getLoveStory');
+  Route::post('search', 'UserController@postSearch');
 });
 
 Route::group(['prefix' => 'category'], function() {
