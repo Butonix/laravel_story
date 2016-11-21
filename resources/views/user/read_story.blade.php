@@ -95,9 +95,8 @@
       <div class="panel-heading text-center">
         <span style="font-size: 24px;">ไฮไลท์ / คำโปรย</span>
       </div>
-      <div class="panel-body">
-        ...<br>
-        ...<br>
+      <div class="panel-body" id="story_outline">
+        {!! $story->story_outline !!}
       </div>
     </div>
   </div>
@@ -238,5 +237,11 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+
+  });
+</script>
 
 @endsection

@@ -32,10 +32,28 @@
             </table>
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-danger" style="font-size: 18px;">
-              ชอบ <i class="fa fa-exclamation fa-lg"></i>
-              มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
-           </button>
+            @php
+              use App\GiveLove;
+              $check_give_love = new GiveLove;
+              $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Auth::User()->username)->first();
+              $result_give_love = 0;
+              if (count($check_give_love) > 0) {
+                $result_give_love = $check_give_love->status;
+              }
+            @endphp
+
+            @if ($result_give_love == 0)
+              <a href="{{ url('user/love/story/'.$story->id) }}"><button type="button" class="btn btn-danger" style="font-size: 18px;">
+                ชอบ <i class="fa fa-exclamation fa-lg"></i>
+                มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
+             </button></a>
+           @else
+             <button type="button" class="btn btn-danger" style="font-size: 18px;" disabled>
+               ชอบ <i class="fa fa-exclamation fa-lg"></i>
+               มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
+            </button>
+           @endif
+
           </div>
         </div>
       </div>

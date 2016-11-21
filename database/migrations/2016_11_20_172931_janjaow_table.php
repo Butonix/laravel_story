@@ -44,6 +44,7 @@ class JanjaowTable extends Migration
             $table->tinyInteger('state_comment');
             $table->tinyInteger('state_public');
             $table->integer('visit');
+            $table->integer('love');
             $table->timestamps();
         });
         Schema::create('tag', function (Blueprint $table) {
@@ -56,12 +57,13 @@ class JanjaowTable extends Migration
             $table->string('tag5')->nullable();
             $table->timestamps();
         });
-        // Schema::create('visit', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->integer('story_id');
-        //     $table->integer('view');
-        //     $table->timestamps();
-        // });
+        Schema::create('give_love', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('story_id');
+            $table->string('username');
+            $table->tinyInteger('status');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -76,6 +78,5 @@ class JanjaowTable extends Migration
         Schema::drop('member');
         Schema::drop('story');
         Schema::drop('tag');
-        // Schema::drop('visit');
     }
 }

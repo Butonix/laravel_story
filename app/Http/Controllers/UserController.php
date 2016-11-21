@@ -10,6 +10,7 @@ use App\Member;
 use App\Category;
 use App\Story;
 use App\Tag;
+use App\GiveLove;
 use Session;
 
 class UserController extends Controller
@@ -17,6 +18,7 @@ class UserController extends Controller
     public function index() {
         $storys = new Story;
         $top_visits = $storys::all()->sortByDesc('visit');
+        $top_love = $storys::all()->sortByDesc('love');
         $storys = $storys::orderBy('created_at', 'desc')->get();
 
         return view('user.home')
@@ -122,6 +124,7 @@ class UserController extends Controller
         $story->state_comment = $request->state_comment;
         $story->state_public = $request->state_public;
         $story->visit = 0;
+        $story->love = 0;
         $story->save();
 
         $getStoryId = $story::where('story_name', $request->story_name)->first();
@@ -152,5 +155,20 @@ class UserController extends Controller
 
     public function getWriteStorySub() {
         return view('user.write_sub_story');
+    }
+
+    public function getLoveStory($id) {
+        $story = new Story;
+        $story = $story::where('id', $id)->first();
+        $current_love = $story->love;
+        $story->love = ++$current_love;
+        $story->save();
+
+        $give_love = new GiveLove;
+        $give_love->story_id = $id;
+        $give_love->username = Auth::User()->username;
+        $give_love->status = 1;
+        $give_love->save();
+        return redirect()->back();
     }
 }

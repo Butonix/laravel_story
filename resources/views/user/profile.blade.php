@@ -95,7 +95,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <div class="media-left media-middle">
-                <a href="#">
+                <a href="{{ url('user/read/story/'.$story->id) }}">
                   <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
                 </a>
               </div>
