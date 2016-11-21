@@ -18,15 +18,6 @@
   }
 </style>
 
-<script>
-  $(document).ready(function() {
-    $('#summernote').summernote({
-      height: 150,
-      toolbar: false
-    });
-  });
-</script>
-
 <div class="row" style="margin-top: 20px;">
   <div class="col-md-12">
     <ul class="nav nav-tabs">
@@ -51,7 +42,7 @@
                 <tr>
                   <td></td>
                   <td>ชื่อ</td>
-                  <td>...</td>
+                  <td>{{ Auth::User()->username }}</td>
                 </tr>
                 <tr>
                   <td></td>
@@ -141,6 +132,7 @@
           <div class="form-group">
             <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
             <div id="summernote"></div>
+            <input type="hidden" name="comment" id="comment">
           </div>
           <div class="form-group text-center">
             <button type="button" class="btn btn-success" style="font-size: 18px; width: 20%;">Post</button>
@@ -237,5 +229,25 @@
 
   </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+        $('#summernote').summernote({
+            height: 300,
+            toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']]
+            ]
+        });
+        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+            $('#comment').val(contents);
+            // console.log(contents);
+        });
+
+
+    });
+</script>
 
 @endsection

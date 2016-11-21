@@ -10,6 +10,7 @@
           <div class="form-group">
             <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
             <div id="summernote"></div>
+            <input type="hidden" name="comment" id="comment">
           </div>
           <div class="form-group text-center">
             <button type="button" class="btn btn-success" style="font-size: 18px; width: 20%;">Post</button>

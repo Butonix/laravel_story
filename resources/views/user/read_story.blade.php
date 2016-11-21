@@ -21,15 +21,6 @@
   }
 </style>
 
-<script>
-  $(document).ready(function() {
-    $('#summernote').summernote({
-      height: 150,
-      toolbar: false
-    });
-  });
-</script>
-
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-default">
@@ -239,9 +230,23 @@
 </div>
 
 <script>
-  $(document).ready(function() {
+    $(document).ready(function() {
 
-  });
+        $('#summernote').summernote({
+            height: 300,
+            toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']]
+            ]
+        });
+        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+            $('#comment').val(contents);
+            // console.log(contents);
+        });
+
+
+    });
 </script>
 
 @endsection
