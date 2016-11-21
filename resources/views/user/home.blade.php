@@ -62,6 +62,12 @@
     </script>
   @endif
 
+  @if (session('status_permission'))
+    <script type="text/javascript">
+      swal("", "กรุณาเข้าสู่ระบบ", "error")
+    </script>
+  @endif
+
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-center">

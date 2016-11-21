@@ -29,7 +29,11 @@ class UserController extends Controller
     public function getCategory($id) {
         $category = new Category;
         $category = $category::where('id', $id)->first();
-        return view('user.category')->with('category_name', $category->category_name);
+        $category_name = $category->category_name;
+
+        $storys = new Story;
+        $select_category = $storys::where('category_name', $category_name)->get();
+        return view('user.category')->with('storys', $select_category)->with('category_name', $category_name);
     }
 
     public function postRegister(Request $request) {
@@ -85,6 +89,11 @@ class UserController extends Controller
     }
 
     public function getReadStory($id) {
+
+        if (!Auth::check()) {
+            return redirect()->back()->with('status_permission', 'fail');
+        }
+
         $storys = new Story;
         $storys = $storys::where('id', $id)->first();
 
