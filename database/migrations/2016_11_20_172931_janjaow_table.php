@@ -64,6 +64,14 @@ class JanjaowTable extends Migration
             $table->tinyInteger('status');
             $table->timestamps();
         });
+        Schema::create('comment', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('story_id');
+            $table->string('story_name');
+            $table->string('username');
+            $table->string('comment_detail');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -78,5 +86,7 @@ class JanjaowTable extends Migration
         Schema::drop('member');
         Schema::drop('story');
         Schema::drop('tag');
+        Schema::drop('give_love');
+        Schema::drop('comment');
     }
 }

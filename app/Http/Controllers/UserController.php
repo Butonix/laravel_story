@@ -11,6 +11,7 @@ use App\Category;
 use App\Story;
 use App\Tag;
 use App\GiveLove;
+use App\Comment;
 use Session;
 
 class UserController extends Controller
@@ -102,7 +103,13 @@ class UserController extends Controller
         $storys->visit = ++$current_visit;
         $storys->save();
 
-        return view('user.read_story')->with('story', $storys);
+        // Read comment
+        $comments = new Comment;
+        $comments = $comments::where('story_id', $id)->orderBy('created_at', 'desc')->get();
+
+        return view('user.read_story')
+        ->with('story', $storys)
+        ->with('comments', $comments);
     }
 
     public function getReadStoryDetail() {
@@ -203,6 +210,16 @@ class UserController extends Controller
 
         }
 
+    }
+
+    public function postStoryComment(Request $request) {
+        $comment = New Comment;
+        $comment->story_id = $request->story_id;
+        $comment->story_name = $request->story_name;
+        $comment->username = $request->username;
+        $comment->comment_detail = $request->comment;
+        $comment->save();
+        return redirect()->back();
     }
 
 }

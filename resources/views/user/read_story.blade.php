@@ -141,9 +141,54 @@
   </div>
 </div>
 
-@include('user.components.comment')
-
 <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span style="font-size: 20px;">Comment / Review</span>
+      </div>
+      <div class="panel-body">
+        <form action="{{ url('user/story/comment') }}" method="post">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
+            <input type="hidden" name="story_id" value="{{ $story->id }}">
+            <input type="hidden" name="story_name" value="{{ $story->story_name }}">
+            <input type="hidden" name="username" value="{{ Auth::User()->username }}">
+            <div id="summernote"></div>
+            <input type="hidden" name="comment" id="comment">
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@foreach ($comments as $comment)
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <span style="font-size: 20px;">ความคิดเห็นที่ {{ $comment->id }}</span> : <span style="font-size: 18px;"> เรื่อง {{ $comment->story_name }}</span>
+        </div>
+        <div class="panel-body">
+            <span style="font-size: 14px;">โดย {{ $comment->username }}</span><br><br>
+            <span style="font-size: 16px;">{!! $comment->comment_detail !!}</span><br><br>
+
+            <span style="font-size: 14px;">โพสต์เมื่อ {{ $comment->created_at }}</span>
+        </div>
+        <div class="panel-footer text-right">
+          <button type="button" class="btn btn-info" disabled>ตอบกลับ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+
+<!-- <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -151,8 +196,6 @@
       </div>
       <div class="panel-body">
           <span style="font-size: 14px;">โดย Anny</span><br><br>
-          <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 1</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-          <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
           <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
 
           <span style="font-size: 14px;">01/01/2559 10:00</span>
@@ -170,64 +213,7 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <span style="font-size: 20px;">ความคิดเห็นที่ 2</span> : <span style="font-size: 18px;"> จากตอน บทนำ</span>
-      </div>
-      <div class="panel-body">
-          <span style="font-size: 14px;">โดย Anny</span><br><br>
-          <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 1</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-          <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
-          <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
-
-          <span style="font-size: 14px;">01/01/2559 10:00</span>
-      </div>
-      <div class="panel-footer text-right">
-        <button type="button" class="btn btn-info">ตอบกลับ</button>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <span style="font-size: 18px;">โดย Tester 3</span><br><br>
-        <span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>
-        <span style="font-size: 14px;">01/01/2559 10:00</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <span style="font-size: 20px;">ความคิดเห็นที่ 1</span> : <span style="font-size: 18px;"> จากตอน บทนำ</span>
-      </div>
-      <div class="panel-body">
-          <span style="font-size: 14px;">โดย Anny</span><br><br>
-          <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 1</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-          <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
-          <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
-
-          <span style="font-size: 14px;">01/01/2559 10:00</span>
-      </div>
-      <div class="panel-footer text-right">
-        <button type="button" class="btn btn-info">ตอบกลับ</button>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <span style="font-size: 18px;">โดย Tester 3</span><br><br>
-        <span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>
-        <span style="font-size: 14px;">01/01/2559 10:00</span>
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->
 
 <script>
     $(document).ready(function() {

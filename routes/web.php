@@ -24,6 +24,7 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('write/story/sub/{id}', 'UserController@getWriteStorySub');
   Route::get('love/story/{id}' ,'UserController@getLoveStory');
   Route::post('search', 'UserController@postSearch');
+  Route::post('story/comment', 'UserController@postStoryComment');
 });
 
 Route::group(['prefix' => 'category'], function() {
