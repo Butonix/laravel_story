@@ -12,6 +12,7 @@ use App\Story;
 use App\Tag;
 use App\GiveLove;
 use App\Comment;
+use App\Announce;
 use Session;
 
 class UserController extends Controller
@@ -22,9 +23,13 @@ class UserController extends Controller
         $top_love = $storys::all()->sortByDesc('love');
         $storys = $storys::orderBy('created_at', 'desc')->get();
 
+        $announces = new Announce;
+        $announces = $announces::orderBy('created_at', 'desc')->get();
+
         return view('user.home')
         ->with('storys', $storys)
-        ->with('top_visits', $top_visits);
+        ->with('top_visits', $top_visits)
+        ->with('announces', $announces);
     }
 
     public function getCategory($id) {
@@ -220,6 +225,26 @@ class UserController extends Controller
         $comment->comment_detail = $request->comment;
         $comment->save();
         return redirect()->back();
+    }
+
+    public function getCreateAnnounce() {
+        return view('user.create_announce');
+    }
+
+    public function postCreateAnnounce(Request $request) {
+        $announce = new Announce;
+        $announce->username = Auth::User()->username;
+        $announce->announce_title = $request->announce_title;
+        $announce->announce_detail = $request->announce_detail;
+        $announce->state_comment = $request->state_comment;
+        $announce->save();
+        return redirect()->route('index');
+    }
+
+    public function getReadAnnounce($id) {
+        $announce = new Announce;
+        $announce = $announce::where('id', $id)->first();
+        return view('user.read_announce')->with('announce', $announce);
     }
 
 }

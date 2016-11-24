@@ -25,6 +25,9 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('love/story/{id}' ,'UserController@getLoveStory');
   Route::post('search', 'UserController@postSearch');
   Route::post('story/comment', 'UserController@postStoryComment');
+  Route::get('announce/create', 'UserController@getCreateAnnounce');
+  Route::post('announce/create', 'UserController@postCreateAnnounce');
+  Route::get('announce/read/{id}', 'UserController@getReadAnnounce');
 });
 
 Route::group(['prefix' => 'category'], function() {

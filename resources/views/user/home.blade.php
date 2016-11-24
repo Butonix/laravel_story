@@ -367,14 +367,19 @@
       <div class="panel-body">
 
           <span style="font-size: 25px;" class="pull-left"><i class="fa fa-comments-o fa-lg"></i> เว็บบอร์ด / กิจกรรม</span>
-          <a href="#" class="pull-right" style="margin-bottom: 10px;"><span style="font-size: 25px;">สร้างกระทู้</span></a>
+          <a href="{{ url('user/announce/create') }}" class="pull-right" style="margin-bottom: 10px;"><span style="font-size: 25px;">สร้างกระทู้</span></a>
 
         <div class="list-group" style="margin-top: 10px;">
-          <button type="button" class="list-group-item"><span class="pull-left">1 <a href="#">Cras justo odio</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
+
+          @foreach ($announces as $announce)
+            <button type="button" class="list-group-item"><span class="pull-left">{{ $loop->iteration }}. <a href="{{ url('user/announce/read/'.$announce->id) }}">{{ $announce->announce_title }}</a> โดย {{ $announce->username }}</span> <span class="pull-right">{{ $announce->created_at }}</span></button>
+          @endforeach
+
+          <!-- <button type="button" class="list-group-item"><span class="pull-left">1 <a href="#">Cras justo odio</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
           <button type="button" class="list-group-item"><span class="pull-left">2 <a href="#">Dapibus ac facilisis in</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
           <button type="button" class="list-group-item"><span class="pull-left">3 <a href="#">Morbi leo risus</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
           <button type="button" class="list-group-item"><span class="pull-left">4 <a href="#">Porta ac consectetur ac</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
-          <button type="button" class="list-group-item"><span class="pull-left">5 <a href="#">Vestibulum at eros</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button>
+          <button type="button" class="list-group-item"><span class="pull-left">5 <a href="#">Vestibulum at eros</a> โดย admin</span> <span class="pull-right">01/11/59 10.00 น.</span></button> -->
         </div>
       </div>
     </div>
