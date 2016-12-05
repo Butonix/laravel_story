@@ -28,6 +28,9 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('announce/create', 'UserController@getCreateAnnounce');
   Route::post('announce/create', 'UserController@postCreateAnnounce');
   Route::get('announce/read/{id}', 'UserController@getReadAnnounce');
+  Route::get('topup', 'UserController@getTopup');
+  Route::get('topup/form', 'UserController@getFormTopup')->name('topup/form');
+  Route::post('topup/form', 'UserController@postFormTopup');
 });
 
 Route::group(['prefix' => 'category'], function() {

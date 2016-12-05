@@ -80,6 +80,26 @@ class JanjaowTable extends Migration
             $table->tinyInteger('state_comment');
             $table->timestamps();
         });
+        Schema::create('account_truemoney', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('username');
+            $table->string('tmCode');
+            $table->timestamps();
+        });
+        Schema::create('truemoney', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('tmCode');
+            $table->string('tmMsg');
+            $table->string('tmAmount');
+            $table->string('tmRealAmount');
+            $table->tinyInteger('tmStatus');
+            $table->string('created_at');
+        });
+        Schema::create('used_truemoney', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('tmCode');
+            $table->string('created_at');
+        });
     }
 
     /**
@@ -97,5 +117,8 @@ class JanjaowTable extends Migration
         Schema::drop('give_love');
         Schema::drop('comment');
         Schema::drop('announce');
+        Schema::drop('account_truemoney');
+        Schema::drop('truemoney');
+        Schema::drop('used_truemoney');
     }
 }

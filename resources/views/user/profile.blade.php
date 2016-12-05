@@ -19,6 +19,17 @@
 </style>
 
 <div class="row" style="margin-top: 20px;">
+
+  @if (session('status_truemoney') == 'success')
+    <script type="text/javascript">
+      swal({
+        title: "",
+        text: "ระบบกำลังตรวจสอบบัตร truemoney<br>อาจใช้เวลาประมาณ 2-3 นาทีในการอัพเดทข้อมูล",
+        html: true
+      });
+    </script>
+  @endif
+
   <div class="col-md-12">
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">แก้ไขข้อมูล</span></a></li>
@@ -52,7 +63,7 @@
                 <tr>
                   <td><i class="fa fa-usd fa-lg"></i></td>
                   <td>ยอดเหรียญ</td>
-                  <td>1,200,000</td>
+                  <td>{{ number_format($real_amount) }}</td>
                 </tr>
                 <tr>
                   <td><i class="fa fa-heart fa-lg"></i></td>

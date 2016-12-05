@@ -21,9 +21,17 @@
       src: local('Kanit'), local('Kanit-Regular'), url("{{ url('fonts/Kanit.woff2') }}") format('woff2');
       unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
     }
+    html {
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f2f9fe+0,d6f0fd+100;White+3D+%232 */
+      background: rgb(242,249,254); /* Old browsers */
+      background: -moz-linear-gradient(top,  rgba(242,249,254,1) 0%, rgba(214,240,253,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd',GradientType=0 ); /* IE6-9 */
+    }
     body {
       font-family: 'Kanit', sans-serif;
-      background-image: url("{{ url('images/background/school.png') }}");
+      background: transparent url("{{ url('images/background/bg.png') }}");
     }
   </style>
 </head>

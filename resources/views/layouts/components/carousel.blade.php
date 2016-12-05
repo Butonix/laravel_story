@@ -41,6 +41,7 @@
 
           @if (Auth::check() || Session::get('fb_user_access_token') != null)
             <li><a href="{{ url('user/profile') }}" style="font-size: 18px;">หน้าส่วนตัว</a></li>
+            <li><a href="{{ url('user/topup') }}" style="font-size: 18px;">เติมเหรียญ</a></li>
             <li><a href="#" style="font-size: 18px;">เหรียญของฉัน</a></li>
             <li><a href="#" style="font-size: 18px;">เขียนนิยาย</a></li>
             <li role="separator" class="divider"></li>

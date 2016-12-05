@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+
 use App\Member;
 use App\Category;
 use App\Story;
@@ -13,7 +14,113 @@ use App\Tag;
 use App\GiveLove;
 use App\Comment;
 use App\Announce;
+use App\TrueMoney;
+use App\AccountTrueMoney;
+
 use Session;
+use File;
+
+class Payme
+{
+    private static $_PAYME = "https://www.payme.in.th/tmapi.php?";
+    private static $_MERCHANT = "";
+    private static $_ALLOWIP = array("27.254.144.22"); // หากมี IP อื่นๆสามารถเพิ่มได้
+
+    private static function getMERCHANT()
+    {
+        return self::$_MERCHANT;
+    }
+
+    public static function setMERCHANT($MERCHANT)
+    {
+        self::$_MERCHANT = $MERCHANT;
+    }
+
+    public static function addAllowIP($ip)
+    {
+        array_push(self::$_ALLOWIP, $ip);
+    }
+
+    public static function sendTruemoney($tmCode, $returnURL, $demo = false, $data='')
+    {
+        if (self::checkOffline() == false) return "Error System Offline !!";
+        if (self::getMERCHANT() == '') return "Error merchant is null or empty !!";
+        if (empty($tmCode)) return "Error truemoney code is null or empty !!";
+        if (empty($returnURL)) return "Error return url is null or empty !!";
+
+        if (!self::validate_custom("/^[0-9]{14}+$/", $tmCode)) return "Error is not truemoney code !!";
+        if (!self::validate_custom("/^[0-9A-Z]+$/", self::getMERCHANT())) return "Error is not merchant code !!";
+
+        if(is_array($data)) {
+            foreach ($data as $key => $item) {
+                $dataVal[] = "$key=$item";
+            }
+            $send = "&".implode("&",$dataVal);
+        }
+        $test = $demo == true ? "&mode=TEST" : "";
+        $sendURL = self::$_PAYME . "merchant=" . self::getMERCHANT() . "&password=$tmCode&resp_url={$returnURL}$test$send";
+
+        $ch = @curl_init();
+        @curl_setopt($ch, CURLOPT_URL, $sendURL);
+        @curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        @curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+        @curl_setopt($ch, CURLOPT_TIMEOUT, 400); //timeout in seconds
+        $curl_content = @curl_exec($ch);
+        @curl_close($ch);
+        if (@curl_errno($ch) == 28 || !$curl_content) return "Error can't connect to payme server !!";
+        return strpos($curl_content, 'SUCCEED') !== FALSE ? "OK" : "$curl_content";
+    }
+
+    public static function statusTruemoney($log = true)
+    {
+        $_tmAmount = array(
+            "1" => "50",
+            "2" => "90",
+            "3" => "150",
+            "4" => "300",
+            "5" => "500",
+            "6" => "1000",
+        );
+
+        foreach ($_GET as $key => $item) {
+            if ($key != "password" && $key != "msg" && $key != "amount" && $key != "status") {
+                $status[$key] = $item;
+            }
+        }
+
+        if (in_array($_SERVER['REMOTE_ADDR'], self::$_ALLOWIP)) {
+            if ($log) file_put_contents("truemoney/payme-log.txt", date("Y-m-d H:i:s") . " - [ $_SERVER[REMOTE_ADDR] ] staus : {$_GET['status']}, tmCode : {$_GET['password']}, amountCode : {$_GET['amount']}, amountReal : {$_tmAmount[$_GET['amount']]}, msg : " . urldecode($_GET['msg']) . " access..\n", FILE_APPEND);
+            $status = array(
+                "tmCode" => $_GET['password'],
+                "tmMsg" => urldecode($_GET['msg']),
+                "tmAmount" => $_GET['amount'],
+                "tmRealAmount" => $_tmAmount[$_GET['amount']],
+                "tmStatus" => $_GET['status'],
+            );
+        } else {
+            if ($log) file_put_contents("truemoney/payme-log.txt", date("Y-m-d H:i:s") . " - [ $_SERVER[REMOTE_ADDR] ] not allow ipaddress error access..\n", FILE_APPEND);
+            $status['tmStatus'] = "Error ip is not payme server !";
+        }
+        return $status;
+    }
+
+    public static function checkOffline()
+    {
+        $result = @file_get_contents("http://www.payme.in.th/status.php");
+        return trim($result);
+    }
+
+    public static function log($msg)
+    {
+        file_put_contents("truemoney/log-topup.txt", date("Y-m-d H:i:s") . " - $msg\n", FILE_APPEND);
+    }
+
+    private static function validate_custom($pattern, $string)
+    {
+        return !preg_match($pattern, $string) ? false : true;
+    }
+}
 
 class UserController extends Controller
 {
@@ -91,7 +198,25 @@ class UserController extends Controller
     public function getProfile() {
         $storys = new Story;
         $storys = $storys::where('username', Auth::User()->username)->get();
-        return view('user.profile')->with('storys', $storys);
+
+        $account_truemoney = new AccountTrueMoney;
+        $truemoney = new TrueMoney;
+        $account_truemoney = $account_truemoney::where('username', Auth::User()->username)->get();
+
+        $real_amount = 0;
+
+        foreach ($account_truemoney as $data) {
+          $get_money = $truemoney::where('tmCode', $data->tmCode)->first();
+
+          if (count($get_money) >= 1) {
+            if ($get_money->tmStatus == 1) {
+              $real_amount = $real_amount + $get_money->tmRealAmount;
+            }
+          }
+
+        }
+
+        return view('user.profile')->with('storys', $storys)->with('real_amount', $real_amount);
     }
 
     public function getReadStory($id) {
@@ -245,6 +370,46 @@ class UserController extends Controller
         $announce = new Announce;
         $announce = $announce::where('id', $id)->first();
         return view('user.read_announce')->with('announce', $announce);
+    }
+
+    public function getTopup() {
+        return view('user.topup');
+    }
+
+    public function getFormTopup() {
+        return view('user.form_topup');
+    }
+
+    public function postFormTopup(Request $request) {
+
+      // Config
+      $trueMoney = array("99999999999991", "99999999999992", "99999999999993", "99999999999994", "99999999999995", "99999999999996"); // รหัสทดสอบสำหรับ Demo !!
+      $demo = false; // ต้องการทดสอบ demo แก้เป็น true
+      $domain = "www.janjaow.com"; // โดเมนของคุณ
+      $merchantCode = "COMPILEPME"; // MERCHANT CODE จาก Payme
+
+      $cPayme = new Payme();
+      //$returnURL = "http://$domain/presult.php"; // URL ที่ต้องการให้ส่งค่ากลับ หลังจากส่งรหัสบัตรทรูมันนี่ไปตรวจสอบ
+      // $returnURL = asset('user/topup/result');
+      $returnURL = "http://janjaow.com/public/presult.php";
+      $cPayme->setMERCHANT($merchantCode); // ตั้งค่า MERCHANT CODE จาก Payme
+
+      $cPayme->log("{$request->TM_CODE} insert.");
+      $dataFild = array(
+          "id" => 'id',
+          "email" => 'mail@email.com',
+      );
+      $result = $cPayme->sendTruemoney($request->TM_CODE, $returnURL, $demo, $dataFild);
+      if ($result == "OK") {
+          $account_truemoney = new AccountTrueMoney;
+          $account_truemoney->username = Auth::User()->username;
+          $account_truemoney->tmCode = $request->TM_CODE;
+          $account_truemoney->save();
+          return redirect()->route('profile')->with('status_truemoney', 'success');
+      } else {
+          return redirect()->route('topup/form')->with('status_truemoney', 'error');
+      }
+
     }
 
 }
