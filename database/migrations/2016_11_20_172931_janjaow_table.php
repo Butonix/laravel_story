@@ -80,13 +80,13 @@ class JanjaowTable extends Migration
             $table->tinyInteger('state_comment');
             $table->timestamps();
         });
-        Schema::create('cashcard', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username');
-            $table->string('transaction');
-            $table->string('amount');
-            $table->timestamps();
-        });
+        // Schema::create('cashcard', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('username');
+        //     $table->string('transaction');
+        //     $table->string('amount');
+        //     $table->timestamps();
+        // });
         Schema::create('history_cashcard', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
@@ -96,6 +96,11 @@ class JanjaowTable extends Migration
             $table->string('cashcard_no');
             $table->string('amount');
             $table->string('status');
+            $table->timestamps();
+        });
+        Schema::create('contact', function (Blueprint $table) {
+            $table->increments('id');
+            $table->longText('detail');
             $table->timestamps();
         });
     }
@@ -115,7 +120,8 @@ class JanjaowTable extends Migration
         Schema::drop('give_love');
         Schema::drop('comment');
         Schema::drop('announce');
-        Schema::drop('cashcard');
+        // Schema::drop('cashcard');
         Schema::drop('history_cashcard');
+        Schema::drop('contact');
     }
 }

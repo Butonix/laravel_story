@@ -11,6 +11,7 @@
 */
 
 Route::get('/', 'UserController@index')->name('index');
+Route::get('contact', 'UserController@getContact');
 
 Route::group(['prefix' => 'user'], function() {
   Route::post('register', 'UserController@postRegister');
@@ -54,6 +55,9 @@ Route::group(['prefix' => 'admin'], function() {
   Route::get('category/delete/{category_id}', 'AdminController@getDeleteCategory');
   Route::get('report/visit', 'AdminController@getReportVisit');
   Route::get('report/topup', 'AdminController@getReportTopup');
+
+  Route::get('editor/contact', 'AdminController@getEditorContact');
+  Route::post('editor/contact', 'AdminController@postEditorContact');
 });
 
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {

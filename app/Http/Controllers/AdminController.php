@@ -7,6 +7,7 @@ use App\Category;
 use App\FacebookLogin;
 use App\Story;
 use App\HistoryCashcard;
+use App\Contact;
 
 use Illuminate\Http\Request;
 use Session;
@@ -201,5 +202,20 @@ class AdminController extends Controller
         $history_cashcard = new HistoryCashCard;
         $history_cashcard = $history_cashcard::where('response_code', '0')->get();
         return view('admin.report.topup')->with('history_cashcard', $history_cashcard);
+    }
+
+    public function getEditorContact() {
+        Session::put('active_menu', 'front-end');
+        $contact = new Contact;
+        $contact = $contact::where('id', 1)->first();
+        return view('admin.editor.contact')->with('contact', $contact);
+    }
+
+    public function postEditorContact(Request $request) {
+        $contact = new Contact;
+        $contact = $contact::where('id', 1)->first();
+        $contact->detail = $request->detail;
+        $contact->save();
+        return redirect()->back();
     }
 }

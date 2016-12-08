@@ -42,7 +42,12 @@
 
   @if (session('status_success'))
     <script type="text/javascript">
-      swal("", "สมัครสมาชิกสำเร็จ", "success")
+      // swal("", "สมัครสมาชิกสำเร็จ", "success")
+      swal({
+        title: "",
+        text: "สมัครสมาชิกสำเร็จ",
+        html: true
+      })
     </script>
   @endif
 

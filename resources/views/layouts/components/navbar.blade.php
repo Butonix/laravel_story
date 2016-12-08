@@ -38,6 +38,9 @@
             <li><a href="#">ระบบสนับสนุนคือ?</a></li>
           </ul>
         </li>
+
+        <li><a href="{!! url('contact') !!}" style="font-size: 22px; margin-right: 50px;"><i class="fa fa-phone"></i> ติดต่อเรา <span class="sr-only">(current)</span></a></li>
+
       </ul>
 
     </div><!-- /.navbar-collapse -->
