@@ -24,7 +24,7 @@
     <script type="text/javascript">
       swal({
         title: "",
-        text: "ระบบกำลังตรวจสอบบัตร truemoney<br>อาจใช้เวลาประมาณ 2-3 นาทีในการอัพเดทข้อมูล",
+        text: "เติมเงินเข้าสู่ระบบสำเร็จ",
         html: true
       });
     </script>

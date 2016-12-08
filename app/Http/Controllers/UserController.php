@@ -14,8 +14,8 @@ use App\Tag;
 use App\GiveLove;
 use App\Comment;
 use App\Announce;
-use App\TrueMoney;
-use App\AccountTrueMoney;
+use App\CashCard;
+use App\HistoryCashCard;
 
 use Session;
 use File;
@@ -199,19 +199,14 @@ class UserController extends Controller
         $storys = new Story;
         $storys = $storys::where('username', Auth::User()->username)->get();
 
-        $account_truemoney = new AccountTrueMoney;
-        $truemoney = new TrueMoney;
-        $account_truemoney = $account_truemoney::where('username', Auth::User()->username)->get();
-
+        $history_cashcard = new HistoryCashCard;
+        $history_cashcard = $history_cashcard::where('username', Auth::User()->username)->where('response_code', 0)->get();
         $real_amount = 0;
 
-        foreach ($account_truemoney as $data) {
-          $get_money = $truemoney::where('tmCode', $data->tmCode)->first();
+        foreach ($history_cashcard as $data) {
 
-          if (count($get_money) >= 1) {
-            if ($get_money->tmStatus == 1) {
-              $real_amount = $real_amount + $get_money->tmRealAmount;
-            }
+          if ($data->amount == '5000') {
+              $real_amount = $real_amount + 5400;
           }
 
         }
@@ -382,32 +377,46 @@ class UserController extends Controller
 
     public function postFormTopup(Request $request) {
 
-      // Config
-      $trueMoney = array("99999999999991", "99999999999992", "99999999999993", "99999999999994", "99999999999995", "99999999999996"); // รหัสทดสอบสำหรับ Demo !!
-      $demo = false; // ต้องการทดสอบ demo แก้เป็น true
-      $domain = "www.janjaow.com"; // โดเมนของคุณ
-      $merchantCode = "COMPILEPME"; // MERCHANT CODE จาก Payme
+      $method="cccdtp";
+      $cahscard_no = $request->TM_CODE;
+      $datetime = date("Y-m-d/H:i:s");
+      $partneruser_id = "56000013";
+      $partneruser_password = "hRti4E8";
+      $customer_no = "56000013";
+      $request = "method=".$method."&cahscard_no=".$cahscard_no."&datetime=".$datetime."&partneruser_id=".$partneruser_id."&partneruser_password=".$partneruser_password."&customer_no=".$customer_no;
+      //-------------------connect webservice
+      $urlWithoutProtocol = "http://dtopup.com/ServiceByPassProxy/dtpcc?".$request;//---------------- Production Path
+      $isRequestHeader = FALSE;
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      $productivity = curl_exec($ch);
+      curl_close($ch);
+      // echo $productivity;
 
-      $cPayme = new Payme();
-      //$returnURL = "http://$domain/presult.php"; // URL ที่ต้องการให้ส่งค่ากลับ หลังจากส่งรหัสบัตรทรูมันนี่ไปตรวจสอบ
-      // $returnURL = asset('user/topup/result');
-      $returnURL = "http://janjaow.com/public/presult.php";
-      $cPayme->setMERCHANT($merchantCode); // ตั้งค่า MERCHANT CODE จาก Payme
+      $result = explode("|", $productivity);
 
-      $cPayme->log("{$request->TM_CODE} insert.");
-      $dataFild = array(
-          "id" => 'id',
-          "email" => 'mail@email.com',
-      );
-      $result = $cPayme->sendTruemoney($request->TM_CODE, $returnURL, $demo, $dataFild);
-      if ($result == "OK") {
-          $account_truemoney = new AccountTrueMoney;
-          $account_truemoney->username = Auth::User()->username;
-          $account_truemoney->tmCode = $request->TM_CODE;
-          $account_truemoney->save();
-          return redirect()->route('profile')->with('status_truemoney', 'success');
+      echo "Transaction Id : " . $result[0] . "<br>";
+      echo "Response Code : " . $result[1] . "<br>";
+      echo "Response Desc : " . $result[2] . "<br>";
+      echo "Cashcard No : " . $result[3] . "<br>";
+      echo "Amount : " . $result[4] . "<br>";
+      echo "Status : " . $result[5] . "<br>";
+
+      $history_cashcard = new HistoryCashCard;
+      $history_cashcard->username = Auth::User()->username;
+      $history_cashcard->transaction = strip_tags($result[0]);
+      $history_cashcard->response_code = strip_tags($result[1]);
+      $history_cashcard->response_desc = strip_tags($result[2]);
+      $history_cashcard->cashcard_no = strip_tags($result[3]);
+      $history_cashcard->amount = strip_tags($result[4]);
+      $history_cashcard->status = strip_tags($result[5]);
+      $history_cashcard->save();
+
+      if (strip_tags($result[1]) == 0) {
+        return redirect()->route('profile')->with('status_truemoney', 'success');
       } else {
-          return redirect()->route('topup/form')->with('status_truemoney', 'error');
+        return redirect()->route('topup/form')->with('status_truemoney', strip_tags($result[1]));
       }
 
     }

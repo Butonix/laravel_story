@@ -80,25 +80,23 @@ class JanjaowTable extends Migration
             $table->tinyInteger('state_comment');
             $table->timestamps();
         });
-        Schema::create('account_truemoney', function (Blueprint $table) {
+        Schema::create('cashcard', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
-            $table->string('tmCode');
+            $table->string('transaction');
+            $table->string('amount');
             $table->timestamps();
         });
-        Schema::create('truemoney', function (Blueprint $table) {
+        Schema::create('history_cashcard', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tmCode');
-            $table->string('tmMsg');
-            $table->string('tmAmount');
-            $table->string('tmRealAmount');
-            $table->tinyInteger('tmStatus');
-            $table->string('created_at');
-        });
-        Schema::create('used_truemoney', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('tmCode');
-            $table->string('created_at');
+            $table->string('username');
+            $table->string('transaction');
+            $table->string('response_code');
+            $table->string('response_desc');
+            $table->string('cashcard_no');
+            $table->string('amount');
+            $table->string('status');
+            $table->timestamps();
         });
     }
 
@@ -117,8 +115,7 @@ class JanjaowTable extends Migration
         Schema::drop('give_love');
         Schema::drop('comment');
         Schema::drop('announce');
-        Schema::drop('account_truemoney');
-        Schema::drop('truemoney');
-        Schema::drop('used_truemoney');
+        Schema::drop('cashcard');
+        Schema::drop('history_cashcard');
     }
 }

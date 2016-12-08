@@ -2,9 +2,55 @@
 
 <div class="row" style="margin-top: 20px;">
 
-  @if (session('status_truemoney') == 'error')
+  @if (session('status_truemoney') == 190035)
+    <script type="text/javascript">
+      swal("", "รหัสบัตร truemoney ต้องเป็นเลข 14 หลัก", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800005)
+    <script type="text/javascript">
+      swal("", "รหัสบัตร truemoney ไม่ถูกต้อง", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800017)
+    <script type="text/javascript">
+      swal("", "รหัสบัตร truemoney ถูกใช้งานแล้ว", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800018)
+    <script type="text/javascript">
+      swal("", "กรุณาใส่รหัสบัตร truemoney อีกครั้ง", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800019)
+    <script type="text/javascript">
+      swal("", "รหัสบัตร truemoney ถูกระงับชั่วคราว กรุณาติดต่อ Call Center", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800201)
     <script type="text/javascript">
       swal("", "กรุณาตรวจสอบรหัสบัตร truemoney อีกครั้ง", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 800220)
+    <script type="text/javascript">
+      swal("", "รหัสบัตร truemoney ไม่สามารถใช้เติมเงินได้ กรุณาติดต่อ Call Center", "error")
+    </script>
+  @endif
+
+  @if (session('status_truemoney') == 810000)
+    <script type="text/javascript">
+      swal({
+        title: "",
+        text: "ระบบระงับการเติมเงินของท่าน 1 ชั่วโมง<br>เนื่องจากความพยายามเติมเงินผิดติดต่อกัน 5 ครั้ง",
+        html: true
+      });
     </script>
   @endif
 
@@ -74,13 +120,13 @@
 
 <script>
   $(document).ready(function() {
-    $('#submit_topup').on('click', function() {
-      swal({
-        title: "",
-        text: "กรุณารอสักครู่ ระบบกำลังประมวลผล<br><span style='color: red;'>คำเตือน ห้ามปิดหน้านี้ในขณะกำลังประมวลผล</span>",
-        html: true
-      });
-    });
+    // $('#submit_topup').on('click', function() {
+    //   swal({
+    //     title: "",
+    //     text: "กรุณารอสักครู่ ระบบกำลังประมวลผล<br><span style='color: red;'>คำเตือน ห้ามปิดหน้านี้ในขณะกำลังประมวลผล</span>",
+    //     html: true
+    //   });
+    // });
   });
 </script>
 
