@@ -6,6 +6,7 @@ use App\Member;
 use App\Category;
 use App\FacebookLogin;
 use App\Story;
+use App\HistoryCashcard;
 
 use Illuminate\Http\Request;
 use Session;
@@ -189,10 +190,16 @@ class AdminController extends Controller
         return redirect()->back()->with('status_delete_category', 'done');
     }
 
-    public function getVisitAll() {
+    public function getReportVisit() {
         Session::put('active_menu', 'visit');
         $storys = new Story;
         $storys = $storys::orderBy('visit', 'desc')->get();
-        return view('admin.visit.visit')->with('storys', $storys);
+        return view('admin.report.visit')->with('storys', $storys);
+    }
+
+    public function getReportTopup() {
+        $history_cashcard = new HistoryCashCard;
+        $history_cashcard = $history_cashcard::where('response_code', '0')->get();
+        return view('admin.report.topup')->with('history_cashcard', $history_cashcard);
     }
 }

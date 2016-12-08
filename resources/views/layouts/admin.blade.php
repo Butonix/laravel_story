@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  @include('layouts.components.head')
+  @include('layouts.components.head_admin')
   <body>
     <div class="container">
 

@@ -49,7 +49,8 @@
         @endif
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">รายงาน <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url('admin/visit/all') }}">นิยาย (ยอดวิวสูงสุด)</a></li>
+            <li><a href="{{ url('admin/report/visit') }}">นิยาย (ยอดวิวสูงสุด)</a></li>
+            <li><a href="{{ url('admin/report/topup') }}">รายได้ (ยอดเติมเหรียญ)</a></li>
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
         </li>
