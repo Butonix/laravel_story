@@ -207,6 +207,16 @@ class UserController extends Controller
 
           if ($data->amount == '5000') {
               $real_amount = $real_amount + 5400;
+          } else if ($data->amount == '9000') {
+              $real_amount = $real_amount + 9800;
+          } else if ($data->amount == '15000') {
+              $real_amount = $real_amount + 16400;
+          } else if ($data->amount == '30000') {
+              $real_amount = $real_amount + 33000;
+          } else if ($data->amount == '50000') {
+              $real_amount = $real_amount + 55200;
+          } else if ($data->amount == '100000') {
+              $real_amount = $real_amount + 111000;
           }
 
         }
