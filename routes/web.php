@@ -11,6 +11,9 @@
 */
 
 Route::get('/', 'UserController@index')->name('index');
+Route::get('how_to_writing', 'UserController@getHowToWriting');
+Route::get('how_to_register', 'UserController@getHowToRegister');
+Route::get('how_to_support', 'UserController@getHowToSupport');
 Route::get('contact', 'UserController@getContact');
 
 Route::group(['prefix' => 'user'], function() {

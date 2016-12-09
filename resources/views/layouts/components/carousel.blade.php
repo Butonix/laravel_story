@@ -62,7 +62,7 @@
 
   <div class="col-xs-12 col-sm-2 col-md-2" style="margin-top: 15px; //border: 1px solid red;">
     <a href="http://facebook.com" target="_blank"><img src="{{ url('images/icons/facebook.png') }}" style="height: 50px; margin-right: 10px; //border: 1px solid red;" alt=""></a>
-    <a href="http://twitter.com" target="_blank"><img src="{{ url('images/icons/twitter.png') }}" style="height: 50px; //border: 1px solid red;" alt=""></a>
+    <!-- <a href="http://twitter.com" target="_blank"><img src="{{ url('images/icons/twitter.png') }}" style="height: 50px; //border: 1px solid red;" alt=""></a> -->
   </div>
 
   <div class="col-xs-12 col-sm-6 col-md-6" style="margin-top: 15px;">

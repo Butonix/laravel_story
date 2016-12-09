@@ -33,9 +33,9 @@
         <li class="dropdown" style="margin-right: 50px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 22px;"><i class="fa fa-book"></i> คู่มือการใช้งาน <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">วิธีลงนิยาย</a></li>
-            <li><a href="#">วิธีสมัครสมาชิก</a></li>
-            <li><a href="#">ระบบสนับสนุนคือ?</a></li>
+            <li><a href="{{ url('how_to_writing') }}">วิธีลงนิยาย</a></li>
+            <li><a href="{{ url('how_to_register') }}">วิธีสมัครสมาชิก</a></li>
+            <li><a href="{{ url('how_to_support') }}">วิธีการสนับสนุน</a></li>
           </ul>
         </li>
 

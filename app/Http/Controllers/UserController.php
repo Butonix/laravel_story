@@ -47,6 +47,18 @@ class UserController extends Controller
         ->with('announces', $announces);
     }
 
+    public function getHowToWriting() {
+        return view('user.how_to_writing');
+    }
+
+    public function getHowToRegister() {
+        return view('user.how_to_register');
+    }
+
+    public function getHowToSupport() {
+        return view('user.how_to_support');
+    }
+
     public function getContact() {
         $contact = new Contact;
         $contact = $contact::find(1)->first();
