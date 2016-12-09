@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin'], function() {
   Route::get('category/delete/{category_id}', 'AdminController@getDeleteCategory');
   Route::get('report/visit', 'AdminController@getReportVisit');
   Route::get('report/topup', 'AdminController@getReportTopup');
+  Route::get('report/people', 'AdminController@getReportPeople');
 
   Route::get('editor/contact', 'AdminController@getEditorContact');
   Route::post('editor/contact', 'AdminController@postEditorContact');

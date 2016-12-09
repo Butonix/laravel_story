@@ -8,6 +8,7 @@ use App\FacebookLogin;
 use App\Story;
 use App\HistoryCashcard;
 use App\Contact;
+use App\ReportVisit;
 
 use Illuminate\Http\Request;
 use Session;
@@ -192,7 +193,7 @@ class AdminController extends Controller
     }
 
     public function getReportVisit() {
-        Session::put('active_menu', 'visit');
+        Session::put('active_menu', 'report');
         $storys = new Story;
         $storys = $storys::orderBy('visit', 'desc')->get();
         return view('admin.report.visit')->with('storys', $storys);
@@ -202,6 +203,13 @@ class AdminController extends Controller
         $history_cashcard = new HistoryCashCard;
         $history_cashcard = $history_cashcard::where('response_code', '0')->get();
         return view('admin.report.topup')->with('history_cashcard', $history_cashcard);
+    }
+
+    public function getReportPeople(Request $request) {
+        Session::put('active_menu', 'report');
+        $report_visits = new ReportVisit;
+        $report_visits = $report_visits::all();
+        return view('admin.report.ip_address')->with('report_visits', $report_visits);
     }
 
     public function getEditorContact() {

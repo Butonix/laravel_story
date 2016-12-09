@@ -17,13 +17,14 @@ use App\Announce;
 use App\CashCard;
 use App\HistoryCashCard;
 use App\Contact;
+use App\ReportVisit;
 
 use Session;
 use File;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $storys = new Story;
         $top_visits = $storys::all()->sortByDesc('visit');
         $top_love = $storys::all()->sortByDesc('love');
@@ -31,6 +32,14 @@ class UserController extends Controller
 
         $announces = new Announce;
         $announces = $announces::orderBy('created_at', 'desc')->get();
+
+        // save ip address to report
+        $report_visit = new ReportVisit;
+        $check_ip = $report_visit::where('ip_address', $request->ip())->first();
+        if (count($check_ip) <= 0) {
+          $report_visit->ip_address = $request->ip();
+          $report_visit->save();
+        }
 
         return view('user.home')
         ->with('storys', $storys)

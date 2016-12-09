@@ -63,6 +63,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{ url('admin/report/visit') }}">นิยาย (ยอดวิวสูงสุด)</a></li>
             <li><a href="{{ url('admin/report/topup') }}">รายได้ (ยอดเติมเหรียญ)</a></li>
+            <li><a href="{{ url('admin/report/people') }}">ยอดผู้เข้าชมเว็บไซต์</a></li>
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
         </li>

@@ -103,6 +103,11 @@ class JanjaowTable extends Migration
             $table->longText('detail');
             $table->timestamps();
         });
+        Schema::create('report_visit', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ip_address');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -123,5 +128,6 @@ class JanjaowTable extends Migration
         // Schema::drop('cashcard');
         Schema::drop('history_cashcard');
         Schema::drop('contact');
+        Schema::drop('report_visit');
     }
 }
