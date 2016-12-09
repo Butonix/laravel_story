@@ -41,7 +41,7 @@
                     @foreach ($categorys as $category)
                     <div class="form-group">
                         <input type="radio" name="category_name" value="{{ $category->category_name }}" required>
-                        <span style="font-size: 16px;">{{ $category->category_name }}</span>
+                        &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
                     </div>
                     @endforeach
 

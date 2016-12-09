@@ -17,6 +17,7 @@ use Hash;
 class AdminController extends Controller
 {
     public function main() {
+        Session::put('active_menu', '');
         return view('admin.main');
     }
 
@@ -215,7 +216,15 @@ class AdminController extends Controller
     public function getEditorContact() {
         Session::put('active_menu', 'front-end');
         $contact = new Contact;
-        $contact = $contact::where('id', 1)->first();
+        $check_detail = $contact::where('id', 1)->first();
+
+        if (count($check_detail) == 0) {
+            $contact->detail = '';
+            $contact->save();
+        } else {
+            $contact = $contact::where('id', 1)->first();
+        }
+
         return view('admin.editor.contact')->with('contact', $contact);
     }
 

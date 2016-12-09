@@ -61,7 +61,13 @@ class UserController extends Controller
 
     public function getContact() {
         $contact = new Contact;
-        $contact = $contact::find(1)->first();
+        $check_detail = $contact::find(1);
+        if (count($check_detail) == 0) {
+            $contact->detail = '';
+            $contact->save();
+        } else {
+            $contact = $contact::find(1)->first();
+        }
         return view('user.contact')->with('contact', $contact);
     }
 

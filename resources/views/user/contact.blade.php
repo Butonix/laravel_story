@@ -6,7 +6,7 @@
 @include('layouts.components.navbar')
 @include('layouts.components.carousel_only')
 
-<div class="row">
+<div class="row" style="margin-top: 20px;">
 
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-default">

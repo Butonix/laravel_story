@@ -54,6 +54,10 @@
             </button>
            @endif
 
+            <div class="form-group" style="margin-top: 20px;">
+              <a onclick="fb('{{ url()->current() }}')" style="cursor:poiter"><button type="button" class="btn btn-primary" style="font-size: 18px;"><i class="fa fa-facebook"></i> แชร์ผลงาน</button></a>
+            </div>
+
           </div>
         </div>
       </div>
