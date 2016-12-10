@@ -193,6 +193,13 @@ class AdminController extends Controller
         return redirect()->back()->with('status_delete_category', 'done');
     }
 
+    public function getPromoteStory() {
+        Session::put('active_menu', 'category');
+        $storys = new Story;
+        $storys = $storys::all();
+        return view('admin.promote.story')->with('storys', $storys);
+    }
+
     public function getReportVisit() {
         Session::put('active_menu', 'report');
         $storys = new Story;

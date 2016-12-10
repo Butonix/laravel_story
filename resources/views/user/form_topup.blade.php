@@ -120,13 +120,13 @@
 
 <script>
   $(document).ready(function() {
-    // $('#submit_topup').on('click', function() {
-    //   swal({
-    //     title: "",
-    //     text: "กรุณารอสักครู่ ระบบกำลังประมวลผล<br><span style='color: red;'>คำเตือน ห้ามปิดหน้านี้ในขณะกำลังประมวลผล</span>",
-    //     html: true
-    //   });
-    // });
+    $('#submit_topup').on('click', function() {
+      swal({
+        title: "",
+        text: "กรุณารอสักครู่ ระบบกำลังประมวลผล<br><span style='color: red;'>คำเตือน ห้ามปิดหน้านี้ในขณะกำลังประมวลผล</span>",
+        html: true
+      });
+    });
   });
 </script>
 

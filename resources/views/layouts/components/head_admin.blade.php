@@ -12,6 +12,13 @@
   <link href="{{ url('summernote/summernote.css') }}" rel="stylesheet">
   <script src="{{ url('summernote/summernote.min.js') }}"></script>
 
+  <script>
+    function fb(url) {
+      var link = 'https://www.facebook.com/sharer/sharer.php?app_id=1712358199084388&sdk=joey&u=' + url + '&display=popup&ref=plugin&src=share_button';
+      window.open(link, 'trueplookpanya', 'left=10,top=10,width=500,height=500,toolbar=1,resizable=0');
+    }
+  </script>
+
   <!-- <script src="{{ elixir('js/app.js') }}"></script> -->
   <style media="screen">
     @font-face {
