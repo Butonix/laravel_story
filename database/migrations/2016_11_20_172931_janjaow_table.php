@@ -22,7 +22,7 @@ class JanjaowTable extends Migration
             $table->increments('id');
             $table->string('facebook_user_id');
             $table->string('full_name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
         Schema::create('member', function (Blueprint $table) {

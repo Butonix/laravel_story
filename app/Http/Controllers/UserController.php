@@ -204,7 +204,15 @@ class UserController extends Controller
 
     public function postWriteStory(Request $request) {
         $story = new Story;
-        $story->username = Auth::User()->username;
+
+        if (Auth::check()) {
+          $story->username = Auth::User()->username;
+        } else {
+          if (Session::get('facebook_login') != '') {
+            $story->username = Session::get('facebook_login');
+          }
+        }
+
         $story->story_name = $request->story_name;
         $story->story_author = $request->story_author;
         $story->category_name = $request->category_name;
