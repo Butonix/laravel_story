@@ -6,7 +6,7 @@ use App\Member;
 use App\Category;
 use App\FacebookLogin;
 use App\Story;
-use App\HistoryCashcard;
+use App\HistoryCashCard;
 use App\Contact;
 use App\ReportVisit;
 
