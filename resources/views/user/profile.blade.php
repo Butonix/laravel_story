@@ -53,7 +53,15 @@
                 <tr>
                   <td></td>
                   <td>ชื่อ</td>
-                  <td>{{ Auth::User()->username }}</td>
+                  <td>
+                    @if (Auth::check())
+                      {{ Auth::User()->username }}
+                    @else
+                      @if (Session::get('facebook_login') != '')
+                        {{ Session::get('facebook_login') }}
+                      @endif
+                    @endif
+                  </td>
                 </tr>
                 <tr>
                   <td></td>

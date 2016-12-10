@@ -154,7 +154,13 @@
             <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
             <input type="hidden" name="story_id" value="{{ $story->id }}">
             <input type="hidden" name="story_name" value="{{ $story->story_name }}">
-            <input type="hidden" name="username" value="{{ Auth::User()->username }}">
+            @if (Auth::check())
+              <input type="hidden" name="username" value="{{ Auth::User()->username }}">
+            @else
+              @if (Session::get('facebook_login') != '')
+                <input type="hidden" name="username" value="{{ Session::get('facebook_login') }}">
+              @endif
+            @endif
             <div id="summernote"></div>
             <input type="hidden" name="comment" id="comment">
           </div>

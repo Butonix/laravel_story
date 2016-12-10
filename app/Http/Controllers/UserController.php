@@ -129,10 +129,25 @@ class UserController extends Controller
 
     public function getProfile() {
         $storys = new Story;
-        $storys = $storys::where('username', Auth::User()->username)->get();
+
+        if (Auth::check()) {
+          $storys = $storys::where('username', Auth::User()->username)->get();
+        } else {
+          if (Session::get('facebook_login') != '') {
+            $storys = $storys::where('username', Session::get('facebook_login'))->get();
+          }
+        }
 
         $history_cashcard = new HistoryCashCard;
-        $history_cashcard = $history_cashcard::where('username', Auth::User()->username)->where('response_code', 0)->get();
+
+        if (Auth::check()) {
+          $history_cashcard = $history_cashcard::where('username', Auth::User()->username)->where('response_code', 0)->get();
+        } else {
+          if (Session::get('facebook_login') != '') {
+            $history_cashcard = $history_cashcard::where('username', Session::get('facebook_login'))->where('response_code', 0)->get();
+          }
+        }
+
         $real_amount = 0;
 
         foreach ($history_cashcard as $data) {
@@ -158,9 +173,9 @@ class UserController extends Controller
 
     public function getReadStory($id) {
 
-        if (!Auth::check()) {
-            return redirect()->back()->with('status_permission', 'fail');
-        }
+        // if (!Auth::check()) {
+        //     return redirect()->back()->with('status_permission', 'fail');
+        // }
 
         $storys = new Story;
         $storys = $storys::where('id', $id)->first();

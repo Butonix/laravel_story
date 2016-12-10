@@ -131,9 +131,11 @@ Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFaceb
     $json_facebook_info = App\FacebookLogin::createOrUpdateGraphNode($facebook_user);
 
     // Log the user into Laravel
-    // $info = json_decode($json_facebook_info);
+    $info = json_decode($json_facebook_info);
     // $user_id = $info->{'facebook_user_id'};
+    $user_id = $info->{'full_name'};
     // Auth::User($user_id);
+    Session::put('facebook_login', $user_id);
 
     // $member = new App\User;
     // $member->setFacebookLogin($user_id);

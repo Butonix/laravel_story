@@ -35,7 +35,16 @@
             @php
               use App\GiveLove;
               $check_give_love = new GiveLove;
-              $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Auth::User()->username)->first();
+
+              if (Auth::check()) {
+                $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Auth::User()->username)->first();
+              } else {
+                if (Session::get('facebook_login') != '') {
+                  $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Session::get('facebook_login'))->first();
+                }
+              }
+
+
               $result_give_love = 0;
               if (count($check_give_love) > 0) {
                 $result_give_love = $check_give_love->status;

@@ -13,6 +13,8 @@
       </button>
       @if (Auth::check())
         <a class="navbar-brand" href="{{ url('user/profile') }}">ชื่อผู้ใช้งาน {{ Auth::User()->username }}</a>
+      @elseif (Session::get('facebook_login') != '')
+        <a class="navbar-brand" href="{{ url('user/profile') }}">ชื่อผู้ใช้งาน {{ Session::get('facebook_login') }}</a>
       @endif
     </div>
 
