@@ -1,4 +1,4 @@
-<form action="{{ url('user/register') }}" method="POST">
+<form action="{{ url('user/auth/register') }}" method="POST">
   {{ csrf_field() }}
   <div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

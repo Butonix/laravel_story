@@ -17,28 +17,32 @@ Route::get('how_to_support', 'UserController@getHowToSupport');
 Route::get('contact', 'UserController@getContact');
 
 Route::group(['prefix' => 'user'], function() {
-  Route::post('register', 'UserController@postRegister');
-  Route::post('login', 'UserController@postLogin');
-  Route::get('logout', 'UserController@logout');
-  Route::get('profile', 'UserController@getProfile')->name('profile');
-  Route::get('read/story/{id}', 'UserController@getReadStory');
-  Route::get('read/story/detail/{id}', 'UserController@getReadStoryDetail');
-  Route::get('write/story', 'UserController@getWriteStory');
-  Route::post('write/story', 'UserController@postWriteStory');
-  Route::get('write/story/sub/{id}', 'UserController@getWriteStorySub');
-  Route::get('love/story/{id}' ,'UserController@getLoveStory');
-  Route::post('search', 'UserController@postSearch');
-  Route::post('story/comment', 'UserController@postStoryComment');
-  Route::get('announce/create', 'UserController@getCreateAnnounce');
-  Route::post('announce/create', 'UserController@postCreateAnnounce');
-  Route::get('announce/read/{id}', 'UserController@getReadAnnounce');
-  Route::get('topup', 'UserController@getTopup');
-  Route::get('topup/form', 'UserController@getFormTopup')->name('topup/form');
-  Route::post('topup/form', 'UserController@postFormTopup');
+
+    Route::group(['prefix' => 'auth'], function() {
+        Route::post('register', 'UserAuthController@postRegister');
+        Route::post('login', 'UserAuthController@postLogin');
+        Route::get('logout', 'UserAuthController@logout');
+    });
+
+  Route::get('profile', 'ProfileController@getProfile')->name('profile');
+  Route::get('read/story/{id}', 'StoryController@getReadStory');
+  Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
+  Route::get('write/story', 'StoryController@getWriteStory');
+  Route::post('write/story', 'StoryController@postWriteStory');
+  Route::get('write/story/sub/{id}', 'StoryController@getWriteStorySub');
+  Route::get('love/story/{id}' ,'StoryController@getLoveStory');
+  Route::post('search', 'SearchController@postSearch');
+  Route::post('story/comment', 'StoryController@postStoryComment');
+  Route::get('announce/create', 'AnnounceController@getCreateAnnounce');
+  Route::post('announce/create', 'AnnounceController@postCreateAnnounce');
+  Route::get('announce/read/{id}', 'AnnounceController@getReadAnnounce');
+  Route::get('topup', 'CashCardController@getTopup');
+  Route::get('topup/form', 'CashCardController@getFormTopup')->name('topup/form');
+  Route::post('topup/form', 'CashCardController@postFormTopup');
 });
 
 Route::group(['prefix' => 'category'], function() {
-  Route::get('{id}', 'UserController@getCategory');
+  Route::get('{id}', 'CategoryController@getCategory');
 });
 
 Route::group(['prefix' => 'admin'], function() {
