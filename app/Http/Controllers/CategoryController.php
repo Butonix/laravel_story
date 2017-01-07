@@ -4,9 +4,69 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Story;
+use Session;
 
 class CategoryController extends Controller
 {
+
+    public function getAllCategory() {
+        Session::put('active_menu', 'category');
+        $categorys = new Category;
+        return view('admin.category.category')->with('categorys', $categorys->get());
+    }
+
+    public function getAddCategory() {
+        Session::put('active_menu', 'category');
+        return view('admin.category.add_category');
+    }
+
+    public function postAddCategory(Request $request) {
+        $category = new Category;
+        $check_category = $category::where('category_name', $request->category_name)->count();
+        if ($check_category > 0) {
+            return redirect()->back()
+                ->withInput()
+                ->with('status_category', 'fail');
+        } else {
+            $category->category_name = $request->category_name;
+            $category->save();
+            return redirect()->route('category/all')
+                ->with('status_category', 'done');
+        }
+
+    }
+
+    public function getEditCategory(Request $request) {
+        $category = new Category;
+        $category_name = $category::find($request->category_id);
+        return view('admin.category.edit_category')->with('category', $category_name);
+    }
+
+    public function postEditCategory(Request $request) {
+        $category = new Category;
+
+        $check_category = $category::where('category_name', $request->category_name)->count();
+        if ($check_category > 0) {
+            return redirect()->back()
+                ->withInput()
+                ->with('status_category', 'fail');
+        }
+
+        $category::where('id', $request->category_id)->update([
+            'category_name' => $request->category_name
+        ]);
+
+        return redirect()->route('category/all')
+            ->with('status_edit_category', 'done');
+    }
+
+    public function getDeleteCategory(Request $request) {
+        $category = new Category;
+        $category::where('id', $request->category_id)->delete();
+        return redirect()->back()->with('status_delete_category', 'done');
+    }
+
     public function getCategory($id) {
         $category = new Category;
         $category = $category::where('id', $id)->first();

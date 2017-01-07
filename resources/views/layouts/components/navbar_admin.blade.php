@@ -50,7 +50,8 @@
         @endif
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">แก้ไขหน้าเว็บ <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url('admin/editor/contact') }}">แก้ไข หน้าติดต่อ</a></li>
+            <li><a href="{{ url('admin/editor/banner/detail') }}">รายละเอียดแบนเนอร์</a></li>
+            <li><a href="{{ url('admin/editor/contact') }}">ติดต่อเรา</a></li>
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
         </li>

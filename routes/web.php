@@ -1,14 +1,4 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
 
 Route::get('/', 'UserController@index')->name('index');
 Route::get('how_to_writing', 'UserController@getHowToWriting');
@@ -47,26 +37,39 @@ Route::group(['prefix' => 'category'], function() {
 
 Route::group(['prefix' => 'admin'], function() {
   Route::get('main', 'AdminController@main');
-  Route::get('member/all', 'AdminController@getAllMember')->name('member/all');
-  Route::get('member/facebook', 'AdminController@getAllFacebook');
-  Route::get('member/add', 'AdminController@getAddMember');
-  Route::post('member/add', 'AdminController@postAddMember');
-  Route::get('member/edit/{member_id}', 'AdminController@getEditMember');
-  Route::post('member/edit', 'AdminController@postEditMember');
-  Route::get('member/delete/{member_id}', 'AdminController@getDeleteMember');
-  Route::get('category/all', 'AdminController@getAllCategory')->name('category/all');
-  Route::get('category/add', 'AdminController@getAddCategory');
-  Route::post('category/add', 'AdminController@postAddCategory');
-  Route::get('category/edit/{category_id}', 'AdminController@getEditCategory');
-  Route::post('category/edit', 'AdminController@postEditCategory');
-  Route::get('category/delete/{category_id}', 'AdminController@getDeleteCategory');
-  Route::get('promote/story', 'AdminController@getPromoteStory');
-  Route::get('report/visit', 'AdminController@getReportVisit');
-  Route::get('report/topup', 'AdminController@getReportTopup');
-  Route::get('report/people', 'AdminController@getReportPeople');
 
-  Route::get('editor/contact', 'AdminController@getEditorContact');
-  Route::post('editor/contact', 'AdminController@postEditorContact');
+  Route::group(['prefix' => 'member'], function() {
+      Route::get('all', 'MemberController@getAllMember')->name('member/all');
+      Route::get('facebook', 'MemberController@getAllFacebook');
+      Route::get('add', 'MemberController@getAddMember');
+      Route::post('add', 'MemberController@postAddMember');
+      Route::get('edit/{member_id}', 'MemberController@getEditMember');
+      Route::post('edit', 'MemberController@postEditMember');
+      Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
+  });
+
+  Route::group(['prefix' => 'category'], function() {
+      Route::get('all', 'CategoryController@getAllCategory')->name('category/all');
+      Route::get('add', 'CategoryController@getAddCategory');
+      Route::post('add', 'CategoryController@postAddCategory');
+      Route::get('edit/{category_id}', 'CategoryController@getEditCategory');
+      Route::post('edit', 'CategoryController@postEditCategory');
+      Route::get('delete/{category_id}', 'CategoryController@getDeleteCategory');
+  });
+
+  Route::get('promote/story', 'PromoteController@getPromoteStory');
+
+  Route::group(['prefix' => 'report'], function() {
+      Route::get('visit', 'ReportController@getReportVisit');
+      Route::get('topup', 'ReportController@getReportTopup');
+      Route::get('people', 'ReportController@getReportPeople');
+  });
+
+  Route::group(['prefix' => 'editor'], function() {
+      Route::get('contact', 'ChangeUIController@getEditorContact');
+      Route::post('contact', 'ChangeUIController@postEditorContact');
+      Route::get('banner/detail', 'ChangeUIController@getBannerDetail');
+  });
 });
 
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
