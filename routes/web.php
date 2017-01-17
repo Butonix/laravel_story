@@ -5,6 +5,14 @@ Route::get('how_to_writing', 'UserController@getHowToWriting');
 Route::get('how_to_register', 'UserController@getHowToRegister');
 Route::get('how_to_support', 'UserController@getHowToSupport');
 Route::get('contact', 'UserController@getContact');
+Route::get('forgot_password', 'UserController@getForgotPassword');
+Route::post('forgot_password', 'UserController@postForgotPassword');
+
+Route::group(['prefix' => 'banner'], function() {
+    Route::get('1', 'BannerController@getBanner1');
+    Route::get('2', 'BannerController@getBanner2');
+    Route::get('3', 'BannerController@getBanner3');
+});
 
 Route::group(['prefix' => 'user'], function() {
 
@@ -35,41 +43,55 @@ Route::group(['prefix' => 'category'], function() {
   Route::get('{id}', 'CategoryController@getCategory');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-  Route::get('main', 'AdminController@main');
+Route::get('admin', 'AdminAuthController@index')->name('auth');
+Route::post('admin/auth', 'AdminAuthController@postLogin');
+Route::group(['middleware' => ['AuthAdmin']], function() {
+    Route::group(['prefix' => 'admin'], function() {
+        Route::get('change_password', 'AdminController@getFormChangePassword');
+        Route::post('update/password', 'AdminController@postUpdatePassword');
+        Route::get('logout', 'AdminAuthController@getLogout');
+        Route::get('main', 'AdminController@main')->name('main');
 
-  Route::group(['prefix' => 'member'], function() {
-      Route::get('all', 'MemberController@getAllMember')->name('member/all');
-      Route::get('facebook', 'MemberController@getAllFacebook');
-      Route::get('add', 'MemberController@getAddMember');
-      Route::post('add', 'MemberController@postAddMember');
-      Route::get('edit/{member_id}', 'MemberController@getEditMember');
-      Route::post('edit', 'MemberController@postEditMember');
-      Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
-  });
+        Route::group(['prefix' => 'member'], function() {
+            Route::get('all', 'MemberController@getAllMember')->name('member/all');
+            Route::get('facebook', 'MemberController@getAllFacebook');
+            Route::get('add', 'MemberController@getAddMember');
+            Route::post('add', 'MemberController@postAddMember');
+            Route::get('edit/{member_id}', 'MemberController@getEditMember');
+            Route::post('edit', 'MemberController@postEditMember');
+            Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
+        });
 
-  Route::group(['prefix' => 'category'], function() {
-      Route::get('all', 'CategoryController@getAllCategory')->name('category/all');
-      Route::get('add', 'CategoryController@getAddCategory');
-      Route::post('add', 'CategoryController@postAddCategory');
-      Route::get('edit/{category_id}', 'CategoryController@getEditCategory');
-      Route::post('edit', 'CategoryController@postEditCategory');
-      Route::get('delete/{category_id}', 'CategoryController@getDeleteCategory');
-  });
+        Route::group(['prefix' => 'category'], function() {
+            Route::get('all', 'CategoryController@getAllCategory')->name('category/all');
+            Route::get('add', 'CategoryController@getAddCategory');
+            Route::post('add', 'CategoryController@postAddCategory');
+            Route::get('edit/{category_id}', 'CategoryController@getEditCategory');
+            Route::post('edit', 'CategoryController@postEditCategory');
+            Route::get('delete/{category_id}', 'CategoryController@getDeleteCategory');
+        });
 
-  Route::get('promote/story', 'PromoteController@getPromoteStory');
+        Route::get('promote/story', 'PromoteController@getPromoteStory');
 
-  Route::group(['prefix' => 'report'], function() {
-      Route::get('visit', 'ReportController@getReportVisit');
-      Route::get('topup', 'ReportController@getReportTopup');
-      Route::get('people', 'ReportController@getReportPeople');
-  });
+        Route::group(['prefix' => 'report'], function() {
+            Route::get('visit', 'ReportController@getReportVisit');
+            Route::get('topup', 'ReportController@getReportTopup');
+            Route::get('people', 'ReportController@getReportPeople');
+        });
 
-  Route::group(['prefix' => 'editor'], function() {
-      Route::get('contact', 'ChangeUIController@getEditorContact');
-      Route::post('contact', 'ChangeUIController@postEditorContact');
-      Route::get('banner/detail', 'ChangeUIController@getBannerDetail');
-  });
+        Route::group(['prefix' => 'change_ui'], function() {
+            Route::get('contact', 'ChangeUIController@getContact');
+            Route::post('update/contact', 'ChangeUIController@postUpdateContact');
+            Route::get('banner', 'ChangeUIController@getBanner');
+            Route::post('update/banner', 'ChangeUIController@postUpdateBanner');
+            Route::get('how_to_writing', 'ChangeUIController@getHowToWriting');
+            Route::post('update/how_to_writing', 'ChangeUIController@postUpdateHowToWriting');
+            Route::get('how_to_register', 'ChangeUIController@getHowToRegister');
+            Route::post('update/how_to_register', 'ChangeUIController@postUpdateHowToRegister');
+            Route::get('how_to_support', 'ChangeUIController@getHowToSupport');
+            Route::post('update/how_to_support', 'ChangeUIController@postUpdateHowToSupport');
+        });
+    });
 });
 
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {

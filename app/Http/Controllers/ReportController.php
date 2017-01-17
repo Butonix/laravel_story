@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Story;
 use App\HistoryCashCard;
-use App\ReportVisit;
+use App\ReportVisitor;
 use Session;
 
 class ReportController extends Controller
@@ -25,7 +25,7 @@ class ReportController extends Controller
 
     public function getReportPeople(Request $request) {
         Session::put('active_menu', 'report');
-        $report_visits = new ReportVisit;
+        $report_visits = new ReportVisitor;
         $report_visits = $report_visits::all();
         return view('admin.report.ip_address')->with('report_visits', $report_visits);
     }

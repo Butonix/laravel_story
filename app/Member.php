@@ -7,20 +7,18 @@ use Auth;
 
 class Member extends Model
 {
-    public function __construct() {
-
-    }
-
     protected $table = 'member';
-
     protected $fillable = [
-        'username', 'email', 'password'
+        'username',
+        'full_name',
+        'author',
+        'email',
+        'password',
+        'text_password',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public $timestamps = true;
 
 }

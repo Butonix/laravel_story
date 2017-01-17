@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-
 use App\Member;
+use App\DeviceLogin;
+use Session;
 
 class UserAuthController extends Controller
 {
@@ -37,14 +38,27 @@ class UserAuthController extends Controller
         $member->username = $request->username;
         $member->email = $request->email;
         $member->password = Hash::make($request->password);
+        $member->text_password = $request->password;
         $member->save();
         return redirect()->back()
             ->with('status_success', 'done');
     }
 
     public function postLogin(Request $request) {
-
         if (Auth::attempt(['email' => $request->login_email, 'password' => $request->password])) {
+            $check_device = DeviceLogin::where('ip_address', $request->ip())->get();
+            //return count($check_device);
+            if (count($check_device) < 3) {
+                $device_login = new DeviceLogin;
+                $device_login->username = Auth::User()->username;
+                $device_login->ip_address = $request->ip();
+                $device_login->save();
+                Session::put(['device_id' => $device_login->id]);
+            } else {
+                Auth::logout();
+                Session::flush();
+                return redirect()->route('index')->with('status', 'device limit');
+            }
             return redirect()->back();
         } else {
             return redirect()->back()->withInput($request->except('password'))->with('status_login', 'fail');
@@ -52,6 +66,7 @@ class UserAuthController extends Controller
     }
 
     public function logout() {
+        DeviceLogin::where('id', Session::get('device_id'))->delete();
         Auth::logout();
         Session::flush();
         return redirect()->route('index');

@@ -20,7 +20,7 @@
                 <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน" required>
                 <i class="fa fa-key"></i>
             </div>
-            <span class="pull-right" style="margin-left: 10px;"><a href="#">ลืมรหัสผ่าน</a></span>
+            <span class="pull-right" style="margin-left: 10px;"><a href="{{ url('forgot_password') }}">ลืมรหัสผ่าน</a></span>
 
           </div>
           <div class="form-group">

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class ReportVisitor extends Model
 {
-    protected $table = 'contact';
+    protected $table = 'report_visitor';
     protected $fillable = [
-        'contact_detail'
+        'ip_address'
     ];
 }

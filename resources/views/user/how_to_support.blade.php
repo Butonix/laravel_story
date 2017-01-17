@@ -15,7 +15,7 @@
       </div>
       <div class="panel-body" style="//background-color: red;">
 
-        ...
+        {!! $how_to_support->detail !!}
 
       </div>
     </div>

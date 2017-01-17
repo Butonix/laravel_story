@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CashCard extends Model
 {
     protected $table = 'cashcard';
-
     protected $fillable = [
         'username',
-        'transaction',
         'amount',
     ];
 }

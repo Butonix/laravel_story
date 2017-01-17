@@ -73,6 +73,16 @@
     </script>
   @endif
 
+  @if (session('status') == 'device limit')
+    <script type="text/javascript">
+        swal({
+            title: "",
+            text: "<span style='font-size: 18px;'>กรุณาออกจากระบบ<br>บนอุปกรณ์ชนิดอื่นก่อน</span>",
+            html: true
+        })
+    </script>
+  @endif
+
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="panel panel-success">
       <div class="panel-heading text-center">

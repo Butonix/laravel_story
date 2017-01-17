@@ -50,8 +50,11 @@
         @endif
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">แก้ไขหน้าเว็บ <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url('admin/editor/banner/detail') }}">รายละเอียดแบนเนอร์</a></li>
-            <li><a href="{{ url('admin/editor/contact') }}">ติดต่อเรา</a></li>
+            <li><a href="{{ url('admin/change_ui/banner') }}">รายละเอียดแบนเนอร์</a></li>
+            <li><a href="{{ url('admin/change_ui/how_to_writing') }}">วิธีการลงนิยาย</a></li>
+            <li><a href="{{ url('admin/change_ui/how_to_register') }}">วิธีการสมัครสมาชิก</a></li>
+            <li><a href="{{ url('admin/change_ui/how_to_support') }}">วิธีการสนับสนุน</a></li>
+            <li><a href="{{ url('admin/change_ui/contact') }}">ติดต่อเรา</a></li>
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
         </li>
@@ -73,6 +76,15 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown font-size-normal">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;"><i class="fa fa-user"></i> บัญชีผู้ใช้งาน <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url('admin/change_password') }}">เปลี่ยนรหัสผ่าน</a></li>
+            <li><a href="{{ url('admin/logout') }}">ออกจากระบบ</a></li>
+            <!-- <li role="separator" class="divider"></li> -->
+          </ul>
+        </li>
 
       </ul>
     </div><!-- /.navbar-collapse -->

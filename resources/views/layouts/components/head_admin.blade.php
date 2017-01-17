@@ -31,5 +31,13 @@
     body {
       font-family: 'Kanit', sans-serif;
     }
+
+    .table-none-border tr th {
+      border: 0px !important;
+    }
+
+    .table-none-border tr td {
+      border: 0px !important;
+    }
   </style>
 </head>

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReportVisit extends Model
+class DeviceLogin extends Model
 {
-    protected $table = 'report_visit';
-
+    protected $table = 'device_login';
     protected $fillable = [
+        'username',
         'ip_address'
     ];
 }

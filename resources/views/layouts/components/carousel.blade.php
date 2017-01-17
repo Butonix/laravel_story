@@ -11,13 +11,13 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="{{ url('images/banner/Banner1.jpg') }}" alt="...">
+          <a href="{{ url('banner/1') }}"><img src="{{ url('images/banner/Banner1.jpg') }}" alt="..."></a>
         </div>
         <div class="item">
-          <img src="{{ url('images/banner/Banner2.jpg') }}" alt="...">
+          <a href="{{ url('banner/2') }}"><img src="{{ url('images/banner/Banner2.jpg') }}" alt="..."></a>
         </div>
         <div class="item">
-          <img src="{{ url('images/banner/Banner3.jpg') }}" alt="...">
+          <a href="{{ url('banner/3') }}"><img src="{{ url('images/banner/Banner3.jpg') }}" alt="..."></a>
         </div>
 
       </div>
@@ -45,7 +45,7 @@
             <li><a href="#" style="font-size: 18px;">เหรียญของฉัน</a></li>
             <li><a href="#" style="font-size: 18px;">เขียนนิยาย</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="{{ url('user/logout') }}" style="font-size: 18px;"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
+            <li><a href="{{ url('user/auth/logout') }}" style="font-size: 18px;"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
           @else
             <li><a href="#login" id="btn-login" style="font-size: 18px;"><i class="fa fa-sign-in"></i> เข้าสู่ระบบ</a></li>
           @endif

@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GiveLove extends Model
+class Administrator extends Model
 {
-    protected $table = 'give_love';
+    protected $table = 'administrator';
     protected $fillable = [
-        'story_id',
         'username',
-        'status'
+        'password'
     ];
-
 }

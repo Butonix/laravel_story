@@ -49,10 +49,16 @@ return [
         //     'driver' => 'token',
         //     'provider' => 'users',
         // ]
+
         'web' => [
             'driver' => 'session',
             'provider' => 'member',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ]
+
         // 'facebook_login' => [
         //     'driver' => 'session',
         //     'provider' => 'facebook_logins',
@@ -84,10 +90,18 @@ return [
         //     'model' => App\User::class,
         // ],
 
+
+
         'member' => [
             'driver' => 'database',
             'table' => 'member',
+        ],
+
+        'admin' => [
+            'driver' => 'database',
+            'table' => 'administrator',
         ]
+
         // 'facebook_logins' => [
         //     'driver' => 'database',
         //     'table' => 'facebook_logins',

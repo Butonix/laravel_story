@@ -11,6 +11,6 @@ class Announce extends Model
       'username',
       'announce_title',
       'announce_detail',
-      'state_comment'
+      'status_comment'
     ];
 }

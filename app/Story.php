@@ -8,14 +8,11 @@ class Story extends Model
 {
     protected $table = 'story';
     protected $fillable = [
+        'category_id',
         'username',
         'story_name',
         'story_author',
-        'category_name',
         'story_outline',
-        'story_picture',
-        'state_comment',
-        'state_public'
+        'story_picture'
     ];
-    public $timestamps = true;
 }
