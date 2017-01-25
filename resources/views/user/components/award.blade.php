@@ -32,36 +32,12 @@
             </table>
           </div>
           <div class="text-center">
-            @php
-              use App\GiveLove;
-              $check_give_love = new GiveLove;
-
-              if (Auth::check()) {
-                $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Auth::User()->username)->first();
-              } else {
-                if (Session::get('facebook_login') != '') {
-                  $check_give_love = $check_give_love::where('story_id', $story->id)->where('username', Session::get('facebook_login'))->first();
-                }
-              }
 
 
-              $result_give_love = 0;
-              if (count($check_give_love) > 0) {
-                $result_give_love = $check_give_love->status;
-              }
-            @endphp
-
-            @if ($result_give_love == 0)
-              <a href="{{ url('user/love/story/'.$story->id) }}"><button type="button" class="btn btn-danger" style="font-size: 18px;">
-                ชอบ <i class="fa fa-exclamation fa-lg"></i>
-                มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
-             </button></a>
-           @else
-             <button type="button" class="btn btn-danger" style="font-size: 18px;" disabled>
-               ชอบ <i class="fa fa-exclamation fa-lg"></i>
+             <button type="button" class="btn btn-danger" style="font-size: 18px;">
+               ชอบ <i class="fa fa-exclamation"></i>
                มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
             </button>
-           @endif
 
             <div class="form-group" style="margin-top: 20px;">
               <a onclick="fb('{{ url()->current() }}')" style="cursor:poiter"><button type="button" class="btn btn-primary" style="font-size: 18px;"><i class="fa fa-facebook"></i> แชร์ผลงาน</button></a>

@@ -40,5 +40,8 @@
       font-family: 'Kanit', sans-serif;
       background: transparent url("{{ url('images/background/bg.png') }}");
     }
+    .bg_white, tr, td {
+      background-color: #ffffff;
+    }
   </style>
 </head>

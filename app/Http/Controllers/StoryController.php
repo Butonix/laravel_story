@@ -4,33 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Category;
 use App\Story;
 use App\Tag;
-use App\Comment;
+use App\StoryComment;
+use App\PermissionStory;
+use App\BanStory;
+use App\StoryVisitor;
+use Session;
+use Illuminate\Support\Facades\Input;
 
 class StoryController extends Controller
 {
-    public function getReadStory($id) {
-
-        // if (!Auth::check()) {
-        //     return redirect()->back()->with('status_permission', 'fail');
-        // }
-
-        $storys = new Story;
-        $storys = $storys::where('id', $id)->first();
-
+    public function getReadStory(Request $request) {
+        // Select story
+        $story = Story::find($request->id);
+        // Get category name
+        $category_name = Category::find($story->category_id);
+        $category_name = $category_name->category_name;
         // Update visit to story
-        $current_visit = $storys->visit;
-        $storys->visit = ++$current_visit;
-        $storys->save();
-
+        $story_visitor = StoryVisitor::find($request->id);
+        $visitor_count = $story_visitor->count;
+        $story_visitor->count = ++$visitor_count;
+        $story_visitor->save();
         // Read comment
-        $comments = new Comment;
-        $comments = $comments::where('story_id', $id)->orderBy('created_at', 'desc')->get();
-
+        $story_comments = StoryComment::where('story_id', $request->id)->orderBy('created_at', 'desc')->get();
         return view('user.read_story')
-            ->with('story', $storys)
-            ->with('comments', $comments);
+            ->with('story', $story)
+            ->with('category_name', $category_name)
+            ->with('visitor_count', $visitor_count)
+            ->with('story_comments', $story_comments);
     }
 
     public function getReadStoryDetail() {
@@ -42,6 +45,14 @@ class StoryController extends Controller
     }
 
     public function postWriteStory(Request $request) {
+
+        // Check Story Name
+        $check_story_name = Story::where('story_name', $request->story_name)->first();
+        if ($check_story_name) {
+            return redirect()->back()
+                ->with('status', 'Story name not available.');
+        }
+
         $story = new Story;
 
         if (Auth::check()) {
@@ -52,9 +63,9 @@ class StoryController extends Controller
             }
         }
 
+        $story->category_id = $request->category_id;
         $story->story_name = $request->story_name;
         $story->story_author = $request->story_author;
-        $story->category_name = $request->category_name;
         $story->story_outline = $request->story_outline;
 
         $file = array('upload_picture' => Input::file('upload_picture'));
@@ -66,17 +77,21 @@ class StoryController extends Controller
             $story->story_picture = $filename;
         }
 
-        $story->state_comment = $request->state_comment;
-        $story->state_public = $request->state_public;
-        $story->visit = 0;
-        $story->love = 0;
         $story->save();
 
-        $getStoryId = $story::where('story_name', $request->story_name)->first();
-        $getStoryId = $getStoryId->id;
+        $permission_story = new PermissionStory;
+        $permission_story->story_id = $story->id;
+        $permission_story->status_comment = $request->status_comment;
+        $permission_story->status_public = $request->status_public;
+        $permission_story->save();
+
+        $story_visitor = new StoryVisitor;
+        $story_visitor->story_id = $story->id;
+        $story_visitor->count = 0;
+        $story_visitor->save();
 
         $tag = new Tag;
-        $tag->story_id = $getStoryId;
+        $tag->story_id = $story->id;
 
         if ($request->tag1 != null) {
             $tag->tag1 = $request->tag1;
@@ -95,30 +110,35 @@ class StoryController extends Controller
         }
         $tag->save();
 
+        $ban_story = new BanStory;
+        $ban_story->story_id = $story->id;
+        $ban_story->status_ban = 0;
+        $ban_story->save();
+
         return redirect()->route('profile');
     }
 
-    public function getWriteStorySub() {
+    public function getWriteSubStory() {
         return view('user.write_sub_story');
     }
 
     public function getLoveStory($id) {
-        $story = new Story;
-        $story = $story::where('id', $id)->first();
-        $current_love = $story->love;
-        $story->love = ++$current_love;
-        $story->save();
+//        $story = new Story;
+//        $story = $story::where('id', $id)->first();
+//        $current_love = $story->love;
+//        $story->love = ++$current_love;
+//        $story->save();
 
-        $give_love = new GiveLove;
-        $give_love->story_id = $id;
-        $give_love->username = Auth::User()->username;
-        $give_love->status = 1;
-        $give_love->save();
+//        $give_love = new GiveLove;
+//        $give_love->story_id = $id;
+//        $give_love->username = Auth::User()->username;
+//        $give_love->status = 1;
+//        $give_love->save();
         return redirect()->back();
     }
 
     public function postStoryComment(Request $request) {
-        $comment = New Comment;
+        $comment = New StoryComment;
         $comment->story_id = $request->story_id;
         $comment->story_name = $request->story_name;
         $comment->username = $request->username;

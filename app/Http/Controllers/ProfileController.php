@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\HistoryCashCard;
 use App\Story;
 
 class ProfileController extends Controller

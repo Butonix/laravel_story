@@ -18,7 +18,7 @@
                                 <tbody>
                                     <tr>
                                         <td style="padding-top: 13px;">Username</td>
-                                        <td><input type="text" class="form-control" name="username"></td>
+                                        <td><input type="text" class="form-control" name="username" autofocus></td>
                                     </tr>
                                     <tr>
                                         <td style="padding-top: 13px;">Password</td>

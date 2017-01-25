@@ -27,7 +27,7 @@ Route::group(['prefix' => 'user'], function() {
   Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
   Route::get('write/story', 'StoryController@getWriteStory');
   Route::post('write/story', 'StoryController@postWriteStory');
-  Route::get('write/story/sub/{id}', 'StoryController@getWriteStorySub');
+  Route::get('write/story/sub/{id}', 'StoryController@getWriteSubStory');
   Route::get('love/story/{id}' ,'StoryController@getLoveStory');
   Route::post('search', 'SearchController@postSearch');
   Route::post('story/comment', 'StoryController@postStoryComment');

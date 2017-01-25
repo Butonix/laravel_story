@@ -1,8 +1,17 @@
 @extends('layouts.user') @section('content') @include('layouts.components.banner') @include('layouts.components.navbar') @include('layouts.components.modal_login') @include('layouts.components.modal_register') @php $categorys = App\Category::all(); @endphp
 
-
-
 <div class="row" style="margin-top: 20px;">
+
+    @if (session('status') == 'Story name not available.')
+        <script type="text/javascript">
+            swal({
+                title: "",
+                text: "<span style='font-size: 18px;'>ชื่อนิยายนี้มีผู้อื่นใช้แล้ว<br>กรุณาเปลื่ยนชื่ออีกครั้ง</span>",
+                html: true
+            })
+        </script>
+    @endif
+
     <form action="{{ url('user/write/story') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,7 +49,7 @@
 
                     @foreach ($categorys as $category)
                     <div class="form-group">
-                        <input type="radio" name="category_name" value="{{ $category->category_name }}" required>
+                        <input type="radio" name="category_id" value="{{ $category->id }}" required>
                         &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
                     </div>
                     @endforeach
@@ -112,22 +121,22 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <input type="radio" name="state_comment" value="1" checked>
+                        <input type="radio" name="status_comment" value="1" checked>
                         <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="state_comment" value="0">
+                        <input type="radio" name="status_comment" value="0">
                         <span style="font-size: 16px;">ปิดรับความคิดเห็น</span>
                     </div>
 
                     <hr>
 
                     <div class="form-group">
-                        <input type="radio" name="state_public" value="1" checked>
+                        <input type="radio" name="status_public" value="1" checked>
                         <span style="font-size: 16px;">เผยแพร่</span>
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="state_public" value="0">
+                        <input type="radio" name="status_public" value="0">
                         <span style="font-size: 16px;">ปิดไว้</span>
                     </div>
 

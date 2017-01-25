@@ -91,12 +91,20 @@
         </div>
 
         <div class="form-group text-center">
-          <button type="button" class="btn btn-danger" style="font-size: 18px; width: 20%;"><i class="fa fa-ban"></i> ยกเลิก</button>
+          <button type="button" id="btn_cancle" class="btn btn-danger" style="font-size: 18px; width: 20%;"><i class="fa fa-ban"></i> ยกเลิก</button>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+     $('#btn_cancle').on('click', function() {
+       window.history.back();
+     });
+  });
+</script>
 
 @endsection
