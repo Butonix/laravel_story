@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Member;
 use App\Story;
+use App\StoryVisitor;
 use App\Announce;
-use App\CashCard;
-use App\HistoryCashCard;
 use App\Contact;
 use App\ReportVisitor;
 use App\HowToWriting;
@@ -22,10 +21,10 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $storys = new Story;
-        $top_visits = $storys::all()->sortByDesc('visit');
-        $top_love = $storys::all()->sortByDesc('love');
-        $storys = $storys::orderBy('created_at', 'desc')->get();
+        $top_visitors = StoryVisitor::all()->sortByDesc('count');
+//        $top_love = $storys::all()->sortByDesc('love');
+
+        $storys = Story::orderBy('created_at', 'desc')->get();
 
         $announces = new Announce;
         $announces = $announces::orderBy('created_at', 'desc')->get();
@@ -40,7 +39,7 @@ class UserController extends Controller
 
         return view('user.home')
         ->with('storys', $storys)
-        ->with('top_visits', $top_visits)
+        ->with('top_visitors', $top_visitors)
         ->with('announces', $announces);
     }
 

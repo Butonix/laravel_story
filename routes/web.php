@@ -23,11 +23,28 @@ Route::group(['prefix' => 'user'], function() {
     });
 
   Route::get('profile', 'ProfileController@getProfile')->name('profile');
-  Route::get('read/story/{id}', 'StoryController@getReadStory');
+  Route::get('profile/{author}', 'ProfileController@getProfileAuthor');
+  Route::get('update/profile', 'ProfileController@getProfileUpdate');
+  Route::post('update/profile', 'ProfileController@postProfileUpdate');
+
+  Route::get('read/story/{id}', 'StoryController@getReadStory')->name('main_story');
   Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
   Route::get('write/story', 'StoryController@getWriteStory');
   Route::post('write/story', 'StoryController@postWriteStory');
   Route::get('write/story/sub/{id}', 'StoryController@getWriteSubStory');
+  Route::post('write/story/sub/{id}', 'StoryController@postInsertSubStory');
+
+  Route::get('update/story/{id}', 'StoryController@getUpdateStory');
+  Route::post('update/story/{id}', 'StoryController@postUpdateStory');
+  Route::get('update/sub_story/{id}', 'StoryController@getUpdateSubStory');
+  Route::post('update/sub_story/{id}', 'StoryController@postUpdateSubStory');
+
+  Route::post('comment/story/{id}', 'StoryController@postInsertStoryComment');
+  Route::post('reply/comment/story/{id}', 'StoryController@postInsertReplyCommentStory');
+
+  Route::post('comment/sub_story/{id}', 'StoryController@postInsertSubStoryComment');
+  Route::post('reply/comment/sub_story/{id}', 'StoryController@postInsertReplyCommentSubStory');
+
   Route::get('love/story/{id}' ,'StoryController@getLoveStory');
   Route::post('search', 'SearchController@postSearch');
   Route::post('story/comment', 'StoryController@postStoryComment');
@@ -91,6 +108,24 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
             Route::get('how_to_support', 'ChangeUIController@getHowToSupport');
             Route::post('update/how_to_support', 'ChangeUIController@postUpdateHowToSupport');
         });
+
+        Route::group(['prefix' => 'story'], function() {
+            Route::get('all', 'StoryController@getStoryAll')->name('story');
+            Route::get('update/{id}', 'StoryController@getUpdateStoryFromAdmin');
+            Route::post('update/{id}', 'StoryController@postUpdateStoryFromAdmin');
+            Route::post('ban/{id}', 'StoryController@postBanStory');
+            Route::post('unban/{id}', 'StoryController@postUnbanStory');
+        });
+
+        Route::group(['prefix' => 'sub_story'], function() {
+            Route::get('all', 'StoryController@getSubStoryAll')->name('sub_story');
+            Route::get('update/{id}', 'StoryController@getUpdateSubStoryFromAdmin');
+            Route::post('update/{id}', 'StoryController@postUpdateSubStoryFromAdmin');
+            Route::post('ban/{id}', 'StoryController@postBanSubStory');
+            Route::post('unban/{id}', 'StoryController@postUnbanSubStory');
+        });
+
+
     });
 });
 

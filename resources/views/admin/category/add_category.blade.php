@@ -25,12 +25,23 @@
             <form action="{{ url('admin/category/add') }}" method="post">
               {{ csrf_field() }}
               <div class="col-md-12">
+
                 <div class="form-group">
                   <div class="icon-addon addon-lg">
                       <input type="text" class="form-control" name="category_name" placeholder="ชื่อหมวดหมู่" value="{{ old('category_name') }}" required>
                       <!-- <i class="fa fa-user"></i> -->
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" name="status_alert" value="1" class="form-check-input">
+                      <span style="color: red;">แสดงแจ้งเตือนใช้วิจารณญาณในการอ่าน</span>
+                    </label>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary pull-right" style="width: 100%; font-size: 16px;">เพิ่มหมวดหมู่  </button>
                 </div>

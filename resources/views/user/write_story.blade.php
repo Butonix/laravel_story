@@ -142,6 +142,41 @@
 
                     <hr>
 
+                    {{--@if ($count_sub_story >= 4)--}}
+                        {{--<div class="form-group">--}}
+                            {{--<input type="checkbox" name="optionsRadios3" id="optionsRadios3" value="option1">--}}
+                            {{--<span style="font-size: 16px;">เปิดรับเหรียญ</span>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-inline">--}}
+                            {{--<div class="form-group" style="margin-right: 10px;">--}}
+                                {{--<label for="">--}}
+                                    {{--<i class="fa fa-usd fa-lg"></i>--}}
+                                {{--</label>--}}
+                                {{--<select name="unlock_coin" id="" class="form-control">--}}
+                                    {{--<option value="เลือก">--- เลือก ---</option>--}}
+                                    {{--<option value="200">200</option>--}}
+                                    {{--<option value="300">300</option>--}}
+                                    {{--<option value="400">400</option>--}}
+                                    {{--<option value="500">500</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label for="">--}}
+                                    {{--<i class="fa fa-diamond fa-lg"></i>--}}
+                                {{--</label>--}}
+                                {{--<select name="unlock_diamond" id="" class="form-control">--}}
+                                    {{--<option value="เลือก">--- เลือก ---</option>--}}
+                                    {{--<option value="2">2</option>--}}
+                                    {{--<option value="3">3</option>--}}
+                                    {{--<option value="4">4</option>--}}
+                                    {{--<option value="5">5</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<hr>--}}
+                    {{--@endif--}}
+
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
                             <button type="submit" id="btn_submit" class="btn btn-success" style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด</button>
@@ -165,7 +200,7 @@
     $(document).ready(function() {
 
         $('#summernote').summernote({
-            height: 300
+            height: 600
         });
         $('#summernote').on('summernote.change', function(we, contents, $editable) {
             $('#story_outline').val(contents);

@@ -22,14 +22,14 @@
       </script>
     @endif
 
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
+    {{--<div class="col-md-12">--}}
+      {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-body">--}}
 
           <div class="col-md-12">
             <div class="form-group">
-              <a href="{{ url('admin/category/all') }}" style="margin-right: 10px;"><i class="fa fa-book"></i> หมวดหมู่ทั้งหมด</a>
-              <a href="{{ url('admin/category/add') }}"><i class="fa fa-plus"></i> เพิ่มหมวดหมู่</a>
+              <a href="{{ url('admin/category/all') }}" style="margin-right: 10px; color: green;"><i class="fa fa-book"></i> หมวดหมู่ทั้งหมด</a>
+              <a href="{{ url('admin/category/add') }}" style="color: green;"><i class="fa fa-plus"></i> เพิ่มหมวดหมู่</a>
             </div>
           </div>
 
@@ -50,7 +50,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->category_name }}</td>
                         <td><a href="{{ url('admin/category/edit/'.$category->id) }}"><i class="fa fa-pencil"></i> แก้ไข</a></td>
-                        <td><a href="{{ url('admin/category/delete/'.$category->id) }}"><i class="fa fa-trash-o"></i> ลบ</a></td>
+                        <td><a href="{{ url('admin/category/delete/'.$category->id) }}" style="color: red;"><i class="fa fa-trash-o"></i> ลบ</a></td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -59,8 +59,8 @@
           </div>
 
         </div>
-      </div>
-    </div>
-  </div>
+      {{--</div>--}}
+    {{--</div>--}}
+  {{--</div>--}}
 
 @endsection

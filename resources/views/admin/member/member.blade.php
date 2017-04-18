@@ -22,14 +22,14 @@
       </script>
     @endif
 
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
+    {{--<div class="col-md-12">--}}
+      {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-body">--}}
 
           <div class="col-md-12">
             <div class="form-group">
-              <a href="{{ url('admin/member/all') }}" style="margin-right: 10px;"><i class="fa fa-user"></i> สมาชิกทั้งหมด</a>
-              <a href="{{ url('admin/member/add') }}"><i class="fa fa-plus"></i> เพิ่มสมาชิก</a>
+              <a href="{{ url('admin/member/all') }}" style="margin-right: 10px; color: green;"><i class="fa fa-user"></i> สมาชิกทั้งหมด</a>
+              <a href="{{ url('admin/member/add') }}" style="color: green;"><i class="fa fa-plus"></i> เพิ่มสมาชิก</a>
             </div>
           </div>
 
@@ -52,7 +52,7 @@
                         <td>{{ $member->username }}</td>
                         <td>{{ $member->email }}</td>
                         <td><a href="{{ url('admin/member/edit/'.$member->id) }}"><i class="fa fa-pencil"></i> แก้ไข</a></td>
-                        <td><a href="{{ url('admin/member/delete/'.$member->id) }}"><i class="fa fa-trash-o"></i> ลบ</a></td>
+                        <td><a href="{{ url('admin/member/delete/'.$member->id) }}" style="color: red;"><i class="fa fa-trash-o"></i> ลบ</a></td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -61,8 +61,8 @@
           </div>
 
         </div>
-      </div>
-    </div>
-  </div>
+      {{--</div>--}}
+    {{--</div>--}}
+  {{--</div>--}}
 
 @endsection

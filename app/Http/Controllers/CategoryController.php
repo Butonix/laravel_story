@@ -30,6 +30,13 @@ class CategoryController extends Controller
                 ->with('status_category', 'fail');
         } else {
             $category->category_name = $request->category_name;
+
+            if ($request->status_alert != null) {
+                $category->status_alert = 1;
+            } else {
+                $category->status_alert = 0;
+            }
+
             $category->save();
             return redirect()->route('category/all')
                 ->with('status_category', 'done');
@@ -44,18 +51,24 @@ class CategoryController extends Controller
     }
 
     public function postEditCategory(Request $request) {
-        $category = new Category;
 
-        $check_category = $category::where('category_name', $request->category_name)->count();
-        if ($check_category > 0) {
+        $check_category = Category::where('category_name', $request->category_name)->count();
+
+        if ($check_category > 1) {
             return redirect()->back()
                 ->withInput()
                 ->with('status_category', 'fail');
         }
 
-        $category::where('id', $request->category_id)->update([
-            'category_name' => $request->category_name
-        ]);
+        $category = Category::find($request->category_id);
+        $category->category_name = $request->category_name;
+
+        if ($request->status_alert != null) {
+            $category->status_alert = 1;
+        } else {
+            $category->status_alert = 0;
+        }
+        $category->save();
 
         return redirect()->route('category/all')
             ->with('status_edit_category', 'done');

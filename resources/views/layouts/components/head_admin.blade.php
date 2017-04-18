@@ -39,5 +39,9 @@
     .table-none-border tr td {
       border: 0px !important;
     }
+
+    tr td {
+      vertical-align: middle !important;
+    }
   </style>
 </head>

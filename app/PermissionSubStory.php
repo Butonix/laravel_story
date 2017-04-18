@@ -11,7 +11,7 @@ class PermissionSubStory extends Model
         'sub_story_id',
         'status_comment',
         'status_public',
-        'free_money',
-        'diamond'
+        'unlock_coin',
+        'unlock_diamond'
     ];
 }

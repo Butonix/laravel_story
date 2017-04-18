@@ -33,6 +33,22 @@
                       <!-- <i class="fa fa-user"></i> -->
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="form-check">
+                    <label class="form-check-label">
+
+                      @if ($category->status_alert == 1)
+                        <input type="checkbox" name="status_alert" value="1" class="form-check-input" checked>
+                      @else
+                        <input type="checkbox" name="status_alert" value="1" class="form-check-input">
+                      @endif
+
+                      <span style="color: red;">แสดงแจ้งเตือนใช้วิจารณญาณในการอ่าน</span>
+                    </label>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary pull-right" style="width: 100%; font-size: 16px;">แก้ไขหมวดหมู่  </button>
                 </div>

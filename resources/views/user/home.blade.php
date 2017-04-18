@@ -92,20 +92,27 @@
         <div class="media">
 
           @foreach ($storys as $story)
-            <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="{{ url('user/read/story/'.$story->id) }}">
-                    <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
-                  <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                  <span style="font-size: 16px;">ยอดวิว <span>{{ $story->visit }}</span></span>
+
+            @php
+              $permission_story = \App\PermissionStory::find($story->id);
+            @endphp
+
+            @if ($permission_story->status_public == 1)
+              <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
+                <div class="form-group">
+                  <div class="media-left media-middle">
+                    <a href="{{ url('user/read/story/'.$story->id) }}">
+                      <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
+                    <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                    <span style="font-size: 16px;">ยอดวิว <span>{{ $story->visit }}</span></span>
+                  </div>
                 </div>
               </div>
-            </div>
+            @endif
           @endforeach
 
           <div class="col-xs-12 col-sm-12 col-md-12">
@@ -125,21 +132,29 @@
       <div class="body" style="//background-color: #ffffe6;">
         <div class="media">
 
-          @foreach ($top_visits as $story)
-            <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
-              <div class="form-group">
-                <div class="media-left media-middle">
-                  <a href="{{ url('user/read/story/'.$story->id) }}">
-                    <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
-                  <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                  <span style="font-size: 16px;">ยอดวิว <span>{{ $story->visit }}</span></span>
+          @foreach ($top_visitors as $top_visitor)
+            @php
+              $story = App\Story::find($top_visitor->story_id);
+              $permission_story = \App\PermissionStory::find($story->id);
+            @endphp
+
+            @if ($permission_story->status_public == 1)
+              <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
+                <div class="form-group">
+                  <div class="media-left media-middle">
+                    <a href="{{ url('user/read/story/'.$story->id) }}">
+                      <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
+                    <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                    <span style="font-size: 16px;">ยอดวิว <span>{{ $story->visit }}</span></span>
+                  </div>
                 </div>
               </div>
-            </div>
+            @endif
+
           @endforeach
 
           <div class="col-xs-12 col-sm-12 col-md-12">
@@ -382,7 +397,7 @@
       <div class="panel-body">
 
           <span style="font-size: 25px;" class="pull-left"><i class="fa fa-comments-o fa-lg"></i> เว็บบอร์ด / กิจกรรม</span>
-          <a href="{{ url('user/announce/create') }}" class="pull-right" style="margin-bottom: 10px;"><span style="font-size: 25px;">สร้างกระทู้</span></a>
+          <a href="{{ url('user/announce/create') }}" class="pull-right" style="margin-bottom: 10px;"><span style="font-size: 20px;">สร้างกระทู้</span></a>
 
         <div class="list-group" style="margin-top: 10px;">
 
@@ -402,24 +417,4 @@
 
 </div> <!-- end row -->
 
-<script>
-
-  $(document).ready(function() {
-
-    window.normal_register = function() {
-      $('#myModalLogin').modal('toggle');
-      $('#myModalRegister').modal();
-    }
-
-    $('#btn_close_modal').on('click', function() {
-      $('#myModalRegister').modal('toggle');
-    });
-
-    $('#btn-login').on('click', function() {
-      $('#myModalLogin').modal();
-    });
-
-  });
-
-</script>
 @endsection

@@ -4,8 +4,8 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
+      {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-body">--}}
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -26,8 +26,8 @@
                 </tbody>
             </table>
           </div>
-        </div>
-      </div>
+        {{--</div>--}}
+      {{--</div>--}}
     </div>
   </div>
 

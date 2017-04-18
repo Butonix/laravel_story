@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    public $primaryKey = 'story_id';
     protected $table = 'tag';
     protected $fillable = [
       'story_id',
@@ -15,5 +16,6 @@ class Tag extends Model
       'tag4',
       'tag5'
     ];
-    public $timestamps = true;
+
+//    public $timestamps = true;
 }

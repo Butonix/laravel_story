@@ -38,6 +38,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">จัดการเนื้อหา <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('admin/category/all') }}">หมวดหมู่นิยาย</a></li>
+            <li><a href="{{ url('admin/story/all') }}">ตอนหลักนิยาย</a></li>
+            <li><a href="{{ url('admin/sub_story/all') }}">ตอนย่อยนิยาย</a></li>
             <li><a href="{{ url('admin/promote/story') }}">โปรโมทนิยาย</a></li>
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
