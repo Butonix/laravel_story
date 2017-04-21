@@ -24,17 +24,18 @@ class ProfileUpdate extends FormRequest
      */
     public function rules()
     {
+        $id = $this->user()->id;
         return [
-            'author' => 'required|unique:member|min:4|max:50',
-            'email' => 'required|email|unique:member',
+            'author' => 'required|min:4|max:50|unique:member,author,'.$id,
+            'email' => 'required|email|unique:member,email,'.$id,
             'password' => 'min:4|confirmed'
         ];
-
     }
 
     public function messages()
     {
         return [
+            'author.unique' => 'ชื่อ/นามปากกา มีผู้อื่นใช้แล้ว',
             'email.unique' => 'อีเมลนี้มีผู้อื่นใช้แล้ว',
             'password.confirmed' => 'กรุณาตรวจสอบรหัสผ่านให้ตรงกัน'
         ];

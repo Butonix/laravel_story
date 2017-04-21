@@ -40,7 +40,11 @@
           <a href="{{ url('user/update/profile') }}" style="font-size: 18px"><i class="fa fa-pencil"></i> แก้ไขข้อมูล</a>
         </div>
         <div class="col-md-12" style="text-align: center;">
-          <i class="fa fa-user-circle fa-5x"></i>
+          @if (file_exists(public_path('uploads/profile_images/'.Auth::user()->id)))
+                <img src="{{ url('uploads/profile_images/'.Auth::user()->id) }}" alt="" class="img-circle">
+          @else
+                <i class="fa fa-user-circle fa-5x"></i>
+          @endif
         </div>
         <div class="col-md-offset-4 col-md-4">
           <div class="table-responsive">

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\HistoryCashCard;
 use App\Story;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -102,6 +104,20 @@ class ProfileController extends Controller
     }
 
     public function postProfileUpdate(ProfileUpdate $request) {
-        return 'ok';
+        $member = \App\Member::find($request->user()->id);
+        $member->author = $request->author;
+        $member->email = $request->email;
+        $member->password = \Hash::make($request->password);
+        $member->text_password = $request->password;
+        $member->save();
+
+        $file = $request->file('profile_image');
+        if ($file) {
+            $filename = $request->user()->id;
+            $path = "uploads/profile_images/" . $filename;
+            Image::make($file->getRealPath())->resize(100, 100)->orientate()->save($path);
+        }
+
+        return redirect()->route('profile');
     }
 }

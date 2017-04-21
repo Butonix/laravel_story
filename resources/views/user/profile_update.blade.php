@@ -7,6 +7,14 @@
     @include('layouts.components.modal_login')
     @include('layouts.components.modal_register')
 
+    @php
+        if ($profile->author != null) {
+            $author = $profile->author;
+        } else {
+            $author = old('author');
+        }
+    @endphp
+
     <div class="row" style="margin-top: 20px;">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -33,7 +41,7 @@
                         </ul>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <input type="text" name="author" class="form-control input-lg" value="{{ $profile->author }}" placeholder="" minlength="4" maxlength="50" required>
+                                <input type="text" name="author" class="form-control input-lg" value="{{ $author }}" placeholder="" minlength="4" maxlength="50" required>
                             </div>
                         </div>
 
@@ -69,7 +77,7 @@
                         </ul>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <input type="file" name="upload_picture">
+                                <input type="file" name="profile_image">
                             </div>
                         </div>
 
