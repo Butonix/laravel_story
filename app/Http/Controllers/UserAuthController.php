@@ -45,9 +45,9 @@ class UserAuthController extends Controller
     }
 
     public function postLogin(Request $request) {
-        if (Auth::attempt(['email' => $request->login_email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->login_email, 'password' => $request->login_password])) {
             $check_device = DeviceLogin::where('ip_address', $request->ip())->get();
-            //return count($check_device);
+//            return count($check_device);
             if (count($check_device) < 3) {
                 $device_login = new DeviceLogin;
                 $device_login->username = Auth::User()->username;

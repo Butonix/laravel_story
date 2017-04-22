@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BanSubStory;
 use App\PermissionSubStory;
-use App\SubStoryVisitor;
+use App\SubStoryStatistic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
@@ -15,13 +15,14 @@ use App\StoryComment;
 use App\SubStoryComment;
 use App\PermissionStory;
 use App\BanStory;
-use App\StoryVisitor;
+use App\StoryStatistic;
 use App\ReplyCommentStory;
 use App\ReplyCommentSubStory;
+use Intervention\Image\Facades\Image;
+use File;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
-use File;
 
 class StoryController extends Controller
 {
@@ -34,10 +35,10 @@ class StoryController extends Controller
         $status_alert = $category->status_alert;
 
         // Update visit to story
-        $story_visitor = StoryVisitor::find($request->id);
-        $visitor_count = $story_visitor->count;
-        $story_visitor->count = ++$visitor_count;
-        $story_visitor->save();
+        $story_statistic = StoryStatistic::find($request->id);
+        $visitor_count = $story_statistic->count_visitor;
+        $story_statistic->count_visitor = ++$visitor_count;
+        $story_statistic->save();
         // Read comment
         $story_comments = StoryComment::where('story_id', $request->id)->orderBy('created_at', 'desc')->get();
 
@@ -68,9 +69,10 @@ class StoryController extends Controller
         $story = Story::find($sub_story->story_id);
         $author = $story->story_author;
         $category = Category::find($story->category_id);
-        $visitor = SubStoryVisitor::where('sub_story_id', $request->id)->first();
-        $visitor->count = ++$visitor->count;
-        $visitor->save();
+
+        $SubStoryStatistic = SubStoryStatistic::where('sub_story_id', $request->id)->first();
+        $SubStoryStatistic->count_visitor = ++$SubStoryStatistic->count_visitor;
+        $SubStoryStatistic->save();
         $comment = ReplyCommentStory::find($sub_story->id);
         $updated_at = Carbon::parse($sub_story->updated_at)->addYears(543)->format('d / m / Y');
 
@@ -87,7 +89,7 @@ class StoryController extends Controller
             ->with('sub_story', $sub_story)
             ->with('author', $author)
             ->with('category', $category->category_name)
-            ->with('visitor', $visitor)
+            ->with('SubStoryStatistic', $SubStoryStatistic)
             ->with('comment', count($comment))
             ->with('updated_at', $updated_at)
             ->with('sub_story_comments', $sub_story_comments)
@@ -122,12 +124,16 @@ class StoryController extends Controller
         $story->story_author = $request->story_author;
         $story->story_outline = $request->story_outline;
 
-        $file = array('upload_picture' => Input::file('upload_picture'));
+        $file = $request->file('upload_picture');
         if ($request->file('upload_picture') != '') {
-            $destinationPath = 'uploads/images/storys';
+            $destinationPath = 'uploads/images/storys/';
             $extension = Input::file('upload_picture')->getClientOriginalExtension();
             $filename = rand(111111111,999999999).'.'.$extension;
-            Input::file('upload_picture')->move($destinationPath, $filename);
+
+            Image::make($file->getRealPath())
+                ->fit(250, 350)
+                ->save($destinationPath.$filename);
+
             $story->story_picture = $filename;
         }
 
@@ -144,10 +150,11 @@ class StoryController extends Controller
         $ban_story->status_ban = 0;
         $ban_story->save();
 
-        $story_visitor = new StoryVisitor;
-        $story_visitor->story_id = $story->id;
-        $story_visitor->count = 0;
-        $story_visitor->save();
+        $story_statistic = new StoryStatistic;
+        $story_statistic->story_id = $story->id;
+        $story_statistic->count_visitor = 0;
+        $story_statistic->count_like = 0;
+        $story_statistic->save();
 
         $tag = new Tag;
         $tag->story_id = $story->id;
@@ -218,12 +225,13 @@ class StoryController extends Controller
         $ban_sub_story->save();
         // End Ban Sub Story
 
-        // Visitor
-        $sub_story_visitor = new SubStoryVisitor;
-        $sub_story_visitor->sub_story_id = $sub_story->id;
-        $sub_story_visitor->count = 0;
-        $sub_story_visitor->save();
-        // End Visitor
+        // SubStoryStatistic
+        $SubStoryStatistic = new SubStoryStatistic;
+        $SubStoryStatistic->sub_story_id = $sub_story->id;
+        $SubStoryStatistic->count_visitor = 0;
+        $SubStoryStatistic->count_like = 0;
+        $SubStoryStatistic->save();
+        // End SubStoryStatistic
 
         return redirect()->route('main_story', ['id' => $request->id]);
     }
@@ -270,12 +278,16 @@ class StoryController extends Controller
         $update_story->category_id = $request->category_id;
         $update_story->story_outline = $request->story_outline;
 
-        $file = array('upload_picture' => Input::file('upload_picture'));
+        $file = $request->file('upload_picture');
         if ($request->file('upload_picture') != '') {
-            $destinationPath = 'uploads/images/storys';
+            $destinationPath = 'uploads/images/storys/';
             $extension = Input::file('upload_picture')->getClientOriginalExtension();
             $filename = rand(111111111,999999999).'.'.$extension;
-            Input::file('upload_picture')->move($destinationPath, $filename);
+
+            Image::make($file->getRealPath())
+                ->fit(250, 350)
+                ->save($destinationPath.$filename);
+
             File::delete('uploads/images/storys/'.$update_story->story_picture);
             $update_story->story_picture = $filename;
         }

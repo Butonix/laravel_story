@@ -115,7 +115,10 @@ class ProfileController extends Controller
         if ($file) {
             $filename = $request->user()->id;
             $path = "uploads/profile_images/" . $filename;
-            Image::make($file->getRealPath())->resize(100, 100)->orientate()->save($path);
+            Image::make($file->getRealPath())
+                ->resize(100, 100)
+                ->orientate()
+                ->save($path);
         }
 
         return redirect()->route('profile');

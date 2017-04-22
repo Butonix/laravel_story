@@ -94,9 +94,11 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group text-center">
-                        <img src="{{ url('uploads/images/storys/'.$update_story->story_picture) }}" alt="">
+                        <img src="{{ url('uploads/images/storys/'.$update_story->story_picture) }}" alt="" style="width: 250px; height: 350px;">
                     </div>
-                    <input type="file" name="upload_picture">
+                    <div class="form-group pull-right">
+                        <input type="file" name="upload_picture">
+                    </div>
                 </div>
             </div>
         </div>

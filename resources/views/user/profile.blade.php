@@ -111,19 +111,19 @@
         @if ($storys)
           @foreach ($storys as $story)
             @php
-              $story_visitor = \App\StoryVisitor::find($story->id);
+              $story_visitor = \App\StoryStatistic::find($story->id);
             @endphp
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <div class="media-left media-middle">
                   <a href="{{ url('user/read/story/'.$story->id) }}">
-                    <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                    <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 250px; height: 350px; border-radius: 4px;">
                   </a>
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
                   <span style="font-size: 18px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                  <span style="font-size: 16px;">ยอดวิว <span>{{ $story_visitor->count }}</span></span><br>
+                  <span style="font-size: 16px;">ยอดวิว <span>{{ $story_visitor->count_visitor }}</span></span><br>
                   @if ($story->username == Auth::User()->username)
                     <a href="{{ url('user/update/story/'.$story->id) }}"><i class="fa fa-pencil"></i> แก้ไขเนื้อหา</a>
                   @endif

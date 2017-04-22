@@ -41,7 +41,7 @@
                         </ul>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <input type="text" name="author" class="form-control input-lg" value="{{ $author }}" placeholder="" minlength="4" maxlength="50" required>
+                                <input type="text" name="author" class="form-control input-lg" value="{{ $author }}" placeholder="" minlength="4" maxlength="50">
                             </div>
                         </div>
 

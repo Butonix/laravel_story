@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StoryVisitor extends Model
+class StoryStatistic extends Model
 {
-    protected $table = 'story_visitor';
+    protected $table = 'story_statistic';
     protected $primaryKey = 'story_id';
     protected $fillable = [
-        'count'
+        'count_visitor',
+        'count_like'
     ];
 }

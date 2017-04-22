@@ -26,7 +26,7 @@ class ProfileUpdate extends FormRequest
     {
         $id = $this->user()->id;
         return [
-            'author' => 'required|min:4|max:50|unique:member,author,'.$id,
+            'author' => 'min:4|max:50|unique:member,author,'.$id,
             'email' => 'required|email|unique:member,email,'.$id,
             'password' => 'min:4|confirmed'
         ];

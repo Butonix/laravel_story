@@ -95,7 +95,7 @@
 
                     @foreach ($storys as $story)
                         @php
-                            $story_visitor = \App\StoryVisitor::find($story->id);
+                            $story_statistic = \App\StoryStatistic::find($story->id);
                         @endphp
                         <div class="col-md-12">
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                 <div class="media-body">
                                     <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
                                     <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                    <span style="font-size: 16px;">ยอดวิว <span>{{ $story_visitor->count }}</span></span>
+                                    <span style="font-size: 16px;">ยอดวิว <span>{{ $story_statistic->count_visitor }}</span></span>
                                 </div>
                             </div>
                         </div>

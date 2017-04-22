@@ -158,13 +158,13 @@
           @foreach ($sub_storys as $sub_story)
             @php
               $created_at = \Carbon\Carbon::parse($sub_story->created_at)->addYears(543)->format("d / m / Y");
-              $visitor = App\SubStoryVisitor::where('sub_story_id', $sub_story->id)->first();
+              $visitor = App\SubStoryStatistic::where('sub_story_id', $sub_story->id)->first();
               $comment = App\SubStoryComment::where('sub_story_id', $sub_story->id)->first();
             @endphp
             <tr>
                 <td>{{ $created_at }}</td>
                 <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}" target="_blank">{{ $sub_story->story_name }}</a></td>
-                <td>{{ $visitor->count }}</td>
+                <td>{{ $visitor->count_visitor }}</td>
                 <td>{{ count($comment) }}</td>
                 <td><a href="{{ url('user/update/sub_story/'.$sub_story->id) }}"><i class="fa fa-pencil"></i> แก้ไขเนื้อหา</a></td>
             </tr>

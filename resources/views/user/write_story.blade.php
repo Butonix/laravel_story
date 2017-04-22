@@ -1,4 +1,14 @@
-@extends('layouts.user') @section('content') @include('layouts.components.banner') @include('layouts.components.navbar') @include('layouts.components.modal_login') @include('layouts.components.modal_register') @php $categorys = App\Category::all(); @endphp
+@extends('layouts.user') @section('content') @include('layouts.components.banner') @include('layouts.components.navbar') @include('layouts.components.modal_login') @include('layouts.components.modal_register')
+@php
+    $categorys = App\Category::all();
+    $profile = \App\Member::find(Auth::user()->id);
+    if (!empty($profile->author)) {
+        $author = $profile->author;
+    } else {
+        $author = '';
+    }
+
+@endphp
 
 <div class="row" style="margin-top: 20px;">
 
@@ -24,22 +34,18 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a></li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <input type="text" name="story_author" class="form-control input-lg" placeholder="นามปากกา ..." required>
+                    <input type="text" name="story_author" class="form-control input-lg" value="{{ $author }}" placeholder="นามปากกา ..." required>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a></li>
@@ -57,23 +63,18 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">
-                        <!-- <textarea name="story_detail" id="summernote" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
                         <div id="summernote"></div>
                         <input type="hidden" name="story_outline" id="story_outline">
                     </div>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
@@ -84,9 +85,7 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">Tag</span></a></li>
@@ -113,9 +112,7 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -142,41 +139,6 @@
 
                     <hr>
 
-                    {{--@if ($count_sub_story >= 4)--}}
-                        {{--<div class="form-group">--}}
-                            {{--<input type="checkbox" name="optionsRadios3" id="optionsRadios3" value="option1">--}}
-                            {{--<span style="font-size: 16px;">เปิดรับเหรียญ</span>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="form-inline">--}}
-                            {{--<div class="form-group" style="margin-right: 10px;">--}}
-                                {{--<label for="">--}}
-                                    {{--<i class="fa fa-usd fa-lg"></i>--}}
-                                {{--</label>--}}
-                                {{--<select name="unlock_coin" id="" class="form-control">--}}
-                                    {{--<option value="เลือก">--- เลือก ---</option>--}}
-                                    {{--<option value="200">200</option>--}}
-                                    {{--<option value="300">300</option>--}}
-                                    {{--<option value="400">400</option>--}}
-                                    {{--<option value="500">500</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<label for="">--}}
-                                    {{--<i class="fa fa-diamond fa-lg"></i>--}}
-                                {{--</label>--}}
-                                {{--<select name="unlock_diamond" id="" class="form-control">--}}
-                                    {{--<option value="เลือก">--- เลือก ---</option>--}}
-                                    {{--<option value="2">2</option>--}}
-                                    {{--<option value="3">3</option>--}}
-                                    {{--<option value="4">4</option>--}}
-                                    {{--<option value="5">5</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<hr>--}}
-                    {{--@endif--}}
-
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
                             <button type="submit" id="btn_submit" class="btn btn-success" style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด</button>
@@ -192,7 +154,7 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
+
     </form>
 </div>
 

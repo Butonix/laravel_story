@@ -19,16 +19,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($story_visitors as $story_visitor)
+                    @foreach ($story_statistics as $story_statistic)
 
                         @php
-                            $story = \App\Story::find($story_visitor->story_id);
+                            $story = \App\Story::find($story_statistic->story_id);
                         @endphp
 
                       <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $story->story_name }}</td>
-                        <td>{{ $story_visitor->count }}</td>
+                        <td>{{ $story_statistic->count_visitor }}</td>
                         <td>{{ $story->story_author }}</td>
                       </tr>
                     @endforeach

@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                   <td>ยอดวิว</td>
-                  <td>{{ $visitor->count }}</td>
+                  <td>{{ $SubStoryStatistic->count_visitor }}</td>
                 </tr>
                 <tr>
                   <td>ความคิดเห็น</td>

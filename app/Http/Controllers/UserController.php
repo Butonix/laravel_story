@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Member;
 use App\Story;
-use App\StoryVisitor;
+use App\StoryStatistic;
 use App\Announce;
 use App\Contact;
 use App\ReportVisitor;
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $top_visitors = StoryVisitor::all()->sortByDesc('count');
+        $top_visitors = StoryStatistic::all()->sortByDesc('count_visitor');
 //        $top_love = $storys::all()->sortByDesc('love');
 
         $storys = Story::orderBy('created_at', 'desc')->get();

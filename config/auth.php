@@ -90,16 +90,14 @@ return [
         //     'model' => App\User::class,
         // ],
 
-
-
         'member' => [
-            'driver' => 'database',
-            'table' => 'member',
+            'driver' => 'eloquent',
+            'model' => App\Member::class,
         ],
 
         'admin' => [
-            'driver' => 'database',
-            'table' => 'administrator',
+            'driver' => 'eloquent',
+            'model' => App\Administrator::class,
         ]
 
         // 'facebook_logins' => [

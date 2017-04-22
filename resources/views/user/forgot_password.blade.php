@@ -4,6 +4,7 @@
 
     @include('layouts.components.banner')
     @include('layouts.components.navbar')
+    @include('layouts.components.modal_login')
     @include('layouts.components.carousel_only')
 
     @if (session('status') == 'success')
