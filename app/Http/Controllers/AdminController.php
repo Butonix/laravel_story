@@ -11,16 +11,19 @@ use Hash;
 class AdminController extends Controller
 {
 
-    public function main() {
+    public function main()
+    {
         Session::put('active_menu', '');
         return view('admin.main');
     }
 
-    public function getFormChangePassword() {
+    public function getFormChangePassword()
+    {
         return view('admin.form_change_password');
     }
 
-    public function postUpdatePassword(Request $request) {
+    public function postUpdatePassword(Request $request)
+    {
         $admin = Administrator::where('id', 1)->first();
         $admin->password = Hash::make($request->cf_password);
         $admin->save();

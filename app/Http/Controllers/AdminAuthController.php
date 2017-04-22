@@ -8,11 +8,13 @@ use Session;
 
 class AdminAuthController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.form_login');
     }
 
-    public function postLogin(Request $request) {
+    public function postLogin(Request $request)
+    {
         $username = $request->username;
         $password = $request->password;
         if (Auth::guard('admin')->attempt(['username' => $username, 'password' => $password])) {
@@ -23,7 +25,8 @@ class AdminAuthController extends Controller
 
     }
 
-    public function getLogout() {
+    public function getLogout()
+    {
         Auth::logout();
         Session::flush();
         return redirect()->route('auth');

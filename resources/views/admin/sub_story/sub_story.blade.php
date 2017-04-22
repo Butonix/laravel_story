@@ -42,15 +42,22 @@
                                 <td style="color: red;">ถูกแบน</td>
                             @endif
 
-                            <td><a href="{{ url('admin/sub_story/update/'.$sub_story->id) }}"><i class="fa fa-pencil"></i> แก้ไข</a></td>
+                            <td><a href="{{ url('admin/sub_story/update/'.$sub_story->id) }}"><i
+                                            class="fa fa-pencil"></i> แก้ไข</a></td>
                             <td>
-                                <form id="form_ban" action="{{ url('admin/sub_story/ban/'.$sub_story->id) }}" method="post">
+                                <form id="form_ban" action="{{ url('admin/sub_story/ban/'.$sub_story->id) }}"
+                                      method="post">
                                     {{ csrf_field() }}
-                                    <a href="#" style="color: red;" onclick="document.getElementById('form_ban').submit()"><i class="fa fa-ban"></i> แบนเนื้อหา</a>
+                                    <a href="#" style="color: red;"
+                                       onclick="document.getElementById('form_ban').submit()"><i class="fa fa-ban"></i>
+                                        แบนเนื้อหา</a>
                                 </form>
-                                <form id="form_unban" action="{{ url('admin/sub_story/unban/'.$sub_story->id) }}" method="post">
+                                <form id="form_unban" action="{{ url('admin/sub_story/unban/'.$sub_story->id) }}"
+                                      method="post">
                                     {{ csrf_field() }}
-                                    <a href="#" style="color: green;" onclick="document.getElementById('form_unban').submit()"><i class="fa fa-ban"></i> ปลดแบน</a>
+                                    <a href="#" style="color: green;"
+                                       onclick="document.getElementById('form_unban').submit()"><i
+                                                class="fa fa-ban"></i> ปลดแบน</a>
                                 </form>
                             </td>
                         </tr>

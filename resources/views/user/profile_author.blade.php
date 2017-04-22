@@ -13,8 +13,9 @@
             border-left: none !important;
             border-bottom: none !important;
         }
+
         .remove-border {
-            border:0px;
+            border: 0px;
         }
     </style>
 
@@ -32,7 +33,8 @@
 
         <div class="col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ข้อมูลนักเขียน</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ข้อมูลนักเขียน</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -101,7 +103,9 @@
                             <div class="form-group">
                                 <div class="media-left media-middle">
                                     <a href="{{ url('user/read/story/'.$story->id) }}">
-                                        <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                                        <img class="media-object"
+                                             src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..."
+                                             style="width: 120px; height: 120px; border-radius: 4px;">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -157,7 +161,8 @@
                         <input type="hidden" name="comment" id="comment">
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก</button>
+                        <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก
+                        </button>
                     </div>
                 </form>
             </div>
@@ -252,7 +257,7 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#summernote').summernote({
                 height: 200,
@@ -262,7 +267,7 @@
                     ['color', ['color']]
                 ]
             });
-            $('#summernote').on('summernote.change', function(we, contents, $editable) {
+            $('#summernote').on('summernote.change', function (we, contents, $editable) {
                 $('#comment').val(contents);
                 // console.log(contents);
             });

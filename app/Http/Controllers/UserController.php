@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $top_visitors = StoryStatistic::all()->sortByDesc('count_visitor');
 //        $top_love = $storys::all()->sortByDesc('love');
 
@@ -33,17 +34,18 @@ class UserController extends Controller
         $report_visit = new ReportVisitor;
         $check_ip = $report_visit::where('ip_address', $request->ip())->first();
         if (count($check_ip) <= 0) {
-          $report_visit->ip_address = $request->ip();
-          $report_visit->save();
+            $report_visit->ip_address = $request->ip();
+            $report_visit->save();
         }
 
         return view('user.home')
-        ->with('storys', $storys)
-        ->with('top_visitors', $top_visitors)
-        ->with('announces', $announces);
+            ->with('storys', $storys)
+            ->with('top_visitors', $top_visitors)
+            ->with('announces', $announces);
     }
 
-    public function getHowToWriting() {
+    public function getHowToWriting()
+    {
         $check_field = HowToWriting::find(1);
         if (!$check_field) {
             $create_field = new HowToWriting;
@@ -51,10 +53,11 @@ class UserController extends Controller
         }
         $how_to_writing = HowToWriting::find(1);
         return view('user.how_to_writing')
-        ->with('how_to_writing', $how_to_writing);
+            ->with('how_to_writing', $how_to_writing);
     }
 
-    public function getHowToRegister() {
+    public function getHowToRegister()
+    {
         $check_field = HowToRegister::find(1);
         if (!$check_field) {
             $create_field = new HowToRegister;
@@ -62,10 +65,11 @@ class UserController extends Controller
         }
         $how_to_register = HowToRegister::find(1);
         return view('user.how_to_register')
-        ->with('how_to_register', $how_to_register);
+            ->with('how_to_register', $how_to_register);
     }
 
-    public function getHowToSupport() {
+    public function getHowToSupport()
+    {
         $check_field = HowToSupport::find(1);
         if (!$check_field) {
             $create_field = new HowToSupport;
@@ -73,10 +77,11 @@ class UserController extends Controller
         }
         $how_to_support = HowToSupport::find(1);
         return view('user.how_to_support')
-        ->with('how_to_support', $how_to_support);
+            ->with('how_to_support', $how_to_support);
     }
 
-    public function getContact() {
+    public function getContact()
+    {
         $contact = new Contact;
         $check_detail = $contact::find(1);
         if (count($check_detail) == 0) {
@@ -88,11 +93,13 @@ class UserController extends Controller
         return view('user.contact')->with('contact', $contact);
     }
 
-    public function getForgotPassword() {
+    public function getForgotPassword()
+    {
         return view('user.forgot_password');
     }
 
-    public function postForgotPassword(Request $request) {
+    public function postForgotPassword(Request $request)
+    {
         $member = Member::where('email', $request->email)->first();
         if ($member) {
             $member = Member::where('email', $request->email)->first();

@@ -12,7 +12,8 @@ use Session;
 
 class ChangeUIController extends Controller
 {
-    public function getBanner() {
+    public function getBanner()
+    {
         for ($i = 1; $i <= 3; $i++) {
             $check_field = Banner::find($i);
             if (!$check_field) {
@@ -25,12 +26,13 @@ class ChangeUIController extends Controller
         $banner_2 = Banner::find(2);
         $banner_3 = Banner::find(3);
         return view('admin.change_ui.banner')
-        ->with('banner_1', $banner_1)
-        ->with('banner_2', $banner_2)
-        ->with('banner_3', $banner_3);
+            ->with('banner_1', $banner_1)
+            ->with('banner_2', $banner_2)
+            ->with('banner_3', $banner_3);
     }
 
-    public function postUpdateBanner(Request $request) {
+    public function postUpdateBanner(Request $request)
+    {
         $banner = new Banner;
         $banner_1 = $banner::find(1);
         $banner_1->banner_detail = $request->banner_detail_1;
@@ -44,7 +46,8 @@ class ChangeUIController extends Controller
         return redirect()->back();
     }
 
-    public function getHowToWriting() {
+    public function getHowToWriting()
+    {
         $check_field = HowToWriting::find(1);
         if (!$check_field) {
             $create_field = new HowToWriting;
@@ -52,10 +55,11 @@ class ChangeUIController extends Controller
         }
         $how_to_writing = HowToWriting::find(1);
         return view('admin.change_ui.how_to_writing')
-        ->with('how_to_writing', $how_to_writing);
+            ->with('how_to_writing', $how_to_writing);
     }
 
-    public function postUpdateHowToWriting(Request $request) {
+    public function postUpdateHowToWriting(Request $request)
+    {
         $how_to_writing = HowToWriting::find(1);
         if ($how_to_writing) {
             $how_to_writing->detail = $request->how_to_writing;
@@ -64,7 +68,8 @@ class ChangeUIController extends Controller
         return redirect()->back();
     }
 
-    public function getHowToRegister() {
+    public function getHowToRegister()
+    {
         $check_field = HowToRegister::find(1);
         if (!$check_field) {
             $create_field = new HowToRegister;
@@ -72,10 +77,11 @@ class ChangeUIController extends Controller
         }
         $how_to_register = HowToRegister::find(1);
         return view('admin.change_ui.how_to_register')
-        ->with('how_to_register', $how_to_register);
+            ->with('how_to_register', $how_to_register);
     }
 
-    public function postUpdateHowToRegister(Request $request) {
+    public function postUpdateHowToRegister(Request $request)
+    {
         $how_to_register = HowToRegister::find(1);
         if ($how_to_register) {
             $how_to_register->detail = $request->how_to_register;
@@ -84,7 +90,8 @@ class ChangeUIController extends Controller
         return redirect()->back();
     }
 
-    public function getHowToSupport() {
+    public function getHowToSupport()
+    {
         $check_field = HowToSupport::find(1);
         if (!$check_field) {
             $create_field = new HowToSupport;
@@ -92,10 +99,11 @@ class ChangeUIController extends Controller
         }
         $how_to_support = HowToSupport::find(1);
         return view('admin.change_ui.how_to_support')
-        ->with('how_to_support', $how_to_support);
+            ->with('how_to_support', $how_to_support);
     }
 
-    public function postUpdateHowToSupport(Request $request) {
+    public function postUpdateHowToSupport(Request $request)
+    {
         $how_to_support = HowToSupport::find(1);
         if ($how_to_support) {
             $how_to_support->detail = $request->how_to_support;
@@ -104,7 +112,8 @@ class ChangeUIController extends Controller
         return redirect()->back();
     }
 
-    public function getContact() {
+    public function getContact()
+    {
         Session::put('active_menu', 'front-end');
         $contact = new Contact;
         $check_detail = $contact::where('id', 1)->first();
@@ -119,7 +128,8 @@ class ChangeUIController extends Controller
         return view('admin.change_ui.contact')->with('contact', $contact);
     }
 
-    public function postUpdateContact(Request $request) {
+    public function postUpdateContact(Request $request)
+    {
         $contact = new Contact;
         $contact = $contact::where('id', 1)->first();
         $contact->contact_detail = $request->contact_detail;

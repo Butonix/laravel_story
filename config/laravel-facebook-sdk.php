@@ -48,4 +48,4 @@ return [
 
     'default_redirect_uri' => '/facebook/callback',
     // 'default_redirect_uri' => '/after/facebook_login/',
-    ];
+];

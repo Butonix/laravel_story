@@ -13,15 +13,17 @@
             border-left: none !important;
             border-bottom: none !important;
         }
+
         .remove-border {
-            border:0px;
+            border: 0px;
         }
     </style>
 
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ผลการค้นหา</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ผลการค้นหา</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body" style="margin-top: 20px;">
@@ -34,7 +36,9 @@
                             <div class="form-group">
                                 <div class="media-left media-middle">
                                     <a href="{{ url('user/read/story/'.$story->id) }}">
-                                        <img class="media-object" src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
+                                        <img class="media-object"
+                                             src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..."
+                                             style="width: 120px; height: 120px; border-radius: 4px;">
                                     </a>
                                 </div>
                                 <div class="media-body">

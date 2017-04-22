@@ -7,25 +7,28 @@ use App\HistoryCashCard;
 
 class CashCardController extends Controller
 {
-    public function getTopup() {
+    public function getTopup()
+    {
         return view('user.topup');
     }
 
-    public function getFormTopup() {
+    public function getFormTopup()
+    {
         return view('user.form_topup');
     }
 
-    public function postFormTopup(Request $request) {
+    public function postFormTopup(Request $request)
+    {
 
-        $method="cccdtp";
+        $method = "cccdtp";
         $cahscard_no = $request->TM_CODE;
         $datetime = date("Y-m-d/H:i:s");
         $partneruser_id = "56000013";
         $partneruser_password = "hRti4E8";
         $customer_no = "56000013";
-        $request = "method=".$method."&cahscard_no=".$cahscard_no."&datetime=".$datetime."&partneruser_id=".$partneruser_id."&partneruser_password=".$partneruser_password."&customer_no=".$customer_no;
+        $request = "method=" . $method . "&cahscard_no=" . $cahscard_no . "&datetime=" . $datetime . "&partneruser_id=" . $partneruser_id . "&partneruser_password=" . $partneruser_password . "&customer_no=" . $customer_no;
         //-------------------connect webservice
-        $urlWithoutProtocol = "http://dtopup.com/ServiceByPassProxy/dtpcc?".$request;//---------------- Production Path
+        $urlWithoutProtocol = "http://dtopup.com/ServiceByPassProxy/dtpcc?" . $request;//---------------- Production Path
         $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);

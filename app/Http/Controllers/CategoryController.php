@@ -10,18 +10,21 @@ use Session;
 class CategoryController extends Controller
 {
 
-    public function getAllCategory() {
+    public function getAllCategory()
+    {
         Session::put('active_menu', 'category');
         $categorys = new Category;
         return view('admin.category.category')->with('categorys', $categorys->get());
     }
 
-    public function getAddCategory() {
+    public function getAddCategory()
+    {
         Session::put('active_menu', 'category');
         return view('admin.category.add_category');
     }
 
-    public function postAddCategory(Request $request) {
+    public function postAddCategory(Request $request)
+    {
         $category = new Category;
         $check_category = $category::where('category_name', $request->category_name)->count();
         if ($check_category > 0) {
@@ -44,13 +47,15 @@ class CategoryController extends Controller
 
     }
 
-    public function getEditCategory(Request $request) {
+    public function getEditCategory(Request $request)
+    {
         $category = new Category;
         $category_name = $category::find($request->category_id);
         return view('admin.category.edit_category')->with('category', $category_name);
     }
 
-    public function postEditCategory(Request $request) {
+    public function postEditCategory(Request $request)
+    {
 
         $check_category = Category::where('category_name', $request->category_name)->count();
 
@@ -74,13 +79,15 @@ class CategoryController extends Controller
             ->with('status_edit_category', 'done');
     }
 
-    public function getDeleteCategory(Request $request) {
+    public function getDeleteCategory(Request $request)
+    {
         $category = new Category;
         $category::where('id', $request->category_id)->delete();
         return redirect()->back()->with('status_delete_category', 'done');
     }
 
-    public function getCategory($id) {
+    public function getCategory($id)
+    {
         $category = new Category;
         $category = $category::where('id', $id)->first();
         $category_name = $category->category_name;

@@ -20,11 +20,13 @@
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ลำดับตอน / ชื่อตอน</span></a></li>
+                    <li role="presentation" class="active"><a href="#"><span
+                                    style="font-size: 20px;">ลำดับตอน / ชื่อตอน</span></a></li>
                 </ul>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <input type="text" class="form-control input-lg" name="story_name" placeholder="ลำดับตอน / ชื่อตอน ..." value="{{ $sub_story->story_name }}" required>
+                        <input type="text" class="form-control input-lg" name="story_name"
+                               placeholder="ลำดับตอน / ชื่อตอน ..." value="{{ $sub_story->story_name }}" required>
                     </div>
                 </div>
             </div>
@@ -171,11 +173,15 @@
                         @endif
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;"><i class="fa fa-upload"></i> อัพโหลด</button>
+                            <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;"><i
+                                        class="fa fa-upload"></i> อัพโหลด
+                            </button>
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="button" id="btn_cancle" class="btn btn-danger" style="font-size: 18px; width: 20%;"><i class="fa fa-ban"></i> ยกเลิก</button>
+                            <button type="button" id="btn_cancle" class="btn btn-danger"
+                                    style="font-size: 18px; width: 20%;"><i class="fa fa-ban"></i> ยกเลิก
+                            </button>
                         </div>
 
                     </div>
@@ -185,18 +191,18 @@
     </form>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#summernote').summernote({
                 height: 600
             });
 
-            $('#summernote').on('summernote.change', function(we, contents, $editable) {
+            $('#summernote').on('summernote.change', function (we, contents, $editable) {
                 $('#story_outline').val(contents);
                 // console.log(contents);
             });
 
-            $('#btn_cancle').on('click', function() {
+            $('#btn_cancle').on('click', function () {
                 window.history.back();
             });
         });

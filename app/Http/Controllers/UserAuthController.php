@@ -12,7 +12,8 @@ use Session;
 
 class UserAuthController extends Controller
 {
-    public function postRegister(Request $request) {
+    public function postRegister(Request $request)
+    {
         $member = new Member;
         $check_username = $member::where('username', $request->username)->count();
         $check_email = $member::where('email', $request->email)->count();
@@ -44,7 +45,8 @@ class UserAuthController extends Controller
             ->with('status_success', 'done');
     }
 
-    public function postLogin(Request $request) {
+    public function postLogin(Request $request)
+    {
         if (Auth::attempt(['email' => $request->login_email, 'password' => $request->login_password])) {
             $check_device = DeviceLogin::where('ip_address', $request->ip())->get();
 //            return count($check_device);
@@ -65,7 +67,8 @@ class UserAuthController extends Controller
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         DeviceLogin::where('id', Session::get('device_id'))->delete();
         Auth::logout();
         Session::flush();

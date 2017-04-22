@@ -45,7 +45,9 @@
                                 <input type="email" class="form-control" name="email" placeholder="">
                             </div>
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-success" style="width: 100%; font-size: 18px;">ส่งรหัสผ่าน</button>
+                                <button type="submit" class="btn btn-success" style="width: 100%; font-size: 18px;">
+                                    ส่งรหัสผ่าน
+                                </button>
                             </div>
                             <div class="form-group">
                                 <span style="font-size: 18px; color: blue;">ทางระบบจะส่งรหัสผ่านไปยัง E-mail ของคุณ</span>

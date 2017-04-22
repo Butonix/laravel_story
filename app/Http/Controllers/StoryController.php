@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\Input;
 
 class StoryController extends Controller
 {
-    public function getReadStory(Request $request) {
+    public function getReadStory(Request $request)
+    {
         // Select story
         $story = Story::find($request->id);
         // Get category name
@@ -64,7 +65,8 @@ class StoryController extends Controller
             ->with('permission_story', $permission_story);
     }
 
-    public function getReadStoryDetail(Request $request) {
+    public function getReadStoryDetail(Request $request)
+    {
         $sub_story = SubStory::find($request->id);
         $story = Story::find($sub_story->story_id);
         $author = $story->story_author;
@@ -96,11 +98,13 @@ class StoryController extends Controller
             ->with('status_ban', $status_ban);
     }
 
-    public function getWriteStory() {
+    public function getWriteStory()
+    {
         return view('user.write_story');
     }
 
-    public function postWriteStory(Request $request) {
+    public function postWriteStory(Request $request)
+    {
 
         // Check Story Name
         $check_story_name = Story::where('story_name', $request->story_name)->first();
@@ -128,11 +132,11 @@ class StoryController extends Controller
         if ($request->file('upload_picture') != '') {
             $destinationPath = 'uploads/images/storys/';
             $extension = Input::file('upload_picture')->getClientOriginalExtension();
-            $filename = rand(111111111,999999999).'.'.$extension;
+            $filename = rand(111111111, 999999999) . '.' . $extension;
 
             Image::make($file->getRealPath())
                 ->fit(250, 350)
-                ->save($destinationPath.$filename);
+                ->save($destinationPath . $filename);
 
             $story->story_picture = $filename;
         }
@@ -179,16 +183,18 @@ class StoryController extends Controller
         return redirect()->route('profile');
     }
 
-    public function getWriteSubStory(Request $request) {
+    public function getWriteSubStory(Request $request)
+    {
         $id = $request->id;
         $sub_story = SubStory::where('story_id', $id)->get();
         $count_sub_story = count($sub_story);
         return view('user.write_sub_story')
-        ->with('id', $id)
-        ->with('count_sub_story', $count_sub_story);
+            ->with('id', $id)
+            ->with('count_sub_story', $count_sub_story);
     }
 
-    public function postInsertSubStory(Request $request) {
+    public function postInsertSubStory(Request $request)
+    {
         // Sub Story
         $sub_story = new SubStory;
         $sub_story->story_id = $request->id;
@@ -236,7 +242,8 @@ class StoryController extends Controller
         return redirect()->route('main_story', ['id' => $request->id]);
     }
 
-    public function getLoveStory($id) {
+    public function getLoveStory($id)
+    {
 //        $story = new Story;
 //        $story = $story::where('id', $id)->first();
 //        $current_love = $story->love;
@@ -251,7 +258,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postStoryComment(Request $request) {
+    public function postStoryComment(Request $request)
+    {
         $comment = New StoryComment;
         $comment->story_id = $request->story_id;
         $comment->story_name = $request->story_name;
@@ -261,7 +269,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function getUpdateStory(Request $request) {
+    public function getUpdateStory(Request $request)
+    {
         $update_story = Story::find($request->id);
         $tag = Tag::where('story_id', $request->id)->first();
         $permission_story = PermissionStory::where('story_id', $request->id)->first();
@@ -271,7 +280,8 @@ class StoryController extends Controller
             ->with('permission_story', $permission_story);
     }
 
-    public function postUpdateStory(Request $request) {
+    public function postUpdateStory(Request $request)
+    {
         $update_story = Story::find($request->id);
         $update_story->story_name = $request->story_name;
         $update_story->story_author = $request->story_author;
@@ -282,13 +292,13 @@ class StoryController extends Controller
         if ($request->file('upload_picture') != '') {
             $destinationPath = 'uploads/images/storys/';
             $extension = Input::file('upload_picture')->getClientOriginalExtension();
-            $filename = rand(111111111,999999999).'.'.$extension;
+            $filename = rand(111111111, 999999999) . '.' . $extension;
 
             Image::make($file->getRealPath())
                 ->fit(250, 350)
-                ->save($destinationPath.$filename);
+                ->save($destinationPath . $filename);
 
-            File::delete('uploads/images/storys/'.$update_story->story_picture);
+            File::delete('uploads/images/storys/' . $update_story->story_picture);
             $update_story->story_picture = $filename;
         }
 
@@ -310,7 +320,8 @@ class StoryController extends Controller
         return redirect()->route('profile');
     }
 
-    public function getUpdateSubStory (Request $request) {
+    public function getUpdateSubStory(Request $request)
+    {
         $sub_story = SubStory::find($request->id);
         $count_sub_story = count(SubStory::where('story_id', $sub_story->story_id)->get());
         $permission_sub_story = PermissionSubStory::find($request->id);
@@ -341,7 +352,8 @@ class StoryController extends Controller
             ->with('status_show_limit', $status_show_limit);
     }
 
-    public function postUpdateSubStory (Request $request) {
+    public function postUpdateSubStory(Request $request)
+    {
         $update_sub_story = SubStory::find($request->id);
         $update_sub_story->story_name = $request->story_name;
         $update_sub_story->story_outline = $request->story_outline;
@@ -357,7 +369,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postInsertStoryComment (Request $request) {
+    public function postInsertStoryComment(Request $request)
+    {
         $story_comment = new StoryComment;
         $story_comment->story_id = $request->id;
         $story_comment->comment_detail = $request->comment_detail;
@@ -366,7 +379,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postInsertReplyCommentStory (Request $request) {
+    public function postInsertReplyCommentStory(Request $request)
+    {
         $reply_comment = new ReplyCommentStory;
         $reply_comment->reply_comment_id = $request->id;
         $reply_comment->comment_detail = $request->comment_detail;
@@ -375,7 +389,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postInsertSubStoryComment (Request $request) {
+    public function postInsertSubStoryComment(Request $request)
+    {
         $sub_story_comment = new SubStoryComment;
         $sub_story_comment->sub_story_id = $request->sub_story_id;
         $sub_story_comment->comment_detail = $request->comment_detail;
@@ -384,7 +399,8 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postInsertReplyCommentSubStory (Request $request) {
+    public function postInsertReplyCommentSubStory(Request $request)
+    {
         $reply_comment = new ReplyCommentSubStory;
         $reply_comment->reply_comment_id = $request->id;
         $reply_comment->comment_detail = $request->comment_detail;
@@ -394,13 +410,15 @@ class StoryController extends Controller
     }
 
     // Admin
-    public function getStoryAll () {
+    public function getStoryAll()
+    {
         $storys = Story::all();
         return view('admin.story.story')
             ->with('storys', $storys);
     }
 
-    public function getUpdateStoryFromAdmin (Request $request) {
+    public function getUpdateStoryFromAdmin(Request $request)
+    {
         $categorys = Category::all();
         $story = Story::find($request->id);
         $tag = Tag::where('story_id', $request->id)->first();
@@ -412,7 +430,8 @@ class StoryController extends Controller
             ->with('permission_story', $permission_story);
     }
 
-    public function postUpdateStoryFromAdmin (Request $request) {
+    public function postUpdateStoryFromAdmin(Request $request)
+    {
         $update_story = Story::find($request->id);
         $update_story->story_name = $request->story_name;
         $update_story->story_author = $request->story_author;
@@ -423,9 +442,9 @@ class StoryController extends Controller
         if ($request->file('upload_picture') != '') {
             $destinationPath = 'uploads/images/storys';
             $extension = Input::file('upload_picture')->getClientOriginalExtension();
-            $filename = rand(111111111,999999999).'.'.$extension;
+            $filename = rand(111111111, 999999999) . '.' . $extension;
             Input::file('upload_picture')->move($destinationPath, $filename);
-            File::delete('uploads/images/storys/'.$update_story->story_picture);
+            File::delete('uploads/images/storys/' . $update_story->story_picture);
             $update_story->story_picture = $filename;
         }
 
@@ -446,27 +465,31 @@ class StoryController extends Controller
         return redirect()->route('story');
     }
 
-    public function postBanStory (Request $request) {
+    public function postBanStory(Request $request)
+    {
         $ban_story = BanStory::where('story_id', $request->id)->first();
         $ban_story->status_ban = 1;
         $ban_story->save();
         return redirect()->route('story');
     }
 
-    public function postUnbanStory (Request $request) {
+    public function postUnbanStory(Request $request)
+    {
         $ban_story = BanStory::where('story_id', $request->id)->first();
         $ban_story->status_ban = 0;
         $ban_story->save();
         return redirect()->route('story');
     }
 
-    public function getSubStoryAll () {
+    public function getSubStoryAll()
+    {
         $sub_storys = SubStory::all();
         return view('admin.sub_story.sub_story')
             ->with('sub_storys', $sub_storys);
     }
 
-    public function getUpdateSubStoryFromAdmin (Request $request) {
+    public function getUpdateSubStoryFromAdmin(Request $request)
+    {
         $sub_story = SubStory::find($request->id);
         $count_sub_story = count(SubStory::where('story_id', $sub_story->story_id)->get());
         $permission_sub_story = PermissionSubStory::where('sub_story_id', $request->id)->first();
@@ -476,7 +499,8 @@ class StoryController extends Controller
             ->with('count_sub_story', $count_sub_story);
     }
 
-    public function postUpdateSubStoryFromAdmin (Request $request) {
+    public function postUpdateSubStoryFromAdmin(Request $request)
+    {
         $update_sub_story = SubStory::find($request->id);
         $update_sub_story->story_name = $request->story_name;
         $update_sub_story->story_outline = $request->story_outline;
@@ -490,14 +514,16 @@ class StoryController extends Controller
         return redirect()->route('sub_story');
     }
 
-    public function postBanSubStory (Request $request) {
+    public function postBanSubStory(Request $request)
+    {
         $ban_sub_story = BanSubStory::where('sub_story_id', $request->id)->first();
         $ban_sub_story->status_ban = 1;
         $ban_sub_story->save();
         return redirect()->route('sub_story');
     }
 
-    public function postUnbanSubStory (Request $request) {
+    public function postUnbanSubStory(Request $request)
+    {
         $ban_sub_story = BanSubStory::where('sub_story_id', $request->id)->first();
         $ban_sub_story->status_ban = 0;
         $ban_sub_story->save();

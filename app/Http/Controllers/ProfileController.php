@@ -12,7 +12,8 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
-    public function getProfile() {
+    public function getProfile()
+    {
 
 
         if (Auth::check()) {
@@ -61,7 +62,8 @@ class ProfileController extends Controller
 
     }
 
-    public function getProfileAuthor(Request $request) {
+    public function getProfileAuthor(Request $request)
+    {
         $storys = Story::where('story_author', $request->author)->get();
 
         $history_cashcard = new HistoryCashCard;
@@ -91,19 +93,21 @@ class ProfileController extends Controller
         }
 
         return view('user.profile_author')
-        ->with('author', $request->author)
-        ->with('storys', $storys)
-        ->with('real_amount', $real_amount);
+            ->with('author', $request->author)
+            ->with('storys', $storys)
+            ->with('real_amount', $real_amount);
     }
 
-    public function getProfileUpdate(Request $request) {
+    public function getProfileUpdate(Request $request)
+    {
         $profile = \App\Member::where('username', $request->user()->username)
             ->first();
         return view('user.profile_update')
             ->with('profile', $profile);
     }
 
-    public function postProfileUpdate(ProfileUpdate $request) {
+    public function postProfileUpdate(ProfileUpdate $request)
+    {
         $member = \App\Member::find($request->user()->id);
         $member->author = $request->author;
         $member->email = $request->email;

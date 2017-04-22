@@ -10,23 +10,27 @@ use Hash;
 
 class MemberController extends Controller
 {
-    public function getAllMember() {
+    public function getAllMember()
+    {
         Session::put('active_menu', 'member');
         $members = new Member;
         return view('admin.member.member')->with('members', $members->get());
     }
 
-    public function getAllFacebook() {
+    public function getAllFacebook()
+    {
         Session::put('active_menu', 'member');
         $facebook = new FacebookLogin;
         return view('admin.member.facebook')->with('facebooks', $facebook->get());
     }
 
-    public function getAddMember() {
+    public function getAddMember()
+    {
         return view('admin.member.add_member');
     }
 
-    public function postAddMember(Request $request) {
+    public function postAddMember(Request $request)
+    {
         $member = new Member;
         $check_username = $member::where('username', $request->username)->count();
         $check_email = $member::where('email', $request->email)->count();
@@ -57,13 +61,15 @@ class MemberController extends Controller
             ->with('status_register', 'done');
     }
 
-    public function getEditMember($member_id) {
+    public function getEditMember($member_id)
+    {
         $member = new Member;
         $info = $member::find($member_id);
         return view('admin.member.edit_member')->with('info', $info);
     }
 
-    public function postEditMember(Request $request) {
+    public function postEditMember(Request $request)
+    {
         $member = new Member;
 
         // check data change
@@ -119,7 +125,8 @@ class MemberController extends Controller
             ->with('status_edit', 'done');
     }
 
-    public function getDeleteMember(Request $request) {
+    public function getDeleteMember(Request $request)
+    {
         $member = new Member;
         $member::where('id', $request->member_id)->delete();
         return redirect()->back()->with('status_delete', 'done');

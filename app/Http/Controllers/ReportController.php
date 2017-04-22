@@ -11,19 +11,22 @@ use Session;
 
 class ReportController extends Controller
 {
-    public function getReportVisit() {
+    public function getReportVisit()
+    {
         Session::put('active_menu', 'report');
         $story_statistics = StoryStatistic::orderBy('count_visitor', 'desc')->get();
         return view('admin.report.visit')->with('story_visitors', $story_statistics);
     }
 
-    public function getReportTopup() {
+    public function getReportTopup()
+    {
         $history_cashcard = new HistoryCashCard;
         $history_cashcard = $history_cashcard::where('response_code', '0')->get();
         return view('admin.report.topup')->with('history_cashcard', $history_cashcard);
     }
 
-    public function getReportPeople(Request $request) {
+    public function getReportPeople(Request $request)
+    {
         Session::put('active_menu', 'report');
         $report_visits = new ReportVisitor;
         $report_visits = $report_visits::all();

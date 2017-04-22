@@ -22,11 +22,13 @@
         {{ csrf_field() }}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..." value="{{ $update_story->story_name }}" required>
+                    <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..."
+                           value="{{ $update_story->story_name }}" required>
                 </div>
             </div>
         </div>
@@ -35,11 +37,13 @@
         <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <input type="text" name="story_author" class="form-control input-lg" placeholder="นามปากกา ..." value="{{ $update_story->story_author }}" required>
+                    <input type="text" name="story_author" class="form-control input-lg" placeholder="นามปากกา ..."
+                           value="{{ $update_story->story_author }}" required>
                 </div>
             </div>
         </div>
@@ -48,7 +52,8 @@
         <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -60,10 +65,10 @@
                                 <input type="radio" name="category_id" value="{{ $category->id }}" checked required>
                             @else
                                 <input type="radio" name="category_id" value="{{ $category->id }}" required>
-                            @endif
+                                @endif
 
 
-                            &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
+                                &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
                         </div>
                     @endforeach
 
@@ -79,7 +84,8 @@
                     <div class="form-group">
                         <!-- <textarea name="story_detail" id="summernote" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
                         <div id="summernote">{!! $update_story->story_outline !!}</div>
-                        <input type="hidden" name="story_outline" id="story_outline" value="{{ $update_story->story_outline }}">
+                        <input type="hidden" name="story_outline" id="story_outline"
+                               value="{{ $update_story->story_outline }}">
                     </div>
                 </div>
             </div>
@@ -89,12 +95,14 @@
         <!-- <div class="row" style="margin-top: 20px;"> -->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span
+                                style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group text-center">
-                        <img src="{{ url('uploads/images/storys/'.$update_story->story_picture) }}" alt="" style="width: 250px; height: 350px;">
+                        <img src="{{ url('uploads/images/storys/'.$update_story->story_picture) }}" alt=""
+                             style="width: 250px; height: 350px;">
                     </div>
                     <div class="form-group pull-right">
                         <input type="file" name="upload_picture">
@@ -115,7 +123,8 @@
 
                         @if ($tag->tag1 != NULL)
                             <div class="form-group" style="margin-right: 10px;">
-                                <input type="text" name="tag1" class="form-control" placeholder="tag 1" value="{{ $tag->tag1 }}">
+                                <input type="text" name="tag1" class="form-control" placeholder="tag 1"
+                                       value="{{ $tag->tag1 }}">
                             </div>
                         @else
                             <div class="form-group" style="margin-right: 10px;">
@@ -125,7 +134,8 @@
 
                         @if ($tag->tag2 != NULL)
                             <div class="form-group" style="margin-right: 10px;">
-                                <input type="text" name="tag2" class="form-control" placeholder="tag 2" value="{{ $tag->tag2 }}">
+                                <input type="text" name="tag2" class="form-control" placeholder="tag 2"
+                                       value="{{ $tag->tag2 }}">
                             </div>
                         @else
                             <div class="form-group" style="margin-right: 10px;">
@@ -135,7 +145,8 @@
 
                         @if ($tag->tag3 != NULL)
                             <div class="form-group" style="margin-right: 10px;">
-                                <input type="text" name="tag3" class="form-control" placeholder="tag 3" value="{{ $tag->tag3 }}">
+                                <input type="text" name="tag3" class="form-control" placeholder="tag 3"
+                                       value="{{ $tag->tag3 }}">
                             </div>
                         @else
                             <div class="form-group" style="margin-right: 10px;">
@@ -145,7 +156,8 @@
 
                         @if ($tag->tag4 != NULL)
                             <div class="form-group" style="margin-right: 10px;">
-                                <input type="text" name="tag4" class="form-control" placeholder="tag 4" value="{{ $tag->tag4 }}">
+                                <input type="text" name="tag4" class="form-control" placeholder="tag 4"
+                                       value="{{ $tag->tag4 }}">
                             </div>
                         @else
                             <div class="form-group" style="margin-right: 10px;">
@@ -155,7 +167,8 @@
 
                         @if ($tag->tag5 != NULL)
                             <div class="form-group" style="margin-right: 10px;">
-                                <input type="text" name="tag5" class="form-control" placeholder="tag 5" value="{{ $tag->tag5 }}">
+                                <input type="text" name="tag5" class="form-control" placeholder="tag 5"
+                                       value="{{ $tag->tag5 }}">
                             </div>
                         @else
                             <div class="form-group" style="margin-right: 10px;">
@@ -220,13 +233,19 @@
 
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
-                            <button type="submit" id="btn_submit" class="btn btn-success" style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด</button>
+                            <button type="submit" id="btn_submit" class="btn btn-success"
+                                    style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด
+                            </button>
                         </div>
                     </div>
 
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
-                            <a href="{{ url('user/profile') }}"><button type="button" class="btn btn-danger" style="font-size: 18px; width: 100%;"><i class="fa fa-ban"></i> ยกเลิก</button></a>
+                            <a href="{{ url('user/profile') }}">
+                                <button type="button" class="btn btn-danger" style="font-size: 18px; width: 100%;"><i
+                                            class="fa fa-ban"></i> ยกเลิก
+                                </button>
+                            </a>
                         </div>
                     </div>
 
@@ -238,12 +257,12 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('#summernote').summernote({
             height: 600
         });
-        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+        $('#summernote').on('summernote.change', function (we, contents, $editable) {
             $('#story_outline').val(contents);
             // console.log(contents);
         });

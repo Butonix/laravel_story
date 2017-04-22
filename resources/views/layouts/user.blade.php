@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
-  @include('layouts.components.head')
-  <body>
-    <div class="container">
+@include('layouts.components.head')
+<body>
+<div class="container">
 
-      {{-- @include('layouts.components.banner')
-      @include('layouts.components.navbar')
-      @include('layouts.components.modal_login')
-      @include('layouts.components.modal_register')
-      @include('layouts.components.carousel') --}}
+    {{-- @include('layouts.components.banner')
+    @include('layouts.components.navbar')
+    @include('layouts.components.modal_login')
+    @include('layouts.components.modal_register')
+    @include('layouts.components.carousel') --}}
 
-      @yield('content')
+    @yield('content')
 
-      <script>
+    <script>
 
-          $(document).ready(function() {
+        $(document).ready(function () {
 
-              $('body').on("contextmenu",function(e){
-                  return false;
-              });
+            $('body').on("contextmenu", function (e) {
+                return false;
+            });
 
-              $('body').bind('cut copy paste', function (e) {
-                  e.preventDefault();
-              });
+            $('body').bind('cut copy paste', function (e) {
+                e.preventDefault();
+            });
 
-              window.normal_register = function() {
-                  $('#myModalLogin').modal('toggle');
-                  $('#myModalRegister').modal();
-              }
+            window.normal_register = function () {
+                $('#myModalLogin').modal('toggle');
+                $('#myModalRegister').modal();
+            }
 
-              $('#btn_close_modal').on('click', function() {
-                  $('#myModalRegister').modal('toggle');
-              });
+            $('#btn_close_modal').on('click', function () {
+                $('#myModalRegister').modal('toggle');
+            });
 
-              $('#btn-login').on('click', function() {
-                  $('#myModalLogin').modal();
-              });
+            $('#btn-login').on('click', function () {
+                $('#myModalLogin').modal();
+            });
 
-          });
+        });
 
-      </script>
+    </script>
 
-    </div>
+</div>
 
-    <div class="container footer text-center" style="margin-bottom: 20px;">
-      Copyright &copy; 2017
-    </div>
+<div class="container footer text-center" style="margin-bottom: 20px;">
+    Copyright &copy; 2017
+</div>
 
-  </body>
+</body>
 </html>

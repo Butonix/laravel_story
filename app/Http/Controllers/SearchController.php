@@ -8,7 +8,8 @@ use App\Tag;
 
 class SearchController extends Controller
 {
-    public function postSearch(Request $request) {
+    public function postSearch(Request $request)
+    {
 
         $storys = new Story;
         $search_author = $storys::where('story_author', $request->txt_search)->get();

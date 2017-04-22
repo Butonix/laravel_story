@@ -8,68 +8,68 @@ Route::get('contact', 'UserController@getContact');
 Route::get('forgot_password', 'UserController@getForgotPassword');
 Route::post('forgot_password', 'UserController@postForgotPassword');
 
-Route::group(['prefix' => 'banner'], function() {
+Route::group(['prefix' => 'banner'], function () {
     Route::get('1', 'BannerController@getBanner1');
     Route::get('2', 'BannerController@getBanner2');
     Route::get('3', 'BannerController@getBanner3');
 });
 
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user'], function () {
 
-    Route::group(['prefix' => 'auth'], function() {
+    Route::group(['prefix' => 'auth'], function () {
         Route::post('register', 'UserAuthController@postRegister');
         Route::post('login', 'UserAuthController@postLogin');
         Route::get('logout', 'UserAuthController@logout');
     });
 
-  Route::get('profile', 'ProfileController@getProfile')->name('profile');
-  Route::get('profile/{author}', 'ProfileController@getProfileAuthor');
-  Route::get('update/profile', 'ProfileController@getProfileUpdate');
-  Route::post('update/profile', 'ProfileController@postProfileUpdate');
+    Route::get('profile', 'ProfileController@getProfile')->name('profile');
+    Route::get('profile/{author}', 'ProfileController@getProfileAuthor');
+    Route::get('update/profile', 'ProfileController@getProfileUpdate');
+    Route::post('update/profile', 'ProfileController@postProfileUpdate');
 
-  Route::get('read/story/{id}', 'StoryController@getReadStory')->name('main_story');
-  Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
-  Route::get('write/story', 'StoryController@getWriteStory');
-  Route::post('write/story', 'StoryController@postWriteStory');
-  Route::get('write/story/sub/{id}', 'StoryController@getWriteSubStory');
-  Route::post('write/story/sub/{id}', 'StoryController@postInsertSubStory');
+    Route::get('read/story/{id}', 'StoryController@getReadStory')->name('main_story');
+    Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
+    Route::get('write/story', 'StoryController@getWriteStory');
+    Route::post('write/story', 'StoryController@postWriteStory');
+    Route::get('write/story/sub/{id}', 'StoryController@getWriteSubStory');
+    Route::post('write/story/sub/{id}', 'StoryController@postInsertSubStory');
 
-  Route::get('update/story/{id}', 'StoryController@getUpdateStory');
-  Route::post('update/story/{id}', 'StoryController@postUpdateStory');
-  Route::get('update/sub_story/{id}', 'StoryController@getUpdateSubStory');
-  Route::post('update/sub_story/{id}', 'StoryController@postUpdateSubStory');
+    Route::get('update/story/{id}', 'StoryController@getUpdateStory');
+    Route::post('update/story/{id}', 'StoryController@postUpdateStory');
+    Route::get('update/sub_story/{id}', 'StoryController@getUpdateSubStory');
+    Route::post('update/sub_story/{id}', 'StoryController@postUpdateSubStory');
 
-  Route::post('comment/story/{id}', 'StoryController@postInsertStoryComment');
-  Route::post('reply/comment/story/{id}', 'StoryController@postInsertReplyCommentStory');
+    Route::post('comment/story/{id}', 'StoryController@postInsertStoryComment');
+    Route::post('reply/comment/story/{id}', 'StoryController@postInsertReplyCommentStory');
 
-  Route::post('comment/sub_story/{id}', 'StoryController@postInsertSubStoryComment');
-  Route::post('reply/comment/sub_story/{id}', 'StoryController@postInsertReplyCommentSubStory');
+    Route::post('comment/sub_story/{id}', 'StoryController@postInsertSubStoryComment');
+    Route::post('reply/comment/sub_story/{id}', 'StoryController@postInsertReplyCommentSubStory');
 
-  Route::get('love/story/{id}' ,'StoryController@getLoveStory');
-  Route::post('search', 'SearchController@postSearch');
-  Route::post('story/comment', 'StoryController@postStoryComment');
-  Route::get('announce/create', 'AnnounceController@getCreateAnnounce');
-  Route::post('announce/create', 'AnnounceController@postCreateAnnounce');
-  Route::get('announce/read/{id}', 'AnnounceController@getReadAnnounce');
-  Route::get('topup', 'CashCardController@getTopup');
-  Route::get('topup/form', 'CashCardController@getFormTopup')->name('topup/form');
-  Route::post('topup/form', 'CashCardController@postFormTopup');
+    Route::get('love/story/{id}', 'StoryController@getLoveStory');
+    Route::post('search', 'SearchController@postSearch');
+    Route::post('story/comment', 'StoryController@postStoryComment');
+    Route::get('announce/create', 'AnnounceController@getCreateAnnounce');
+    Route::post('announce/create', 'AnnounceController@postCreateAnnounce');
+    Route::get('announce/read/{id}', 'AnnounceController@getReadAnnounce');
+    Route::get('topup', 'CashCardController@getTopup');
+    Route::get('topup/form', 'CashCardController@getFormTopup')->name('topup/form');
+    Route::post('topup/form', 'CashCardController@postFormTopup');
 });
 
-Route::group(['prefix' => 'category'], function() {
-  Route::get('{id}', 'CategoryController@getCategory');
+Route::group(['prefix' => 'category'], function () {
+    Route::get('{id}', 'CategoryController@getCategory');
 });
 
 Route::get('admin', 'AdminAuthController@index')->name('auth');
 Route::post('admin/auth', 'AdminAuthController@postLogin');
-Route::group(['middleware' => ['AuthAdmin']], function() {
-    Route::group(['prefix' => 'admin'], function() {
+Route::group(['middleware' => ['AuthAdmin']], function () {
+    Route::group(['prefix' => 'admin'], function () {
         Route::get('change_password', 'AdminController@getFormChangePassword');
         Route::post('update/password', 'AdminController@postUpdatePassword');
         Route::get('logout', 'AdminAuthController@getLogout');
         Route::get('main', 'AdminController@main')->name('main');
 
-        Route::group(['prefix' => 'member'], function() {
+        Route::group(['prefix' => 'member'], function () {
             Route::get('all', 'MemberController@getAllMember')->name('member/all');
             Route::get('facebook', 'MemberController@getAllFacebook');
             Route::get('add', 'MemberController@getAddMember');
@@ -79,7 +79,7 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
             Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
         });
 
-        Route::group(['prefix' => 'category'], function() {
+        Route::group(['prefix' => 'category'], function () {
             Route::get('all', 'CategoryController@getAllCategory')->name('category/all');
             Route::get('add', 'CategoryController@getAddCategory');
             Route::post('add', 'CategoryController@postAddCategory');
@@ -90,13 +90,13 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
 
         Route::get('promote/story', 'PromoteController@getPromoteStory');
 
-        Route::group(['prefix' => 'report'], function() {
+        Route::group(['prefix' => 'report'], function () {
             Route::get('visit', 'ReportController@getReportVisit');
             Route::get('topup', 'ReportController@getReportTopup');
             Route::get('people', 'ReportController@getReportPeople');
         });
 
-        Route::group(['prefix' => 'change_ui'], function() {
+        Route::group(['prefix' => 'change_ui'], function () {
             Route::get('contact', 'ChangeUIController@getContact');
             Route::post('update/contact', 'ChangeUIController@postUpdateContact');
             Route::get('banner', 'ChangeUIController@getBanner');
@@ -109,7 +109,7 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
             Route::post('update/how_to_support', 'ChangeUIController@postUpdateHowToSupport');
         });
 
-        Route::group(['prefix' => 'story'], function() {
+        Route::group(['prefix' => 'story'], function () {
             Route::get('all', 'StoryController@getStoryAll')->name('story');
             Route::get('update/{id}', 'StoryController@getUpdateStoryFromAdmin');
             Route::post('update/{id}', 'StoryController@postUpdateStoryFromAdmin');
@@ -117,7 +117,7 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
             Route::post('unban/{id}', 'StoryController@postUnbanStory');
         });
 
-        Route::group(['prefix' => 'sub_story'], function() {
+        Route::group(['prefix' => 'sub_story'], function () {
             Route::get('all', 'StoryController@getSubStoryAll')->name('sub_story');
             Route::get('update/{id}', 'StoryController@getUpdateSubStoryFromAdmin');
             Route::post('update/{id}', 'StoryController@postUpdateSubStoryFromAdmin');
@@ -129,14 +129,14 @@ Route::group(['middleware' => ['AuthAdmin']], function() {
     });
 });
 
-Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+Route::get('/facebook/login', function (SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     // $login_link = $fb->getRedirectLoginHelper()->getLoginUrl('https://localhost/', ['email', 'user_events']);
     // echo '<a href="' . $login_link . '">Log in with Facebook</a>';
     $login_link = $fb->getLoginUrl();
     return redirect($login_link);
 });
 
-Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+Route::get('/facebook/callback', function (SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     // Obtain an access token.
     try {
         $token = $fb->getAccessTokenFromRedirect();
@@ -146,11 +146,11 @@ Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFaceb
 
     // Access token will be null if the user denied the request
     // or if someone just hit this URL outside of the OAuth flow.
-    if (! $token) {
+    if (!$token) {
         // Get the redirect helper
         $helper = $fb->getRedirectLoginHelper();
 
-        if (! $helper->getError()) {
+        if (!$helper->getError()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -163,7 +163,7 @@ Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFaceb
         );
     }
 
-    if (! $token->isLongLived()) {
+    if (!$token->isLongLived()) {
         // OAuth 2.0 client handler
         $oauth_client = $fb->getOAuth2Client();
 
@@ -178,7 +178,7 @@ Route::get('/facebook/callback', function(SammyK\LaravelFacebookSdk\LaravelFaceb
     $fb->setDefaultAccessToken($token);
 
     // Save for later
-    Session::put('fb_user_access_token', (string) $token);
+    Session::put('fb_user_access_token', (string)$token);
 
     // Get basic info on the user from Facebook.
     try {

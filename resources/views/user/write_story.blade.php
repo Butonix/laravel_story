@@ -26,38 +26,43 @@
         {{ csrf_field() }}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">ชื่อเรื่อง</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..." required>
+                    <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..."
+                           required>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">นามปากกา</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <input type="text" name="story_author" class="form-control input-lg" value="{{ $author }}" placeholder="นามปากกา ..." required>
+                    <input type="text" name="story_author" class="form-control input-lg" value="{{ $author }}"
+                           placeholder="นามปากกา ..." required>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">หมวดนิยาย</span></a>
+                </li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
 
                     @foreach ($categorys as $category)
-                    <div class="form-group">
-                        <input type="radio" name="category_id" value="{{ $category->id }}" required>
-                        &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
-                    </div>
+                        <div class="form-group">
+                            <input type="radio" name="category_id" value="{{ $category->id }}" required>
+                            &ensp;<span style="font-size: 16px;">{{ $category->category_name }}</span>
+                        </div>
                     @endforeach
 
                 </div>
@@ -77,7 +82,8 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
+                <li role="presentation" class="active"><a href="#"><span
+                                style="font-size: 20px;">รูปภาพหน้าปก</span></a></li>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -141,13 +147,17 @@
 
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
-                            <button type="submit" id="btn_submit" class="btn btn-success" style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด</button>
+                            <button type="submit" id="btn_submit" class="btn btn-success"
+                                    style="font-size: 18px; width: 100%;"><i class="fa fa-upload"></i> อัพโหลด
+                            </button>
                         </div>
                     </div>
 
                     <div class="col-md-offset-5 col-md-2" style="padding: 0px 0px 0px 0px;">
                         <div class="form-group text-center">
-                            <button type="reset" class="btn btn-danger" style="font-size: 18px; width: 100%;"><i class="fa fa-ban"></i> ยกเลิก</button>
+                            <button type="reset" class="btn btn-danger" style="font-size: 18px; width: 100%;"><i
+                                        class="fa fa-ban"></i> ยกเลิก
+                            </button>
                         </div>
                     </div>
 
@@ -159,12 +169,12 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('#summernote').summernote({
             height: 600
         });
-        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+        $('#summernote').on('summernote.change', function (we, contents, $editable) {
             $('#story_outline').val(contents);
             // console.log(contents);
         });
