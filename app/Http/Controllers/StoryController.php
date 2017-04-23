@@ -139,7 +139,8 @@ class StoryController extends Controller
             $filename = rand(111111111, 999999999) . '.' . $extension;
 
             Image::make($file->getRealPath())
-                ->fit(250, 350)
+                ->resize(250, 350)
+                ->orientate()
                 ->save($destinationPath . $filename);
 
             $story->story_picture = $filename;
@@ -300,7 +301,8 @@ class StoryController extends Controller
             $filename = rand(111111111, 999999999) . '.' . $extension;
 
             Image::make($file->getRealPath())
-                ->fit(250, 350)
+                ->resize(250, 350)
+                ->orientate()
                 ->save($destinationPath . $filename);
 
             File::delete('uploads/images/storys/' . $update_story->story_picture);
