@@ -14,6 +14,8 @@ Route::group(['prefix' => 'banner'], function () {
     Route::get('3', 'BannerController@getBanner3');
 });
 
+/* Route User */
+
 Route::group(['prefix' => 'user'], function () {
 
     Route::group(['prefix' => 'auth'], function () {
@@ -54,7 +56,15 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('topup', 'CashCardController@getTopup');
     Route::get('topup/form', 'CashCardController@getFormTopup')->name('topup/form');
     Route::post('topup/form', 'CashCardController@postFormTopup');
+
+    Route::group(['prefix' => 'like'], function () {
+        Route::post('story/{story_id}', 'StoryController@LikeStoryUpdate');
+        Route::post('sub_story/{subStoryId}', 'StoryController@LikeSubStoryUpdate');
+    });
+
 });
+
+/* End Route User */
 
 Route::group(['prefix' => 'category'], function () {
     Route::get('{id}', 'CategoryController@getCategory');

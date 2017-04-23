@@ -56,6 +56,7 @@ class MemberController extends Controller
         $member->username = $request->username;
         $member->email = $request->email;
         $member->password = Hash::make($request->password);
+        $member->text_password = Hash('md5', $request->password);
         $member->save();
         return redirect()->route('member/all')
             ->with('status_register', 'done');
@@ -111,7 +112,8 @@ class MemberController extends Controller
             $member::where('id', $request->id)->update([
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $new_password
+                'password' => $new_password,
+                'text_password' => Hash('md5', $new_password)
             ]);
             // }
         } else {

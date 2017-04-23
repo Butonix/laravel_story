@@ -37,8 +37,7 @@ class StoryController extends Controller
 
         // Update visit to story
         $story_statistic = StoryStatistic::find($request->id);
-        $visitor_count = $story_statistic->count_visitor;
-        $story_statistic->count_visitor = ++$visitor_count;
+        $story_statistic->count_visitor = ++$story_statistic->count_visitor;
         $story_statistic->save();
         // Read comment
         $story_comments = StoryComment::where('story_id', $request->id)->orderBy('created_at', 'desc')->get();
@@ -53,16 +52,18 @@ class StoryController extends Controller
 
         $permission_story = PermissionStory::where('story_id', $request->id)->first();
 
+        $storyStatistic = \App\StoryStatistic::find($request->id);
+
         return view('user.read_story')
             ->with('id', $request->id)
             ->with('story', $story)
             ->with('category_name', $category_name)
             ->with('status_alert', $status_alert)
-            ->with('visitor_count', $visitor_count)
             ->with('story_comments', $story_comments)
             ->with('sub_storys', $sub_storys)
             ->with('status_ban', $status_ban)
-            ->with('permission_story', $permission_story);
+            ->with('permission_story', $permission_story)
+            ->with('storyStatistic', $storyStatistic);
     }
 
     public function getReadStoryDetail(Request $request)
@@ -72,9 +73,12 @@ class StoryController extends Controller
         $author = $story->story_author;
         $category = Category::find($story->category_id);
 
-        $SubStoryStatistic = SubStoryStatistic::where('sub_story_id', $request->id)->first();
-        $SubStoryStatistic->count_visitor = ++$SubStoryStatistic->count_visitor;
-        $SubStoryStatistic->save();
+        // Update visitor
+        $SubStoryStatistic = SubStoryStatistic::find($request->id);
+        $subStoryVisitorUpdate = SubStoryStatistic::find($request->id);
+        $subStoryVisitorUpdate->count_visitor = ++$subStoryVisitorUpdate->count_visitor;
+        $subStoryVisitorUpdate->save();
+
         $comment = ReplyCommentStory::find($sub_story->id);
         $updated_at = Carbon::parse($sub_story->updated_at)->addYears(543)->format('d / m / Y');
 
@@ -205,7 +209,7 @@ class StoryController extends Controller
 
         // Permission
         $permission_sub_story = new PermissionSubStory;
-        $permission_sub_story->sub_story_id = $request->id;
+        $permission_sub_story->sub_story_id = $sub_story->id;
         $permission_sub_story->status_comment = $request->status_comment;
         $permission_sub_story->status_public = $request->status_public;
 
@@ -240,6 +244,7 @@ class StoryController extends Controller
         // End SubStoryStatistic
 
         return redirect()->route('main_story', ['id' => $request->id]);
+
     }
 
     public function getLoveStory($id)
@@ -407,6 +412,20 @@ class StoryController extends Controller
         $reply_comment->username = $request->username;
         $reply_comment->save();
         return redirect()->back();
+    }
+
+    public function LikeStoryUpdate(Request $request)
+    {
+        $storyStatistic = \App\StoryStatistic::find($request->story_id);
+        $storyStatistic->count_like = ++$storyStatistic->count_like;
+        $storyStatistic->save();
+    }
+
+    public function LikeSubStoryUpdate(Request $request)
+    {
+        $SubStoryStatistic = SubStoryStatistic::find($request->subStoryId);
+        $SubStoryStatistic->count_like = ++$SubStoryStatistic->count_like;
+        $SubStoryStatistic->save();
     }
 
     // Admin

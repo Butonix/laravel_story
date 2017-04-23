@@ -21,7 +21,7 @@
                             <tr>
                                 <td><i class="fa fa-heart fa-lg"></i></td>
                                 <td>ยอดหัวใจ</td>
-                                <td>50,000</td>
+                                <td><span id="count-like">{{ $storyStatistic->count_like }}</span></td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-diamond fa-lg"></i></td>
@@ -34,7 +34,7 @@
                     <div class="text-center">
 
 
-                        <button type="button" class="btn btn-danger" style="font-size: 18px;">
+                        <button type="button" id="btn-like" class="btn btn-danger" style="font-size: 18px;">
                             ชอบ <i class="fa fa-exclamation"></i>
                             มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
                         </button>
@@ -53,3 +53,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#btn-like').on('click', function () {
+            $.post('{{ url('user/like/story/'.$story->id) }}',
+                {
+                    _token: '{{ csrf_token() }}'
+                },
+                function (data, status) {
+                    if (status) {
+                        $('#count-like').text(parseInt($('#count-like').text()) + 1);
+                    }
+                });
+        });
+    });
+</script>

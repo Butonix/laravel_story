@@ -101,7 +101,7 @@
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>
-                                    <td>{{ $visitor_count }}</td>
+                                    <td>{{ $storyStatistic->count_visitor }}</td>
                                 </tr>
                                 <tr>
                                     <td>ความคิดเห็น</td>

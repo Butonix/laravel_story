@@ -16,13 +16,13 @@
 
         $(document).ready(function () {
 
-            $('body').on("contextmenu", function (e) {
-                return false;
-            });
-
-            $('body').bind('cut copy paste', function (e) {
-                e.preventDefault();
-            });
+//            $('body').on("contextmenu", function (e) {
+//                return false;
+//            });
+//
+//            $('body').bind('cut copy paste', function (e) {
+//                e.preventDefault();
+//            });
 
             window.normal_register = function () {
                 $('#myModalLogin').modal('toggle');

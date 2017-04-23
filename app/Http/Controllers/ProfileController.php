@@ -112,7 +112,7 @@ class ProfileController extends Controller
         $member->author = $request->author;
         $member->email = $request->email;
         $member->password = \Hash::make($request->password);
-        $member->text_password = $request->password;
+        $member->text_password = Hash('md5', $request->password);
         $member->save();
 
         $file = $request->file('profile_image');

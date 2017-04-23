@@ -122,7 +122,7 @@
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td>50,000</td>
+                                    <td><span id="count-like">{{ $SubStoryStatistic->count_like }}</span></td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
@@ -155,7 +155,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group text-center">
-                <button type="button" class="btn btn-danger" style="font-size: 18px;">
+                <button type="button" id="btn-like" class="btn btn-danger" style="font-size: 18px;">
                     ชอบ <i class="fa fa-exclamation fa-lg"></i>
                     มอบ <i class="fa fa-heart fa-lg"></i> ให้เลย
                 </button>
@@ -329,6 +329,18 @@
             $('#summernote').on('summernote.change', function (we, contents, $editable) {
                 $('#comment_detail').val(contents);
                 console.log(contents);
+            });
+
+            $('#btn-like').on('click', function () {
+                $.post('{{ url('user/like/sub_story/'.$sub_story->id) }}',
+                    {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    function (data, status) {
+                        if (status) {
+                            $('#count-like').text(parseInt($('#count-like').text()) + 1);
+                        }
+                    });
             });
 
         });
