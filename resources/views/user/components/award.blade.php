@@ -1,3 +1,5 @@
+@include('user.components.modal_like_story')
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="panel panel-default">
@@ -21,7 +23,7 @@
                             <tr>
                                 <td><i class="fa fa-heart fa-lg"></i></td>
                                 <td>ยอดหัวใจ</td>
-                                <td><span id="count-like">{{ $storyStatistic->count_like }}</span></td>
+                                <td><span id="count-like">{{ number_format($storyStatistic->count_like) }}</span></td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-diamond fa-lg"></i></td>
@@ -58,15 +60,7 @@
     $(document).ready(function () {
 
         $('#btn-like').on('click', function () {
-            $.post('{{ url('user/like/story/'.$story->id) }}',
-                {
-                    _token: '{{ csrf_token() }}'
-                },
-                function (data, status) {
-                    if (status) {
-                        $('#count-like').text(parseInt($('#count-like').text()) + 1);
-                    }
-                });
+            $('#modal-like').modal();
         });
     });
 </script>

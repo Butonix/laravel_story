@@ -393,15 +393,17 @@ class StoryController extends Controller
     public function LikeStoryUpdate(Request $request)
     {
         $storyStatistic = \App\StoryStatistic::find($request->story_id);
-        $storyStatistic->count_like = ++$storyStatistic->count_like;
+        $storyStatistic->count_like = ($storyStatistic->count_like + $request->count_like);
         $storyStatistic->save();
+        return redirect()->back();
     }
 
     public function LikeSubStoryUpdate(Request $request)
     {
         $SubStoryStatistic = SubStoryStatistic::find($request->subStoryId);
-        $SubStoryStatistic->count_like = ++$SubStoryStatistic->count_like;
+        $SubStoryStatistic->count_like = ($SubStoryStatistic->count_like + $request->count_like);
         $SubStoryStatistic->save();
+        return redirect()->back();
     }
 
     // Admin
