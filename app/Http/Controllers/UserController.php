@@ -103,7 +103,8 @@ class UserController extends Controller
         $member = Member::where('email', $request->email)->first();
         if ($member) {
             $member = Member::where('email', $request->email)->first();
-            Mail::to($request->email)->send(new SupportMail($member->text_password));
+            $decrypt = decrypt($member->text_password);
+            Mail::to($request->email)->send(new SupportMail($decrypt));
             return redirect()->back()->with('status', 'success');
         } else {
             return redirect()->back()->with('status', 'error');

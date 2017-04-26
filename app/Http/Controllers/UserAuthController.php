@@ -39,7 +39,7 @@ class UserAuthController extends Controller
         $member->username = $request->username;
         $member->email = $request->email;
         $member->password = Hash::make($request->password);
-        $member->text_password = Hash('md5', $request->password);
+        $member->text_password = encrypt($request->password);
         $member->save();
         return redirect()->back()
             ->with('status_success', 'done');

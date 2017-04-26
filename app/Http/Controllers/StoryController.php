@@ -118,15 +118,7 @@ class StoryController extends Controller
         }
 
         $story = new Story;
-
-        if (Auth::check()) {
-            $story->username = Auth::User()->username;
-        } else {
-            if (Session::get('facebook_login') != '') {
-                $story->username = Session::get('facebook_login');
-            }
-        }
-
+        $story->member_id = $request->user()->id;
         $story->category_id = $request->category_id;
         $story->story_name = $request->story_name;
         $story->story_author = $request->story_author;
@@ -248,28 +240,11 @@ class StoryController extends Controller
 
     }
 
-    public function getLoveStory($id)
-    {
-//        $story = new Story;
-//        $story = $story::where('id', $id)->first();
-//        $current_love = $story->love;
-//        $story->love = ++$current_love;
-//        $story->save();
-
-//        $give_love = new GiveLove;
-//        $give_love->story_id = $id;
-//        $give_love->username = Auth::User()->username;
-//        $give_love->status = 1;
-//        $give_love->save();
-        return redirect()->back();
-    }
-
-    public function postStoryComment(Request $request)
+    public function postProfileComment(Request $request)
     {
         $comment = New StoryComment;
         $comment->story_id = $request->story_id;
         $comment->story_name = $request->story_name;
-        $comment->username = $request->username;
         $comment->comment_detail = $request->comment;
         $comment->save();
         return redirect()->back();
@@ -381,7 +356,6 @@ class StoryController extends Controller
         $story_comment = new StoryComment;
         $story_comment->story_id = $request->id;
         $story_comment->comment_detail = $request->comment_detail;
-        $story_comment->username = $request->username;
         $story_comment->save();
         return redirect()->back();
     }

@@ -100,20 +100,20 @@
 
                             @if ($permission_story->status_public == 1)
                                 <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
-                                    <div class="form-group">
-                                        <div class="media-left media-middle">
+                                    <div class="col-xs-12 col-sm-12 col-md-5 text-center">
+                                        <div class="form-group">
                                             <a href="{{ url('user/read/story/'.$story->id) }}">
-                                                <img class="media-object"
-                                                     src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
-                                                     alt="..." style="width: 250px; height: 350px; border-radius: 4px;">
+                                                {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
+                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
                                             </a>
                                         </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-7 text-left">
+                                        <div class="form-group">
+                                            <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
-                                            <span style="font-size: 16px;"><i
-                                                        class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                            <span style="font-size: 16px;">ยอดวิว <span>{{ $storyStatistic->count_visitor }}</span></span>
+                                            <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                            <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -147,20 +147,20 @@
 
                             @if ($permission_story->status_public == 1)
                                 <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
-                                    <div class="form-group">
-                                        <div class="media-left media-middle">
+                                    <div class="col-xs-12 col-sm-12 col-md-5 text-center">
+                                        <div class="form-group">
                                             <a href="{{ url('user/read/story/'.$story->id) }}">
-                                                <img class="media-object"
-                                                     src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
-                                                     alt="..." style="width: 250px; height: 350px; border-radius: 4px;">
+                                                {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
+                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
                                             </a>
                                         </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-7 text-left">
+                                        <div class="form-group">
+                                            <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
-                                            <span style="font-size: 16px;"><i
-                                                        class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                            <span style="font-size: 16px;">ยอดวิว <span>{{ $storyStatistic->count_visitor }}</span></span>
+                                            <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                            <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -207,19 +207,20 @@
                                 $storyStatistic = \App\StoryStatistic::find($story->id);
                             @endphp
                             <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
-                                <div class="form-group">
-                                    <div class="media-left media-middle">
+                                <div class="col-xs-12 col-sm-12 col-md-5 text-center">
+                                    <div class="form-group">
                                         <a href="{{ url('user/read/story/'.$story->id) }}">
-                                            <img class="media-object"
-                                                 src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
-                                                 alt="..." style="width: 250px; height: 350px; border-radius: 4px;">
+                                            {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
+                                            <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
                                         </a>
                                     </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
-                                        <span style="font-size: 16px;"><i
-                                                    class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                        <span style="font-size: 16px;">ยอดวิว <span>{{ $storyStatistic->count_visitor }}</span></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-7 text-left">
+                                    <div class="form-group">
+                                        <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
+                                        </h4>
+                                        <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                        <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
                                     </div>
                                 </div>
                             </div>

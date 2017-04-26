@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
 
         if (Auth::check()) {
-            $storys = \App\Story::where('username', Auth::User()->username)->get();
+            $storys = \App\Story::where('member_id', Auth::User()->id)->get();
         } else {
             if (Session::get('facebook_login') != '') {
                 $storys = \App\Story::where('username', Session::get('facebook_login'))->get();

@@ -25,11 +25,12 @@
                     @foreach ($storys as $story)
                         @php
                             $status_ban = \App\BanStory::where('story_id', $story->id)->first();
+                            $getStoryUsername = \App\Member::find($story->member_id);
                         @endphp
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $story->story_name }}</td>
-                            <td>{{ $story->username }}</td>
+                            <td>{{ $getStoryUsername->username }}</td>
 
 
                             @if ($status_ban->status_ban == 0)

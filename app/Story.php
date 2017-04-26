@@ -8,8 +8,8 @@ class Story extends Model
 {
     protected $table = 'story';
     protected $fillable = [
+        'member_id',
         'category_id',
-        'username',
         'story_name',
         'story_author',
         'story_outline',

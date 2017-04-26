@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReplyCommentStory extends Model
+class ProfileComment extends Model
 {
-    protected $table = 'reply_comment_story';
+    protected $table = 'profile_comment';
     protected $fillable = [
-        'reply_comment_id',
+        'member_id',
         'comment_detail',
     ];
 }

@@ -10,6 +10,5 @@ class ReplyCommentSubStory extends Model
     protected $fillable = [
         'reply_comment_id',
         'comment_detail',
-        'username'
     ];
 }

@@ -49,7 +49,7 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::get('love/story/{id}', 'StoryController@getLoveStory');
     Route::post('search', 'SearchController@postSearch');
-    Route::post('story/comment', 'StoryController@postStoryComment');
+    Route::post('profile/comment', 'StoryController@postProfileComment');
     Route::get('announce/create', 'AnnounceController@getCreateAnnounce');
     Route::post('announce/create', 'AnnounceController@postCreateAnnounce');
     Route::get('announce/read/{id}', 'AnnounceController@getReadAnnounce');

@@ -99,39 +99,25 @@
                         @php
                             $story_statistic = \App\StoryStatistic::find($story->id);
                         @endphp
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="media-left media-middle">
+                        <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
+                            <div class="col-xs-12 col-sm-12 col-md-5 text-center">
+                                <div class="form-group">
                                     <a href="{{ url('user/read/story/'.$story->id) }}">
-                                        <img class="media-object"
-                                             src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt="..."
-                                             style="width: 120px; height: 120px; border-radius: 4px;">
+                                        {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
+                                        <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
                                     </a>
                                 </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-7 text-left">
+                                <div class="form-group">
+                                    <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
+                                    </h4>
                                     <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                    <span style="font-size: 16px;">ยอดวิว <span>{{ $story_statistic->count_visitor }}</span></span>
+                                    <span style="font-size: 16px;">ยอดวิว {{ $story_statistic->count_visitor }}</span>
                                 </div>
                             </div>
                         </div>
                 @endforeach
-
-                <!-- <div class="col-md-12">
-          <div class="form-group">
-            <div class="media-left media-middle">
-              <a href="#">
-                <img class="media-object" src="{{ url('images/icons/default_book.png') }}" alt="..." style="width: 120px; height: 120px; border-radius: 4px;">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">ชื่อเรื่อง...</h4>
-              <span style="font-size: 16px;">ตอน...</span><br>
-              <span style="font-size: 16px;"><i class="fa fa-user"></i> admin</span><br>
-              <span style="font-size: 16px;">ยอดวิว 10 k</span>
-            </div>
-          </div>
-        </div> -->
 
                 </div>
             </div>
@@ -144,7 +130,7 @@
                 <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
             </div>
             <div class="form-group">
-                <form action="{{ url('user/story/comment') }}" method="post">
+                <form action="{{ url('user/profile/comment') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->

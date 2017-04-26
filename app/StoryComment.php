@@ -10,6 +10,5 @@ class StoryComment extends Model
     protected $fillable = [
         'story_id',
         'comment_detail',
-        'username'
     ];
 }

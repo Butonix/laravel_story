@@ -10,6 +10,5 @@ class SubStoryComment extends Model
     protected $fillable = [
         'sub_story_id',
         'comment_detail',
-        'username'
     ];
 }

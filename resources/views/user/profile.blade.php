@@ -117,23 +117,24 @@
                             @php
                                 $story_visitor = \App\StoryStatistic::find($story->id);
                             @endphp
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="media-left media-middle">
+                            <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
+                                <div class="col-xs-12 col-sm-12 col-md-5 text-center">
+                                    <div class="form-group">
                                         <a href="{{ url('user/read/story/'.$story->id) }}">
-                                            <img class="media-object"
-                                                 src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
-                                                 alt="..." style="width: 250px; height: 350px; border-radius: 4px;">
+                                            {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
+                                            <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
                                         </a>
                                     </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">ชื่อเรื่อง <span>{{ $story->story_name }}</span></h4>
-                                        <span style="font-size: 18px;"><i
-                                                    class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                        <span style="font-size: 16px;">ยอดวิว <span>{{ $story_visitor->count_visitor }}</span></span><br>
-                                        @if ($story->username == Auth::User()->username)
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-7 text-left">
+                                    <div class="form-group">
+                                        <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
+                                        </h4>
+                                        <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                        <span style="font-size: 16px;">ยอดวิว {{ $story_visitor->count_visitor }}</span><br>
+                                        @if ($story->member_id == Auth::User()->id)
                                             <a href="{{ url('user/update/story/'.$story->id) }}"><i
-                                                        class="fa fa-pencil"></i> แก้ไขเนื้อหา</a>
+                                            class="fa fa-pencil"></i> แก้ไขเนื้อหา</a>
                                         @endif
                                     </div>
                                 </div>
@@ -142,37 +143,6 @@
                     @endif
 
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="margin-bottom: 5px;">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
-            </div>
-            <div class="form-group">
-                <form action="{{ url('user/story/comment') }}" method="post">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
-                        {{--<input type="hidden" name="story_id" value="{{ $story->id }}">--}}
-                        {{--<input type="hidden" name="story_name" value="{{ $story->story_name }}">--}}
-                        @if (Auth::check())
-                            <input type="hidden" name="username" value="{{ Auth::User()->username }}">
-                        @else
-                            @if (Session::get('facebook_login') != '')
-                                <input type="hidden" name="username" value="{{ Session::get('facebook_login') }}">
-                            @endif
-                        @endif
-                        <div id="summernote"></div>
-                        <input type="hidden" name="comment" id="comment">
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
