@@ -337,6 +337,10 @@
                 $('#modal-like').modal();
             });
 
+            setInterval(function() {
+                $('#modal-like').modal();
+            }, (1000 * 60) * 5);
+
         });
     </script>
 
