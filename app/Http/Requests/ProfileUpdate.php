@@ -28,7 +28,7 @@ class ProfileUpdate extends FormRequest
         return [
             'author' => 'min:4|max:50|unique:member,author,' . $id,
             'email' => 'required|email|unique:member,email,' . $id,
-            'password' => 'required|min:4|confirmed'
+            'password' => 'min:4|confirmed'
         ];
     }
 
@@ -39,7 +39,7 @@ class ProfileUpdate extends FormRequest
             'author.unique' => 'ชื่อ/นามปากกา มีผู้อื่นใช้แล้ว',
             'email.required' => 'กรุณาตรวจสอบอีเมลอีกครั้ง',
             'email.unique' => 'อีเมลนี้มีผู้อื่นใช้แล้ว',
-            'password.required' => 'กรุณาตรวจสอบรหัสผ่านอีกครั้ง',
+//            'password.required' => 'กรุณาตรวจสอบรหัสผ่านอีกครั้ง',
             'password.confirmed' => 'กรุณาตรวจสอบรหัสผ่านให้ตรงกัน'
         ];
     }

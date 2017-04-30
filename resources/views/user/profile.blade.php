@@ -76,7 +76,7 @@
                                 <tbody>
                                 <tr>
                                     <td></td>
-                                    <td>ชื่อ</td>
+                                    <td>ชื่อผู้ใช้งาน</td>
                                     <td>
                                         @if (Auth::check())
                                             {{ Auth::User()->username }}

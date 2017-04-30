@@ -315,6 +315,7 @@ class StoryController extends Controller
             ->take($count_sub_story)
             ->get();
 
+        $status_show_limit = 0;
         foreach ($show_limit_visitors as $show_limit_visitor) {
             if ($show_limit_visitor->id != $request->id) {
                 $status_show_limit = 0;
@@ -322,7 +323,6 @@ class StoryController extends Controller
                 $status_show_limit = 1;
                 break;
             }
-//            echo $show_limit_visitor->id. "<br>";
         }
         // End
 
@@ -330,7 +330,7 @@ class StoryController extends Controller
             ->with('sub_story', $sub_story)
             ->with('count_sub_story', $count_sub_story)
             ->with('permission_sub_story', $permission_sub_story)
-            ->with('show_limit_visitor', $show_limit_visitor)
+            ->with('show_limit_visitor', $show_limit_visitors)
             ->with('status_show_limit', $status_show_limit);
     }
 

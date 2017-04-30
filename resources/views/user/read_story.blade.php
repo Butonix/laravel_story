@@ -342,6 +342,14 @@
     <script>
         $(document).ready(function () {
 
+            $('body').on("contextmenu", function (e) {
+                return false;
+            });
+
+            $('body').bind('cut copy paste', function (e) {
+                e.preventDefault();
+            });
+
             $('.summernote').summernote({
                 height: 200,
                 toolbar: [
