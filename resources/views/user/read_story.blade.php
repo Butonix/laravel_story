@@ -21,18 +21,6 @@
         }
     </style>
 
-    @php
-
-        if (Auth::check()) {
-          $username = Auth::User()->username;
-        } else {
-          if (Session::get('facebook_login') != '') {
-            $username = Session::get('facebook_login');
-          }
-        }
-
-    @endphp
-
     @if ($status_ban == 1)
         <script type="text/javascript">
             swal({
@@ -211,11 +199,7 @@
                             <input type="hidden" name="story_id" value="{{ $story->id }}">
                             <input type="hidden" name="story_name" value="{{ $story->story_name }}">
                             @if (Auth::check())
-                                <input type="hidden" name="username" value="{{ Auth::User()->username }}">
-                            @else
-                                @if (Session::get('facebook_login') != '')
-                                    <input type="hidden" name="username" value="{{ Session::get('facebook_login') }}">
-                                @endif
+                                <input type="hidden" name="member_id" value="{{ Auth::User()->id }}">
                             @endif
                             <div class="summernote" id="summernote"></div>
                             <input type="hidden" name="comment_detail" id="comment_detail">
@@ -243,7 +227,10 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <span style="font-size: 14px;">โดย {{ $story_comment->username }}</span>
+                            @php
+                                $member = \App\Member::find($story_comment->member_id);
+                            @endphp
+                            <span style="font-size: 14px;">โดย {{ $member->username }}</span>
                         </div>
 
                         <div class="form-group">
@@ -311,8 +298,8 @@
                         <div class="panel-body">
 
                             <div class="form-group">
-                                <span style="font-size: 16px;">โดย {{ $username }}</span>
-                                <input type="hidden" name="username" value="{{ $username }}">
+                                <span style="font-size: 16px;">โดย {{ Auth::User()->username }}</span>
+                                <input type="hidden" name="member_id" value="{{ Auth::User()->id }}">
                             </div>
 
                             <div class="form-group">

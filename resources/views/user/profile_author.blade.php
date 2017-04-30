@@ -124,123 +124,123 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
-            </div>
-            <div class="form-group">
-                <form action="{{ url('user/profile/comment') }}" method="post">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
+    {{--<div class="row">--}}
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">--}}
+            {{--<div class="form-group">--}}
+                {{--<span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>--}}
+            {{--</div>--}}
+            {{--<div class="form-group">--}}
+                {{--<form action="{{ url('user/profile/comment') }}" method="post">--}}
+                    {{--{{ csrf_field() }}--}}
+                    {{--<div class="form-group">--}}
+                        {{--<!-- <textarea name="story_detail" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->--}}
                         {{--<input type="hidden" name="story_id" value="{{ $story->id }}">--}}
                         {{--<input type="hidden" name="story_name" value="{{ $story->story_name }}">--}}
-                        @if (Auth::check())
+                        {{--@if (Auth::check())--}}
                             {{--<input type="hidden" name="username" value="{{ Auth::User()->username }}">--}}
-                        @else
-                            @if (Session::get('facebook_login') != '')
+                        {{--@else--}}
+                            {{--@if (Session::get('facebook_login') != '')--}}
                                 {{--<input type="hidden" name="username" value="{{ Session::get('facebook_login') }}">--}}
-                            @endif
-                        @endif
-                        <div id="summernote"></div>
-                        <input type="hidden" name="comment" id="comment">
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                            {{--@endif--}}
+                        {{--@endif--}}
+                        {{--<div id="summernote"></div>--}}
+                        {{--<input type="hidden" name="comment" id="comment">--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group text-center">--}}
+                        {{--<button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก--}}
+                        {{--</button>--}}
+                    {{--</div>--}}
+                {{--</form>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <span style="font-size: 20px;">ความคิดเห็นที่ 1</span>
-                </div>
-                <div class="panel-body">
-                    <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 1</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-                    <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
-                    <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
-                    <span style="font-size: 14px;">โดย Anny</span><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-                <div class="panel-footer text-right">
-                    <button type="button" class="btn btn-info">ตอบกลับ</button>
-                </div>
-            </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12">--}}
+            {{--<div class="panel panel-success">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<span style="font-size: 20px;">ความคิดเห็นที่ 1</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<!-- <span style="font-size: 20px;">ความคิดเห็นที่ 1</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->--}}
+                    {{--<!-- <span style="font-size: 16px;">โดย Anny</span><br> -->--}}
+                    {{--<span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">โดย Anny</span><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-footer text-right">--}}
+                    {{--<button type="button" class="btn btn-info">ตอบกลับ</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <span style="font-size: 18px;">โดย Tester 3</span><br><br>
-                    <span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-            </div>
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-body">--}}
+                    {{--<span style="font-size: 18px;">โดย Tester 3</span><br><br>--}}
+                    {{--<span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <span style="font-size: 20px;">ความคิดเห็นที่ 2</span>
-                </div>
-                <div class="panel-body">
-                    <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 2</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-                    <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
-                    <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
-                    <span style="font-size: 14px;">โดย Anny</span><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-                <div class="panel-footer text-right">
-                    <button type="button" class="btn btn-info">ตอบกลับ</button>
-                </div>
-            </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12">--}}
+            {{--<div class="panel panel-success">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<span style="font-size: 20px;">ความคิดเห็นที่ 2</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<!-- <span style="font-size: 20px;">ความคิดเห็นที่ 2</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->--}}
+                    {{--<!-- <span style="font-size: 16px;">โดย Anny</span><br> -->--}}
+                    {{--<span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">โดย Anny</span><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-footer text-right">--}}
+                    {{--<button type="button" class="btn btn-info">ตอบกลับ</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <span style="font-size: 18px;">โดย Tester 2</span><br><br>
-                    <span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-            </div>
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-body">--}}
+                    {{--<span style="font-size: 18px;">โดย Tester 2</span><br><br>--}}
+                    {{--<span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <span style="font-size: 20px;">ความคิดเห็นที่ 1</span>
-                </div>
-                <div class="panel-body">
-                    <!-- <span style="font-size: 20px;">ความคิดเห็นที่ 3</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->
-                    <!-- <span style="font-size: 16px;">โดย Anny</span><br> -->
-                    <span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>
-                    <span style="font-size: 14px;">โดย Anny</span><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-                <div class="panel-footer text-right">
-                    <button type="button" class="btn btn-info">ตอบกลับ</button>
-                </div>
-            </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12">--}}
+            {{--<div class="panel panel-success">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<span style="font-size: 20px;">ความคิดเห็นที่ 1</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<!-- <span style="font-size: 20px;">ความคิดเห็นที่ 3</span><hr style="margin-top: 10px; margin-bottom: 10px;"> -->--}}
+                    {{--<!-- <span style="font-size: 16px;">โดย Anny</span><br> -->--}}
+                    {{--<span style="font-size: 16px;">ติดตามมานานแล้ว...</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">โดย Anny</span><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+                {{--<div class="panel-footer text-right">--}}
+                    {{--<button type="button" class="btn btn-info">ตอบกลับ</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <span style="font-size: 18px;">โดย Tester 1</span><br><br>
-                    <span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>
-                    <span style="font-size: 14px;">01/01/2559 10:00</span>
-                </div>
-            </div>
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-body">--}}
+                    {{--<span style="font-size: 18px;">โดย Tester 1</span><br><br>--}}
+                    {{--<span style="font-size: 16px;">เห็นด้วยกับคอมเม้นบน.</span><br><br>--}}
+                    {{--<span style="font-size: 14px;">01/01/2559 10:00</span>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 
     <script>
         $(document).ready(function () {

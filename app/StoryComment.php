@@ -9,6 +9,7 @@ class StoryComment extends Model
     protected $table = 'story_comment';
     protected $fillable = [
         'story_id',
+        'member_id',
         'comment_detail',
     ];
 }

@@ -20,10 +20,16 @@
                     </thead>
                     <tbody>
                     @foreach ($storys as $data)
+
+                        @php
+                            $member = \App\Member::find($data->member_id);
+                        @endphp
+
                         <tr>
                             <td class="text-center" style="vertical-align: middle;">{{ $loop->iteration }}</td>
                             <td class="text-center" style="vertical-align: middle;">{{ $data->story_name }}</td>
-                            <td class="text-center" style="vertical-align: middle;">{{ $data->username }}</td>
+
+                            <td class="text-center" style="vertical-align: middle;">{{ $member->username }}</td>
                             <td class="text-center" style="vertical-align: middle;">
                                 <a onclick="fb('{{ url('user/read/story/'.$data->id) }}')" style="cursor:poiter">
                                     <button type="button" class="btn btn-primary" style="font-size: 18px;"><i

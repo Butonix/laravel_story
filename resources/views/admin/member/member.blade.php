@@ -52,7 +52,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $member->username }}</td>
                             <td>{{ $member->email }}</td>
-                            <td><a href="{{ url('admin/member/edit/'.$member->id) }}"><i class="fa fa-pencil"></i> แก้ไข</a>
+
+                            @if ($member->facebook_id != NULL)
+                                <td><i class="fa fa-facebook-official fa-lg"></i></td>
+                            @else
+                                <td><a href="{{ url('admin/member/edit/'.$member->id) }}"><i class="fa fa-pencil"></i> แก้ไข</a>
+                            @endif
+
                             </td>
                             <td><a href="{{ url('admin/member/delete/'.$member->id) }}" style="color: red;"><i
                                             class="fa fa-trash-o"></i> ลบ</a></td>

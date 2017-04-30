@@ -15,7 +15,7 @@ class ReportController extends Controller
     {
         Session::put('active_menu', 'report');
         $story_statistics = StoryStatistic::orderBy('count_visitor', 'desc')->get();
-        return view('admin.report.visit')->with('story_visitors', $story_statistics);
+        return view('admin.report.visit')->with('story_statistics', $story_statistics);
     }
 
     public function getReportTopup()

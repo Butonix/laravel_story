@@ -59,10 +59,10 @@
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ url('admin/change_ui/banner') }}">รายละเอียดแบนเนอร์</a></li>
-                                    <li><a href="{{ url('admin/change_ui/how_to_writing') }}">วิธีการลงนิยาย</a></li>
-                                    <li><a href="{{ url('admin/change_ui/how_to_register') }}">วิธีการสมัครสมาชิก</a>
-                                    </li>
-                                    <li><a href="{{ url('admin/change_ui/how_to_support') }}">วิธีการสนับสนุน</a></li>
+                                    <li><a href="{{ url('admin/change_ui/AboutUs') }}">จันทร์เจ้าดอทคอม</a></li>
+                                    <li><a href="{{ url('admin/change_ui/HowToUseDiamond') }}">อ่านฟรีโดยใช้เพชร</a></li>
+                                    <li><a href="{{ url('admin/change_ui/Rules') }}">ลุ้นรับ iPhone 7</a></li>
+                                    <li><a href="{{ url('admin/change_ui/HowToUnlockStory') }}">วิธีการปลดล็อกตอนนิยาย</a></li>
                                     <li><a href="{{ url('admin/change_ui/contact') }}">ติดต่อเรา</a></li>
                                     <!-- <li role="separator" class="divider"></li> -->
                                 </ul>

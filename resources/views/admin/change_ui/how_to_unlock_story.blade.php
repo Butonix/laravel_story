@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span style="font-size: 18px;">วิธีการลงนิยาย</span>
+                    <span style="font-size: 18px;">วิธีการปลดล็อกตอนนิยาย</span>
                 </div>
                 <div class="panel-body">
 
-                    <form action="{{ url('admin/change_ui/update/how_to_writing') }}" method="post">
+                    <form action="{{ url('admin/change_ui/update/HowToUnlockStory') }}" method="post">
                         {{ csrf_field() }}
-                        <div id="summernote">{!! $how_to_writing->detail !!}</div>
-                        <input type="hidden" name="how_to_writing" id="how_to_writing"
-                               value="{{ $how_to_writing->detail }}">
+                        <div id="summernote">{!! $how_to_unlock_story->detail !!}</div>
+                        <input type="hidden" name="detail" id="detail"
+                               value="{{ $how_to_unlock_story->detail }}">
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-success" style="font-size: 18px; width: 150px;">
                                 บันทึก
@@ -34,7 +34,7 @@
 
                 });
                 $('#summernote').on('summernote.change', function (we, contents, $editable) {
-                    $('#how_to_writing').val(contents);
+                    $('#detail').val(contents);
                     // console.log(contents);
                 });
             });

@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span style="font-size: 18px;">วิธีการสมัครสมาชิก</span>
+                    <span style="font-size: 18px;">ลุ้นรับ iPhone 7</span>
                 </div>
                 <div class="panel-body">
 
-                    <form action="{{ url('admin/change_ui/update/how_to_register') }}" method="post">
+                    <form action="{{ url('admin/change_ui/update/Rules') }}" method="post">
                         {{ csrf_field() }}
-                        <div id="summernote">{!! $how_to_register->detail !!}</div>
-                        <input type="hidden" name="how_to_register" id="how_to_register"
-                               value="{{ $how_to_register->detail }}">
+                        <div id="summernote">{!! $rules->detail !!}</div>
+                        <input type="hidden" name="detail" id="detail"
+                               value="{{ $rules->detail }}">
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-success" style="font-size: 18px; width: 150px;">
                                 บันทึก
@@ -34,7 +34,7 @@
 
                 });
                 $('#summernote').on('summernote.change', function (we, contents, $editable) {
-                    $('#how_to_register').val(contents);
+                    $('#detail').val(contents);
                     // console.log(contents);
                 });
             });

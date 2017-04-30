@@ -122,14 +122,21 @@ Route::group(['middleware' => ['AuthAdmin']], function () {
         Route::group(['prefix' => 'change_ui'], function () {
             Route::get('contact', 'ChangeUIController@getContact');
             Route::post('update/contact', 'ChangeUIController@postUpdateContact');
+
             Route::get('banner', 'ChangeUIController@getBanner');
             Route::post('update/banner', 'ChangeUIController@postUpdateBanner');
-            Route::get('how_to_writing', 'ChangeUIController@getHowToWriting');
-            Route::post('update/how_to_writing', 'ChangeUIController@postUpdateHowToWriting');
-            Route::get('how_to_register', 'ChangeUIController@getHowToRegister');
-            Route::post('update/how_to_register', 'ChangeUIController@postUpdateHowToRegister');
-            Route::get('how_to_support', 'ChangeUIController@getHowToSupport');
-            Route::post('update/how_to_support', 'ChangeUIController@postUpdateHowToSupport');
+
+            Route::get('AboutUs', 'ChangeUIController@getAboutUs');
+            Route::post('update/AboutUs', 'ChangeUIController@postUpdateAboutUs');
+
+            Route::get('HowToUseDiamond', 'ChangeUIController@getHowToUseDiamond');
+            Route::post('update/HowToUseDiamond', 'ChangeUIController@postUpdateHowToUseDiamond');
+
+            Route::get('Rules', 'ChangeUIController@getRules');
+            Route::post('update/Rules', 'ChangeUIController@postUpdateRules');
+
+            Route::get('HowToUnlockStory', 'ChangeUIController@getHowToUnlockStory');
+            Route::post('update/HowToUnlockStory', 'ChangeUIController@postUpdateHowToUnlockStory');
         });
 
         Route::group(['prefix' => 'story'], function () {

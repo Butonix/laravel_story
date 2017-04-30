@@ -355,6 +355,7 @@ class StoryController extends Controller
     {
         $story_comment = new StoryComment;
         $story_comment->story_id = $request->id;
+        $story_comment->member_id = $request->member_id;
         $story_comment->comment_detail = $request->comment_detail;
         $story_comment->save();
         return redirect()->back();
@@ -364,8 +365,8 @@ class StoryController extends Controller
     {
         $reply_comment = new ReplyCommentStory;
         $reply_comment->reply_comment_id = $request->id;
+        $reply_comment->member_id = $request->member_id;
         $reply_comment->comment_detail = $request->comment_detail;
-        $reply_comment->username = $request->username;
         $reply_comment->save();
         return redirect()->back();
     }
@@ -374,8 +375,8 @@ class StoryController extends Controller
     {
         $sub_story_comment = new SubStoryComment;
         $sub_story_comment->sub_story_id = $request->sub_story_id;
+        $sub_story_comment->member_id = $request->member_id;
         $sub_story_comment->comment_detail = $request->comment_detail;
-        $sub_story_comment->username = $request->username;
         $sub_story_comment->save();
         return redirect()->back();
     }
@@ -384,8 +385,8 @@ class StoryController extends Controller
     {
         $reply_comment = new ReplyCommentSubStory;
         $reply_comment->reply_comment_id = $request->id;
+        $reply_comment->member_id = $request->member_id;
         $reply_comment->comment_detail = $request->comment_detail;
-        $reply_comment->username = $request->username;
         $reply_comment->save();
         return redirect()->back();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HowToUnlockStory;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Banner;
@@ -46,68 +47,90 @@ class ChangeUIController extends Controller
         return redirect()->back();
     }
 
-    public function getHowToWriting()
+    public function getAboutUs()
     {
         $check_field = AboutUs::find(1);
         if (!$check_field) {
             $create_field = new AboutUs;
             $create_field->save();
         }
-        $how_to_writing = AboutUs::find(1);
-        return view('admin.change_ui.how_to_writing')
-            ->with('how_to_writing', $how_to_writing);
+        $about_us = AboutUs::find(1);
+        return view('admin.change_ui.about_us')
+            ->with('about_us', $about_us);
     }
 
-    public function postUpdateHowToWriting(Request $request)
+    public function postUpdateAboutUs(Request $request)
     {
-        $how_to_writing = AboutUs::find(1);
-        if ($how_to_writing) {
-            $how_to_writing->detail = $request->how_to_writing;
-            $how_to_writing->save();
+        $about_us = AboutUs::find(1);
+        if ($about_us) {
+            $about_us->detail = $request->detail;
+            $about_us->save();
         }
         return redirect()->back();
     }
 
-    public function getHowToRegister()
+    public function getHowToUseDiamond()
     {
         $check_field = HowToUseDiamond::find(1);
         if (!$check_field) {
             $create_field = new HowToUseDiamond;
             $create_field->save();
         }
-        $how_to_register = HowToUseDiamond::find(1);
-        return view('admin.change_ui.how_to_register')
-            ->with('how_to_register', $how_to_register);
+        $how_to_diamond = HowToUseDiamond::find(1);
+        return view('admin.change_ui.how_to_diamond')
+            ->with('how_to_diamond', $how_to_diamond);
     }
 
-    public function postUpdateHowToRegister(Request $request)
+    public function postUpdateHowToUseDiamond(Request $request)
     {
-        $how_to_register = HowToUseDiamond::find(1);
-        if ($how_to_register) {
-            $how_to_register->detail = $request->how_to_register;
-            $how_to_register->save();
+        $how_to_diamond = HowToUseDiamond::find(1);
+        if ($how_to_diamond) {
+            $how_to_diamond->detail = $request->detail;
+            $how_to_diamond->save();
         }
         return redirect()->back();
     }
 
-    public function getHowToSupport()
+    public function getRules()
     {
         $check_field = Rules::find(1);
         if (!$check_field) {
             $create_field = new Rules;
             $create_field->save();
         }
-        $how_to_support = Rules::find(1);
-        return view('admin.change_ui.how_to_support')
-            ->with('how_to_support', $how_to_support);
+        $rules = Rules::find(1);
+        return view('admin.change_ui.rules')
+            ->with('rules', $rules);
     }
 
-    public function postUpdateHowToSupport(Request $request)
+    public function postUpdateRules(Request $request)
     {
-        $how_to_support = Rules::find(1);
-        if ($how_to_support) {
-            $how_to_support->detail = $request->how_to_support;
-            $how_to_support->save();
+        $rules = Rules::find(1);
+        if ($rules) {
+            $rules->detail = $request->detail;
+            $rules->save();
+        }
+        return redirect()->back();
+    }
+
+    public function getHowToUnlockStory()
+    {
+        $check_field = HowToUnlockStory::find(1);
+        if (!$check_field) {
+            $create_field = new HowToUnlockStory;
+            $create_field->save();
+        }
+        $how_to_unlock_story = HowToUnlockStory::find(1);
+        return view('admin.change_ui.how_to_unlock_story')
+            ->with('how_to_unlock_story', $how_to_unlock_story);
+    }
+
+    public function postUpdateHowToUnlockStory(Request $request)
+    {
+        $how_to_unlock_story = HowToUnlockStory::find(1);
+        if ($how_to_unlock_story) {
+            $how_to_unlock_story->detail = $request->detail;
+            $how_to_unlock_story->save();
         }
         return redirect()->back();
     }
