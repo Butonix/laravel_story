@@ -33,7 +33,7 @@
                 <div class="modal-footer">
                     <div class="col-xs-6 col-sm-6 col-md-4 text-left"
                          style="//border: 1px solid red; padding: 0px 0px 0px 0px;">
-                        <a href="{{ url('facebook/login') }}">
+                        <a href="{{ url('login/facebook') }}">
                             <button type="button" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i>
                                 ล็อกอินด้วยเฟสบุ๊ก
                             </button>

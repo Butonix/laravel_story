@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel-body" style="//background-color: red;">
 
-                    {!! $contact->detail !!}
+                    {!! $contact !!}
 
                 </div>
             </div>

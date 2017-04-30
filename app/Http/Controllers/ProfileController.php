@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdate;
+use App\Http\Requests\ProfileUpdateByFacebook;
 use Illuminate\Http\Request;
 use Auth;
 use App\HistoryCashCard;
@@ -127,4 +128,24 @@ class ProfileController extends Controller
 
         return redirect()->route('profile');
     }
+
+    public function postProfileUpdateByFacebook(ProfileUpdateByFacebook $request)
+    {
+        $member = \App\Member::find($request->user()->id);
+        $member->author = $request->author;
+        $member->save();
+
+        $file = $request->file('profile_image');
+        if ($file) {
+            $filename = $request->user()->id;
+            $path = "uploads/profile_images/" . $filename;
+            Image::make($file->getRealPath())
+                ->resize(100, 100)
+                ->orientate()
+                ->save($path);
+        }
+
+        return redirect()->route('profile');
+    }
+
 }

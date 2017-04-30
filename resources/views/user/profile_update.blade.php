@@ -33,7 +33,12 @@
                 @endif
             </div>
             <div class="form-group">
-                <form action="{{ url('user/update/profile') }}" method="post" enctype="multipart/form-data">
+                @if (Auth::User()->facebook_id)
+                    <form action="{{ url('user/update/profile/facebook') }}" method="post" enctype="multipart/form-data">
+                @else
+                    <form action="{{ url('user/update/profile') }}" method="post" enctype="multipart/form-data">
+                @endif
+
                     {{ csrf_field() }}
 
                     <ul class="nav nav-tabs">
@@ -53,32 +58,39 @@
                     </ul>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <input type="text" name="email" class="form-control input-lg" value="{{ $profile->email }}"
-                                   placeholder="" required>
+                            @if (Auth::User()->facebook_id)
+                                <input type="text" name="email" class="form-control input-lg" value="{{ $profile->email }}"
+                                       placeholder="" disabled>
+                            @else
+                                <input type="text" name="email" class="form-control input-lg" value="{{ $profile->email }}"
+                                       placeholder="" required>
+                            @endif
                         </div>
                     </div>
 
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="#"><span
-                                        style="font-size: 20px;">Password</span></a></li>
-                    </ul>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <input type="password" name="password" class="form-control input-lg" placeholder=""
-                                   minlength="4">
+                    @if (!Auth::User()->facebook_id)
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#"><span
+                                            style="font-size: 20px;">Password</span></a></li>
+                        </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <input type="password" name="password" class="form-control input-lg" placeholder=""
+                                       minlength="4">
+                            </div>
                         </div>
-                    </div>
 
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">Confirm Password</span></a>
-                        </li>
-                    </ul>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <input type="password" name="password_confirmation" class="form-control input-lg"
-                                   placeholder="" minlength="4">
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#"><span style="font-size: 20px;">Confirm Password</span></a>
+                            </li>
+                        </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <input type="password" name="password_confirmation" class="form-control input-lg"
+                                       placeholder="" minlength="4">
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="#"><span

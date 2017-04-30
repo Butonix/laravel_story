@@ -21,6 +21,20 @@
 
     <div class="row" style="margin-top: 20px;">
 
+        @if (session('status') == 'confirm_register_writer')
+            <script type="text/javascript">
+                swal({
+                    title: "<h3>ลงทะเบียนนักเขียนระบบ Point</h3><h4>(ข้อมูลนี้จะถูกจัดเก็บอย่างปลอดภัย)</h4>",
+                    text: "<h4>รออนุมัติ ...</h4>",
+                    html: true,
+                    confirmButtonText: "ติดต่อเรา",
+                },
+                function() {
+                    window.location = "{{ url('contact') }}";
+                });
+            </script>
+        @endif
+
         @if (session('status_truemoney') == 'success')
             <script type="text/javascript">
                 swal({

@@ -10,6 +10,16 @@
 
     <div class="row">
 
+        @if (session('status'))
+            <script type="text/javascript">
+                swal({
+                    title: "",
+                    text: "{{ session('status') }}",
+                    html: true
+                });
+            </script>
+        @endif
+
         @if (session('status_all'))
             <script type="text/javascript">
                 swal("", "ชื่อผู้ใช้งานและอีเมลนี้มีผู้อื่นใช้แล้ว", "error")
