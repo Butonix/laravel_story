@@ -1,10 +1,11 @@
 <?php
 
 Route::get('/', 'UserController@index')->name('index');
-Route::get('how_to_writing', 'UserController@getHowToWriting');
-Route::get('how_to_register', 'UserController@getHowToRegister');
-Route::get('how_to_support', 'UserController@getHowToSupport');
+Route::get('AboutUs', 'UserController@getAboutUs');
+Route::get('HowToUseDiamond', 'UserController@getHowToUseDiamond');
+Route::get('Rules', 'UserController@getRules');
 Route::get('contact', 'UserController@getContact');
+Route::get('HowToUnlockStory', 'UserController@getHowToUnlockStory');
 Route::get('forgot_password', 'UserController@getForgotPassword');
 Route::post('forgot_password', 'UserController@postForgotPassword');
 

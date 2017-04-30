@@ -11,11 +11,11 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <span style="font-size: 22px;">วิธีการสนับสนุน</span>
+                    <span style="font-size: 22px;">วิธีการปลดล็อกตอนนิยาย</span>
                 </div>
                 <div class="panel-body" style="//background-color: red;">
 
-                    {!! $how_to_support->detail !!}
+                    {!! $HowToUnlockStory->detail !!}
 
                 </div>
             </div>

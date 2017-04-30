@@ -68,12 +68,25 @@
         </script>
     @endif
 
+    @php
+        $tag = \App\Tag::find($story->id);
+    @endphp
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-12 text-center">
-                        <span style="font-size: 40px;">{{ $story->story_name }}</span><br><br>
+                        <span style="font-size: 40px;">{{ $story->story_name }}</span><br>
+                        <div class="form-group">
+                            <span style="font-size: 18px; color: #a6a6a6;">Tag :
+                                @if ($tag->tag1 != NULL){{ $tag->tag1 }}, @endif
+                                @if ($tag->tag2 != NULL){{ $tag->tag2 }}, @endif
+                                @if ($tag->tag3 != NULL){{ $tag->tag3 }}, @endif
+                                @if ($tag->tag4 != NULL){{ $tag->tag4 }}, @endif
+                                @if ($tag->tag5 != NULL){{ $tag->tag5 }} @endif
+                            </span><br>
+                        </div>
                         <div class="form-group">
                             <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" class=""
                                  style="width: 250px; height: 350px;" alt="">
@@ -97,7 +110,7 @@
                                 </tr>
                                 <tr>
                                     <td>หมวดนิยาย</td>
-                                    <td>{{ $category_name }}</td>
+                                    <td><a href="{{ url('category/'.$story->category_id) }}">{{ $category_name }}</a></td>
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>

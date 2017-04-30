@@ -86,14 +86,12 @@ class CategoryController extends Controller
         return redirect()->back()->with('status_delete_category', 'done');
     }
 
-    public function getCategory($id)
+    public function getCategory(Request $request)
     {
-        $category = new Category;
-        $category = $category::where('id', $id)->first();
-        $category_name = $category->category_name;
-
-        $storys = new Story;
-        $select_category = $storys::where('category_name', $category_name)->get();
-        return view('user.category')->with('storys', $select_category)->with('category_name', $category_name);
+        $category = \App\Category::find($request->id);
+        $select_category = \App\Story::where('category_id', $category->id)->get();
+        return view('user.category')
+            ->with('storys', $select_category)
+            ->with('category_name', $category->category_name);
     }
 }

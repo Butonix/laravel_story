@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HowToSupport extends Model
+class Rules extends Model
 {
-    protected $table = 'how_to_support';
+    protected $table = 'rules';
     protected $fillable = [
         'detail'
     ];

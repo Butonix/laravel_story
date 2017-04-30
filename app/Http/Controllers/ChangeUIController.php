@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Banner;
-use App\HowToWriting;
-use App\HowToRegister;
-use App\HowToSupport;
+use App\AboutUs;
+use App\HowToUseDiamond;
+use App\Rules;
 use Session;
 
 class ChangeUIController extends Controller
@@ -48,19 +48,19 @@ class ChangeUIController extends Controller
 
     public function getHowToWriting()
     {
-        $check_field = HowToWriting::find(1);
+        $check_field = AboutUs::find(1);
         if (!$check_field) {
-            $create_field = new HowToWriting;
+            $create_field = new AboutUs;
             $create_field->save();
         }
-        $how_to_writing = HowToWriting::find(1);
+        $how_to_writing = AboutUs::find(1);
         return view('admin.change_ui.how_to_writing')
             ->with('how_to_writing', $how_to_writing);
     }
 
     public function postUpdateHowToWriting(Request $request)
     {
-        $how_to_writing = HowToWriting::find(1);
+        $how_to_writing = AboutUs::find(1);
         if ($how_to_writing) {
             $how_to_writing->detail = $request->how_to_writing;
             $how_to_writing->save();
@@ -70,19 +70,19 @@ class ChangeUIController extends Controller
 
     public function getHowToRegister()
     {
-        $check_field = HowToRegister::find(1);
+        $check_field = HowToUseDiamond::find(1);
         if (!$check_field) {
-            $create_field = new HowToRegister;
+            $create_field = new HowToUseDiamond;
             $create_field->save();
         }
-        $how_to_register = HowToRegister::find(1);
+        $how_to_register = HowToUseDiamond::find(1);
         return view('admin.change_ui.how_to_register')
             ->with('how_to_register', $how_to_register);
     }
 
     public function postUpdateHowToRegister(Request $request)
     {
-        $how_to_register = HowToRegister::find(1);
+        $how_to_register = HowToUseDiamond::find(1);
         if ($how_to_register) {
             $how_to_register->detail = $request->how_to_register;
             $how_to_register->save();
@@ -92,19 +92,19 @@ class ChangeUIController extends Controller
 
     public function getHowToSupport()
     {
-        $check_field = HowToSupport::find(1);
+        $check_field = Rules::find(1);
         if (!$check_field) {
-            $create_field = new HowToSupport;
+            $create_field = new Rules;
             $create_field->save();
         }
-        $how_to_support = HowToSupport::find(1);
+        $how_to_support = Rules::find(1);
         return view('admin.change_ui.how_to_support')
             ->with('how_to_support', $how_to_support);
     }
 
     public function postUpdateHowToSupport(Request $request)
     {
-        $how_to_support = HowToSupport::find(1);
+        $how_to_support = Rules::find(1);
         if ($how_to_support) {
             $how_to_support->detail = $request->how_to_support;
             $how_to_support->save();

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HowToWriting extends Model
+class HowToUseDiamond extends Model
 {
-    protected $table = 'how_to_writing';
+    protected $table = 'how_to_diamond';
     protected $fillable = [
         'detail'
     ];

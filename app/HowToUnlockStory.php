@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HowToRegister extends Model
+class HowToUnlockStory extends Model
 {
-    protected $table = 'how_to_register';
+    protected $table = 'how_to_unlock_story';
     protected $fillable = [
         'detail'
     ];

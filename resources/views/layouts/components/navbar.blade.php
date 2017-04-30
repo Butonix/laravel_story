@@ -70,9 +70,10 @@
                    aria-expanded="false" style="font-size: 20px;"><i class="fa fa-book"></i> คู่มือการใช้งาน <span
                             class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('how_to_writing') }}">วิธีการลงนิยาย</a></li>
-                    <li><a href="{{ url('how_to_register') }}">วิธีการสมัครสมาชิก</a></li>
-                    <li><a href="{{ url('how_to_support') }}">วิธีการสนับสนุน</a></li>
+                    <li><a href="{{ url('AboutUs') }}">จันทร์เจ้าดอทคอม</a></li>
+                    <li><a href="{{ url('HowToUseDiamond') }}">อ่านฟรีโดยใช้เพชร</a></li>
+                    <li><a href="{{ url('Rules') }}">ลุ้นรับ iPhone 7</a></li>
+                    <li><a href="{{ url('HowToUnlockStory') }}">วิธีการปลดล็อกตอนนิยาย</a></li>
                 </ul>
             </li>
 

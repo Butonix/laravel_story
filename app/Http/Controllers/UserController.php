@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HowToUnlockStory;
 use App\Http\Requests\RegisterWriter;
 use App\PermissionMember;
 use Illuminate\Http\Request;
@@ -12,9 +13,9 @@ use App\StoryStatistic;
 use App\Announce;
 use App\Contact;
 use App\ReportVisitor;
-use App\HowToWriting;
-use App\HowToRegister;
-use App\HowToSupport;
+use App\AboutUs;
+use App\HowToUseDiamond;
+use App\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
@@ -50,40 +51,57 @@ class UserController extends Controller
             ->with('announces', $announces);
     }
 
-    public function getHowToWriting()
+    public function getAboutUs()
     {
-        $check_field = HowToWriting::find(1);
+        $check_field = \App\AboutUs::find(1);
         if (!$check_field) {
-            $create_field = new HowToWriting;
+            $create_field = new AboutUs;
+            $create_field->detail = '';
             $create_field->save();
         }
-        $how_to_writing = HowToWriting::find(1);
-        return view('user.how_to_writing')
-            ->with('how_to_writing', $how_to_writing);
+
+        $about_us = \App\AboutUs::find(1);
+        return view('user.about_us')
+            ->with('about_us', $about_us);
     }
 
-    public function getHowToRegister()
+    public function getHowToUseDiamond()
     {
-        $check_field = HowToRegister::find(1);
+        $check_field = \App\HowToUseDiamond::find(1);
         if (!$check_field) {
-            $create_field = new HowToRegister;
+            $create_field = new HowToUseDiamond;
+            $create_field->detail = '';
             $create_field->save();
         }
-        $how_to_register = HowToRegister::find(1);
-        return view('user.how_to_register')
-            ->with('how_to_register', $how_to_register);
+        $how_to_diamond = \App\HowToUseDiamond::find(1);
+        return view('user.how_to_diamond')
+            ->with('how_to_diamond', $how_to_diamond);
     }
 
-    public function getHowToSupport()
+    public function getRules()
     {
-        $check_field = HowToSupport::find(1);
+        $check_field = \App\Rules::find(1);
         if (!$check_field) {
-            $create_field = new HowToSupport;
+            $create_field = new Rules;
+            $create_field->detail = '';
             $create_field->save();
         }
-        $how_to_support = HowToSupport::find(1);
-        return view('user.how_to_support')
-            ->with('how_to_support', $how_to_support);
+        $rules = \App\Rules::find(1);
+        return view('user.rules')
+            ->with('rules', $rules);
+    }
+
+    public function getHowToUnlockStory()
+    {
+        $check_field = \App\HowToUnlockStory::find(1);
+        if (!$check_field) {
+            $create_field = new HowToUnlockStory;
+            $create_field->detail = '';
+            $create_field->save();
+        }
+        $HowToUnlockStory = \App\HowToUnlockStory::find(1);
+        return view('user.how_to_unlock_story')
+            ->with('HowToUnlockStory', $HowToUnlockStory);
     }
 
     public function getContact()
