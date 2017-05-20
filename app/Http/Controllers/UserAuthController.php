@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PermissionMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,12 @@ class UserAuthController extends Controller
         $member->password = Hash::make($request->password);
         $member->text_password = encrypt($request->password);
         $member->save();
+
+        $permission = new PermissionMember;
+        $permission->member_id = $member->id;
+        $permission->ban_status = 0;
+        $permission->save();
+
         return redirect()->back()
             ->with('status_success', 'done');
     }

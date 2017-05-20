@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateMember;
 use Illuminate\Http\Request;
 use App\Member;
 use App\FacebookLogin;
+use App\PermissionMember;
 use Session;
 use Hash;
 
 class MemberController extends Controller
 {
-    public function getAllMember()
+    public function getAllMember(Member $member)
     {
         Session::put('active_menu', 'member');
-        $members = new Member;
-        return view('admin.member.member')->with('members', $members->get());
+        $members = $member::all();
+        return view('admin.member.member', compact('members'));
     }
 
     public function getAllFacebook()
@@ -29,37 +31,10 @@ class MemberController extends Controller
         return view('admin.member.add_member');
     }
 
-    public function postAddMember(Request $request)
+    public function postAddMember(UpdateMember $request, Member $member)
     {
-        $member = new Member;
-        $check_username = $member::where('username', $request->username)->count();
-        $check_email = $member::where('email', $request->email)->count();
-
-        if ($check_username > 0 && $check_email > 0) {
-            return redirect()->back()
-                ->with('status_all', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        if ($check_username > 0) {
-            return redirect()->back()
-                ->with('status_username', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        if ($check_email > 0) {
-            return redirect()->back()
-                ->with('status_email', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        $member->username = $request->username;
-        $member->email = $request->email;
-        $member->password = Hash::make($request->password);
-        $member->text_password = Hash('md5', $request->password);
-        $member->save();
-        return redirect()->route('member/all')
-            ->with('status_register', 'done');
+        $member->insertMember($request);
+        return redirect()->route('member/all');
     }
 
     public function getEditMember($member_id)
@@ -69,62 +44,10 @@ class MemberController extends Controller
         return view('admin.member.edit_member')->with('info', $info);
     }
 
-    public function postEditMember(Request $request)
+    public function postEditMember(UpdateMember $request, Member $member, $id)
     {
-        $member = new Member;
-
-        // check data change
-        $data = $member::where('id', $request->id)->first();
-
-        if ($data->username == $request->username) {
-            $check_username = 0;
-        } else {
-            $check_username = $member::where('username', $request->username)->count();
-        }
-
-        if ($data->email == $request->email) {
-            $check_email = 0;
-        } else {
-            $check_email = $member::where('email', $request->email)->count();
-        }
-
-        if ($check_username > 0 && $check_email > 0) {
-            return redirect()->back()
-                ->with('status_all', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        if ($check_username > 0) {
-            return redirect()->back()
-                ->with('status_username', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        if ($check_email > 0) {
-            return redirect()->back()
-                ->with('status_email', 'fail')
-                ->withInput($request->except('password'));
-        }
-
-        if ($request->password != null) {
-            // if (Hash::check('plain-text', $request->token)) {
-            $new_password = Hash::make($request->password);
-            $member::where('id', $request->id)->update([
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => $new_password,
-                'text_password' => Hash('md5', $new_password)
-            ]);
-            // }
-        } else {
-            $member::where('id', $request->id)->update([
-                'username' => $request->username,
-                'email' => $request->email
-            ]);
-        }
-
-        return redirect()->route('member/all')
-            ->with('status_edit', 'done');
+        $member->updateMember($request, $id);
+        return redirect()->back();
     }
 
     public function getDeleteMember(Request $request)
@@ -132,5 +55,15 @@ class MemberController extends Controller
         $member = new Member;
         $member::where('id', $request->member_id)->delete();
         return redirect()->back()->with('status_delete', 'done');
+    }
+
+    public function BanMember(PermissionMember $permission, $id)
+    {
+        $permission->banMember($id);
+    }
+
+    public function UnbanMember(PermissionMember $permission, $id)
+    {
+        $permission->unBanMember($id);
     }
 }

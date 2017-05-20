@@ -38,52 +38,93 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <a href="{{ url('admin/member/all') }}" style="margin-right: 10px;"><i
-                                        class="fa fa-user"></i> สมาชิกทั้งหมด</a>
-                            <a href="{{ url('admin/member/add') }}"><i class="fa fa-plus"></i> เพิ่มสมาชิก</a>
-                        </div>
-                    </div>
-
                     <div class="col-md-offset-4 col-md-4">
-                        <form action="{{ url('admin/member/edit') }}" method="post">
 
+                        <div class="form-group text-center">
+                            <h2>แก้ไขข้อมูล</h2>
+                        </div>
+
+                        <form action="{{ url('admin/member/edit/'.$info->id) }}" method="post">
+
+                            {{ method_field('PUT') }}
                             {{ csrf_field() }}
-                            <input type="hidden" name="id" value="{{ $info->id }}">
-                            <input type="hidden" name="token" value="{{ $info->password }}">
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="icon-addon addon-lg">
                                         <input type="text" class="form-control" name="username"
-                                               placeholder="ชื่อผู้ใช้งาน" value="{{ $info->username }}" required>
-                                        <!-- <i class="fa fa-user"></i> -->
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="icon-addon addon-lg">
-                                        <input type="email" class="form-control" name="email" placeholder="อีเมล"
-                                               value="{{ $info->email }}" required>
+                                               placeholder="ชื่อผู้ใช้งาน" value="{{ $info->username }}" >
                                         <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="icon-addon addon-lg">
-                                        <input type="password" class="form-control" name="password" value=""
-                                               placeholder="รหัสผ่าน">
-                                        <i class="fa fa-key"></i>
-                                        <span style="color: red;">* หากไม่ต้องการเปลี่ยนให้ปล่อยช่องว่าง</span>
+                                        <input type="email" class="form-control" name="email" placeholder="อีเมล"
+                                               value="{{ $info->email }}" >
+                                        <i class="fa fa-envelope"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary pull-right"
-                                            style="width: 100%; font-size: 16px;">แก้ไขสมาชิก
+                                    <div class="icon-addon addon-lg">
+                                        <input type="text" class="form-control" name="author" placeholder="นามนักเขียน"
+                                               value="{{ $info->author }}" >
+                                        <i class="fa fa-edit"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <span style="color: red;">* หากไม่ต้องการเปลี่ยนรหัสผ่านให้ปล่อยว่าง</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="icon-addon addon-lg">
+                                        <input type="password" class="form-control" name="password" value=""
+                                               placeholder="รหัสผ่าน">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="icon-addon addon-lg">
+                                        <input type="password" class="form-control" name="password_confirmation" value=""
+                                               placeholder="ยืนยันรหัสผ่าน">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <hr>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary"
+                                            style="width: 100%; font-size: 16px;">บันทึก
                                     </button>
                                 </div>
+                                <div class="form-group">
+                                    <a href="{{ url('admin/member/all') }}">
+                                        <button type="button" class="btn btn-danger"
+                                                style="width: 100%; font-size: 16px; background-color: #ff6666; border-color: #ff6666;">
+                                            ยกเลิก
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
+
                         </form>
                     </div>
+
+                    @if (count($errors))
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li><small>{{ $error }}</small></li>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

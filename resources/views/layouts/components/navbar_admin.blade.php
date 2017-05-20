@@ -28,7 +28,9 @@
                            aria-expanded="false" style="font-size: 18px;">จัดการสมาชิก <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('admin/member/all') }}">สมาชิกทั้งหมด</a></li>
-                            <li><a href="{{ url('admin/member/facebook') }}">สมาชิกเฟสบุ๊ค</a></li>
+                            <li><a href="{{ url('admin/member/add') }}">เพิ่มสมาชิก</a></li>
+
+                            {{--<li><a href="{{ url('admin/member/facebook') }}">สมาชิกเฟสบุ๊ค</a></li>--}}
                         </ul>
                     </li>
 

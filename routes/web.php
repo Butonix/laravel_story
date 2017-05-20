@@ -98,8 +98,10 @@ Route::group(['middleware' => ['AuthAdmin']], function () {
             Route::get('add', 'MemberController@getAddMember');
             Route::post('add', 'MemberController@postAddMember');
             Route::get('edit/{member_id}', 'MemberController@getEditMember');
-            Route::post('edit', 'MemberController@postEditMember');
+            Route::put('edit/{id}', 'MemberController@postEditMember');
             Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
+            Route::post('ban/{id}', 'MemberController@BanMember');
+            Route::post('unban/{id}', 'MemberController@UnbanMember');
         });
 
         Route::group(['prefix' => 'category'], function () {
