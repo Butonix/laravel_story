@@ -39,7 +39,7 @@
 
                 </ul>
             </li>
-            @if (Auth::check() || Session::get('fb_user_access_token') != null)
+            @if (Auth::check())
                 <li><a href="#"><i class="fa fa-usd"></i> = 0&ensp;&ensp;<i class="fa fa-diamond"></i> = 0</a></li>
             @else
                 <li><a href="#login" id="btn-login" style="font-size: 18px;"><i class="fa fa-sign-in"></i>

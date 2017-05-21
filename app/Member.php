@@ -56,7 +56,7 @@ class Member extends Model implements Authenticatable
         }
     }
 
-    public function permission()
+    public function permissionMember()
     {
         return $this->hasMany(PermissionMember::class);
     }

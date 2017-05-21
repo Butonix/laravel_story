@@ -2,6 +2,28 @@
 
 @section('content')
 
+    @if (count($errors))
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-12">
+                <div class="form-group" id="show-error">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <span style="font-size: 18px;">- {{ $error }}</span>
+                        @endforeach
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        setInterval(function () {
+                            $('#show-error').hide();
+                        }, 3000);
+                    });
+                </script>
+            </div>
+        </div>
+    @endif
+
+
     @include('layouts.components.banner')
     @include('layouts.components.navbar')
     @include('layouts.components.modal_login')
@@ -122,7 +144,8 @@
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td><span id="count-like">{{ number_format($SubStoryStatistic->count_like) }}</span></td>
+                                    <td><span id="count-like">{{ number_format($SubStoryStatistic->count_like) }}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
@@ -167,6 +190,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
+
             <div class="form-group">
                 <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
             </div>
@@ -177,13 +201,10 @@
                         <input type="hidden" name="sub_story_id" value="{{ $sub_story_id }}">
                         @if (Auth::check())
                             <input type="hidden" name="username" value="{{ Auth::User()->username }}">
-                        @else
-                            @if (Session::get('facebook_login') != '')
-                                <input type="hidden" name="username" value="{{ Session::get('facebook_login') }}">
-                            @endif
                         @endif
-                        <div class="summernote" id="summernote"></div>
-                        <input type="hidden" name="comment_detail" id="comment_detail">
+                        <textarea name="comment_detail" class="summernote" id="summernote" cols="30" rows="10" required>
+                            {{ old('comment_detail') }}
+                        </textarea>
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก
@@ -194,19 +215,32 @@
         </div>
     </div>
 
+    @php
+        $begin_id = 1;
+        $lastest_id = 0;
+    @endphp
+
     @foreach ($sub_story_comments as $sub_story_comment)
+        @php
+            $member = \App\Member::find($sub_story_comment->member_id);
+
+            if ($begin_id == 1) {
+                $latest_id = $loop->count;
+                $begin_id = 0;
+            }
+        @endphp
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
 
                 {{-- Comment --}}
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <span style="font-size: 20px;">ความคิดเห็นที่ {{ $sub_story_comment->id }}</span>
+                        <span style="font-size: 20px;">ความคิดเห็นที่ {{ $latest_id }}</span>
                     </div>
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <span style="font-size: 14px;">โดย {{ $sub_story_comment->username }}</span>
+                            <span style="font-size: 14px;">โดย {{ $member->username }}</span>
                         </div>
 
                         <div class="form-group">
@@ -236,14 +270,17 @@
                 @endphp
 
                 @foreach ($reply_comments as $reply_comment)
+                    @php
+                        $member = \App\Member::find($reply_comment->member_id);
+                    @endphp
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็นที่ {{ $sub_story_comment->id }}</span>
+                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็นที่ {{ $latest_id }}</span>
                         </div>
                         <div class="panel-body">
 
                             <div class="form-group">
-                                <span style="font-size: 14px;">โดย {{ $reply_comment->username }}</span>
+                                <span style="font-size: 14px;">โดย {{ $member->username }}</span>
                             </div>
 
                             <div class="form-group">
@@ -251,12 +288,12 @@
                             </div>
 
                             <div class="form-group">
-                <span style="font-size: 14px;">โพสต์เมื่อ
-                    @php
-                        $created_at = \Carbon\Carbon::parse($reply_comment->created_at)->addYears(543)->format("d / m / Y");
-                        echo $created_at;
-                    @endphp
-                </span>
+                            <span style="font-size: 14px;">โพสต์เมื่อ
+                                @php
+                                    $created_at = \Carbon\Carbon::parse($reply_comment->created_at)->addYears(543)->format("d / m / Y");
+                                    echo $created_at;
+                                @endphp
+                            </span>
                             </div>
 
                         </div>
@@ -265,7 +302,7 @@
 
                 {{-- End Show Reply --}}
 
-                {{-- Reply Comment --}}
+                {{-- Reply SubStoryComment --}}
                 <form action="{{ url('user/reply/comment/sub_story/'.$sub_story_comment->id) }}" method="post">
                     {{ csrf_field() }}
                     <div class="panel panel-default" id="reply{{ $loop->iteration }}">
@@ -276,12 +313,13 @@
 
                             <div class="form-group">
                                 <span style="font-size: 16px;">โดย {{ $username }}</span>
-                                <input type="hidden" name="username" value="{{ $username }}">
                             </div>
 
                             <div class="form-group">
-                                <div class="summernote" id="summernote{{ $loop->iteration }}"></div>
-                                <input type="hidden" name="comment_detail" id="reply_comment_{{ $loop->iteration }}">
+                                <textarea name="comment_detail" class="summernote"
+                                          id="reply_comment_{{ $loop->iteration }}" cols="30" rows="10" required>
+                                    {{ old('comment_detail') }}
+                                </textarea>
                             </div>
 
                         </div>
@@ -302,10 +340,6 @@
         <script>
             $(document).ready(function () {
                 $('#reply{{ $loop->iteration }}').hide();
-                $('#summernote{{ $loop->iteration }}').on('summernote.change', function (we, contents, $editable) {
-                    $('#reply_comment_{{ $loop->iteration }}').val(contents);
-                    console.log(contents);
-                });
                 $('#reply_show_{{ $loop->iteration }}').on('click', function () {
                     $('#reply{{ $loop->iteration }}').show();
                 });
@@ -314,6 +348,11 @@
                 });
             });
         </script>
+
+        @php
+            $latest_id--;
+        @endphp
+
     @endforeach
 
     <script>
@@ -336,16 +375,11 @@
                 ]
             });
 
-            $('#summernote').on('summernote.change', function (we, contents, $editable) {
-                $('#comment_detail').val(contents);
-                console.log(contents);
-            });
-
             $('#btn-like').on('click', function () {
                 $('#modal-like').modal();
             });
 
-            setInterval(function() {
+            setInterval(function () {
                 $('#modal-like').modal();
             }, (1000 * 60) * 5);
 

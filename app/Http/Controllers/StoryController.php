@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BanSubStory;
+use App\Http\Requests\Comment;
 use App\PermissionSubStory;
 use App\SubStoryStatistic;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use App\BanStory;
 use App\StoryStatistic;
 use App\ReplyCommentStory;
 use App\ReplyCommentSubStory;
+use Illuminate\Validation\Validator;
 use Intervention\Image\Facades\Image;
 use File;
 use Session;
@@ -351,43 +353,27 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function postInsertStoryComment(Request $request)
+    public function postInsertStoryComment(Comment $request, StoryComment $storyComment)
     {
-        $story_comment = new StoryComment;
-        $story_comment->story_id = $request->id;
-        $story_comment->member_id = $request->member_id;
-        $story_comment->comment_detail = $request->comment_detail;
-        $story_comment->save();
+        $storyComment->addComment($request);
         return redirect()->back();
     }
 
-    public function postInsertReplyCommentStory(Request $request)
+    public function postInsertReplyCommentStory(Comment $request, ReplyCommentStory $replyStoryComment)
     {
-        $reply_comment = new ReplyCommentStory;
-        $reply_comment->reply_comment_id = $request->id;
-        $reply_comment->member_id = $request->member_id;
-        $reply_comment->comment_detail = $request->comment_detail;
-        $reply_comment->save();
+        $replyStoryComment->addComment($request);
         return redirect()->back();
     }
 
-    public function postInsertSubStoryComment(Request $request)
+    public function postInsertSubStoryComment(Comment $request, SubStoryComment $subStoryComment)
     {
-        $sub_story_comment = new SubStoryComment;
-        $sub_story_comment->sub_story_id = $request->sub_story_id;
-        $sub_story_comment->member_id = $request->member_id;
-        $sub_story_comment->comment_detail = $request->comment_detail;
-        $sub_story_comment->save();
+        $subStoryComment->addComment($request);
         return redirect()->back();
     }
 
-    public function postInsertReplyCommentSubStory(Request $request)
+    public function postInsertReplyCommentSubStory(Comment $request, ReplyCommentSubStory $replySubStoryComment)
     {
-        $reply_comment = new ReplyCommentSubStory;
-        $reply_comment->reply_comment_id = $request->id;
-        $reply_comment->member_id = $request->member_id;
-        $reply_comment->comment_detail = $request->comment_detail;
-        $reply_comment->save();
+        $replySubStoryComment->addComment($request);
         return redirect()->back();
     }
 

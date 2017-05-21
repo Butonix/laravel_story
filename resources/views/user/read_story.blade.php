@@ -215,14 +215,26 @@
 
     </div>
 
+    @php
+        $begin_id = 1;
+        $lastest_id = 0;
+    @endphp
+
     @foreach ($story_comments as $story_comment)
+
+        @php
+            if ($begin_id == 1) {
+                $latest_id = $loop->count;
+                $begin_id = 0;
+            }
+        @endphp
+
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-
                 {{-- Comment --}}
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <span style="font-size: 20px;">ความคิดเห็นที่ {{ $story_comment->id }}</span>
+                        <span style="font-size: 20px;">ความคิดเห็นที่ {{ $latest_id }}</span>
                     </div>
                     <div class="panel-body">
 
@@ -260,14 +272,17 @@
                 @endphp
 
                 @foreach ($reply_comments as $reply_comment)
+                    @php
+                        $member = \App\Member::find($reply_comment->member_id);
+                    @endphp
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็นที่ {{ $story_comment->id }}</span>
+                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็นที่ {{ $latest_id }}</span>
                         </div>
                         <div class="panel-body">
 
                             <div class="form-group">
-                                <span style="font-size: 14px;">โดย {{ $reply_comment->username }}</span>
+                                <span style="font-size: 14px;">โดย {{ $member->username }}</span>
                             </div>
 
                             <div class="form-group">
@@ -293,18 +308,19 @@
                     {{ csrf_field() }}
                     <div class="panel panel-default" id="reply{{ $loop->iteration }}">
                         <div class="panel-heading">
-                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็น {{ $story_comment->id }}</span>
+                            <span style="font-size: 18px;">ตอบกลับ ความคิดเห็น {{ $loop->iteration }}</span>
                         </div>
                         <div class="panel-body">
 
                             <div class="form-group">
                                 <span style="font-size: 16px;">โดย {{ Auth::User()->username }}</span>
-                                <input type="hidden" name="member_id" value="{{ Auth::User()->id }}">
                             </div>
 
                             <div class="form-group">
-                                <div class="summernote" id="summernote{{ $loop->iteration }}"></div>
-                                <input type="hidden" name="comment_detail" id="reply_comment_{{ $loop->iteration }}">
+                                <textarea name="comment_detail" class="summernote"
+                                          id="reply_comment_{{ $loop->iteration }}" cols="30" rows="10" required>
+                                    {{ old('comment_detail') }}
+                                </textarea>
                             </div>
 
                         </div>
@@ -337,6 +353,11 @@
                 });
             });
         </script>
+
+        @php
+            $latest_id--;
+        @endphp
+
     @endforeach
 
     <script>

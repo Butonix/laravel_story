@@ -39,11 +39,11 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('write/story/sub/{id}', 'StoryController@getWriteSubStory');
     Route::post('write/story/sub/{id}', 'StoryController@postInsertSubStory');
 
-    Route::post('comment/story/{id}', 'StoryController@postInsertStoryComment');
-    Route::post('reply/comment/story/{id}', 'StoryController@postInsertReplyCommentStory');
+    Route::post('comment/story/{story_id}', 'StoryController@postInsertStoryComment');
+    Route::post('reply/comment/story/{reply_comment_id}', 'StoryController@postInsertReplyCommentStory');
 
-    Route::post('comment/sub_story/{id}', 'StoryController@postInsertSubStoryComment');
-    Route::post('reply/comment/sub_story/{id}', 'StoryController@postInsertReplyCommentSubStory');
+    Route::post('comment/sub_story/{sub_story_id}', 'StoryController@postInsertSubStoryComment');
+    Route::post('reply/comment/sub_story/{reply_comment_id}', 'StoryController@postInsertReplyCommentSubStory');
 
     Route::get('love/story/{id}', 'StoryController@getLoveStory');
     Route::post('search', 'SearchController@postSearch');
