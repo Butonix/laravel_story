@@ -28,6 +28,7 @@ class MemberController extends Controller
 
     public function getAddMember()
     {
+        Session::put('active_menu', 'member');
         return view('admin.member.add_member');
     }
 

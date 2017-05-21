@@ -15,6 +15,7 @@ class ChangeUIController extends Controller
 {
     public function getBanner()
     {
+        Session::put('active_menu', 'change_ui');
         for ($i = 1; $i <= 3; $i++) {
             $check_field = Banner::find($i);
             if (!$check_field) {
@@ -49,6 +50,7 @@ class ChangeUIController extends Controller
 
     public function getAboutUs()
     {
+        Session::put('active_menu', 'change_ui');
         $check_field = AboutUs::find(1);
         if (!$check_field) {
             $create_field = new AboutUs;
@@ -71,6 +73,7 @@ class ChangeUIController extends Controller
 
     public function getHowToUseDiamond()
     {
+        Session::put('active_menu', 'change_ui');
         $check_field = HowToUseDiamond::find(1);
         if (!$check_field) {
             $create_field = new HowToUseDiamond;
@@ -93,6 +96,7 @@ class ChangeUIController extends Controller
 
     public function getRules()
     {
+        Session::put('active_menu', 'change_ui');
         $check_field = Rules::find(1);
         if (!$check_field) {
             $create_field = new Rules;
@@ -115,6 +119,7 @@ class ChangeUIController extends Controller
 
     public function getHowToUnlockStory()
     {
+        Session::put('active_menu', 'change_ui');
         $check_field = HowToUnlockStory::find(1);
         if (!$check_field) {
             $create_field = new HowToUnlockStory;
@@ -137,7 +142,7 @@ class ChangeUIController extends Controller
 
     public function getContact()
     {
-        Session::put('active_menu', 'front-end');
+        Session::put('active_menu', 'change_ui');
         $contact = new Contact;
         $check_detail = $contact::where('id', 1)->first();
 

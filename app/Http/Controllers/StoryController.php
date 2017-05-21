@@ -30,6 +30,7 @@ class StoryController extends Controller
 {
     public function getReadStory(Request $request)
     {
+        $id = $request->id;
         // Select story
         $story = Story::find($request->id);
         // Get category name
@@ -56,16 +57,9 @@ class StoryController extends Controller
 
         $storyStatistic = \App\StoryStatistic::find($request->id);
 
-        return view('user.read_story')
-            ->with('id', $request->id)
-            ->with('story', $story)
-            ->with('category_name', $category_name)
-            ->with('status_alert', $status_alert)
-            ->with('story_comments', $story_comments)
-            ->with('sub_storys', $sub_storys)
-            ->with('status_ban', $status_ban)
-            ->with('permission_story', $permission_story)
-            ->with('storyStatistic', $storyStatistic);
+        return view('user.read_story',
+            compact('id', 'story', 'category_name', 'status_alert', 'story_comments',
+            'sub_storys', 'status_ban', 'permission_story', 'storyStatistic'));
     }
 
     public function getReadStoryDetail(Request $request)
@@ -396,6 +390,7 @@ class StoryController extends Controller
     // Admin
     public function getStoryAll()
     {
+        Session::put('active_menu', 'category');
         $storys = Story::all();
         return view('admin.story.story')
             ->with('storys', $storys);
@@ -467,6 +462,7 @@ class StoryController extends Controller
 
     public function getSubStoryAll()
     {
+        Session::put('active_menu', 'category');
         $sub_storys = SubStory::all();
         return view('admin.sub_story.sub_story')
             ->with('sub_storys', $sub_storys);

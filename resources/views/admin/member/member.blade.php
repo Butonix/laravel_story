@@ -22,6 +22,10 @@
             </script>
         @endif
 
+        <div class="form-group text-center">
+            <h2>สมาชิกทั้งหมด</h2>
+        </div>
+
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">

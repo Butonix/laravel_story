@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegisterWriter extends Model
 {
-    protected $primaryKey = 'member_id';
     protected $table = 'register_writer';
     protected $fillable = [
         'member_id',

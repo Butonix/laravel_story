@@ -3,10 +3,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Story</title>
     <link rel="stylesheet" href="{{ url('css/all.css') }}">
-    <script src="https://use.fontawesome.com/35b861f9fb.js"></script>
+    <link rel="stylesheet" href="{{ url('font-awesome-4.7.0/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ url('css/magnific-popup.css') }}">
     <script src="{{ url('js/jquery-3.1.1.js') }}" charset="utf-8"></script>
     <script src="{{ url('js/bootstrap.min.js') }}" charset="utf-8"></script>
     <script src="{{ url('js/sweetalert.min.js') }}" charset="utf-8"></script>
+    <script src="{{ url('js/jquery.magnific-popup.min.js') }}"></script>
 
     <!-- include summernote css/js-->
     <link href="{{ url('summernote/summernote.css') }}" rel="stylesheet">

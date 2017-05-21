@@ -185,8 +185,6 @@ class UserController extends Controller
         $pathIdCard = "uploads/id_card_files/" . $filenameIdCard;
         Image::make($file->getRealPath())->orientate()->save($pathIdCard);
 
-        $register->book_bank_file = $filenameBookBank;
-        $register->id_card_file = $filenameIdCard;
         $register->confirm_status = 0;
         $register->reject_status = 0;
         $register->save();

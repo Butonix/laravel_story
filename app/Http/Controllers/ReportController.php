@@ -20,6 +20,7 @@ class ReportController extends Controller
 
     public function getReportTopup()
     {
+        Session::put('active_menu', 'report');
         $history_cashcard = new HistoryCashCard;
         $history_cashcard = $history_cashcard::where('response_code', '0')->get();
         return view('admin.report.topup')->with('history_cashcard', $history_cashcard);

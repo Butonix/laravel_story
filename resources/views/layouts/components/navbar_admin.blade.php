@@ -29,7 +29,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('admin/member/all') }}">สมาชิกทั้งหมด</a></li>
                             <li><a href="{{ url('admin/member/add') }}">เพิ่มสมาชิก</a></li>
-
+                            <li><a href="{{ url('admin/writer') }}">นักเขียนระบบ Point</a></li>
                             {{--<li><a href="{{ url('admin/member/facebook') }}">สมาชิกเฟสบุ๊ค</a></li>--}}
                         </ul>
                     </li>
@@ -51,7 +51,7 @@
                             </ul>
                         </li>
 
-                        @if (Session::get('active_menu') == 'front-end')
+                        @if (Session::get('active_menu') == 'change_ui')
                             <li class="dropdown active font-size-normal">
                         @else
                             <li class="dropdown font-size-normal">

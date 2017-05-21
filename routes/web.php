@@ -157,6 +157,7 @@ Route::group(['middleware' => ['AuthAdmin']], function () {
             Route::post('unban/{id}', 'StoryController@postUnbanSubStory');
         });
 
+        Route::resource('writer', 'WriterController');
 
     });
 });
