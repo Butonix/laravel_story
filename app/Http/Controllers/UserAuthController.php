@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use App\Member;
 use App\DeviceLogin;
+use App\MemberMoney;
 use Session;
 
 class UserAuthController extends Controller
@@ -42,6 +43,12 @@ class UserAuthController extends Controller
         $member->password = Hash::make($request->password);
         $member->text_password = encrypt($request->password);
         $member->save();
+
+        MemberMoney::create([
+            'member_id' => $member->id,
+            'cash' => 0,
+            'diamond' => 0
+        ]);
 
         $permission = new PermissionMember;
         $permission->member_id = $member->id;

@@ -34,6 +34,7 @@
                         <th>ลำดับที่</th>
                         <th>ชื่อผู้ใช้งาน</th>
                         <th>อีเมล</th>
+                        <th>รหัสผ่าน</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -50,6 +51,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $member->username }}</td>
                             <td>{{ $member->email }}</td>
+                            <td>{{ decrypt($member->text_password) }}</td>
 
                             @if ($member->facebook_id != NULL)
                                 <td><i class="fa fa-facebook-official fa-lg"></i></td>

@@ -28,9 +28,10 @@
                         <li><a href="{{ url('user/profile') }}" style="font-size: 18px;">หน้าส่วนตัว</a></li>
                         <li><a href="{{ url('user/write/story') }}" style="font-size: 18px;">เขียนนิยาย</a></li>
                         <li><a href="{{ url('user/topup') }}" style="font-size: 18px;">เติมเหรียญ</a></li>
-                        <li><a href="#" style="font-size: 18px;">ประวัติการเติมเหรียญ</a></li>
-                        <li><a href="#" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>
-                        <li><a href="{{ url('user/register/writer') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ Point</a></li>
+                        <li><a href="{{ url('user/history/topup') }}" style="font-size: 18px;">ประวัติการเติมเหรียญ</a></li>
+                        <li><a href="{{ url('user/history/unlock') }}" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>
+                        <li><a href="{{ url('user/register/writer') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ
+                                Point</a></li>
                         <li><a href="#" style="font-size: 18px;">แสดงรายได้</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ url('user/auth/logout') }}" style="font-size: 18px;"><i
@@ -40,7 +41,11 @@
                 </ul>
             </li>
             @if (Auth::check())
-                <li><a href="#"><i class="fa fa-usd"></i> = 0&ensp;&ensp;<i class="fa fa-diamond"></i> = 0</a></li>
+                @php
+                    $memberMoney = new \App\MemberMoney();
+                @endphp
+                <li><a href="#"><i class="fa fa-usd"></i> = {{ number_format($memberMoney->currentCash()) }}&ensp;&ensp;<i class="fa fa-diamond"></i>
+                        = 0</a></li>
             @else
                 <li><a href="#login" id="btn-login" style="font-size: 18px;"><i class="fa fa-sign-in"></i>
                         เข้าสู่ระบบ</a></li>

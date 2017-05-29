@@ -80,10 +80,6 @@
                                     <td>
                                         @if (Auth::check())
                                             {{ Auth::User()->username }}
-                                        @else
-                                            @if (Session::get('facebook_login') != '')
-                                                {{ Session::get('facebook_login') }}
-                                            @endif
                                         @endif
                                     </td>
                                 </tr>
@@ -95,7 +91,7 @@
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
-                                    <td>{{ number_format($real_amount) }}</td>
+                                    <td>none</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>

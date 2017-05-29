@@ -182,7 +182,14 @@
                                                target="_blank">{{ $sub_story->story_name }}</a></td>
                                     @else
                                         <td>
-                                            <a href="{{ url('user/unlock/'.$sub_story->id) }}">{{ $sub_story->story_name }}</a>
+                                            <a href="{{ url('user/unlock/'.$sub_story->id) }}">{{ $sub_story->story_name }}
+                                                <span style="color: green;" class="pull-right">
+                                                    {{ $permission->unlock_coin }}
+                                                    <i class="fa fa-usd"></i>&ensp;หรือ&ensp;
+                                                    {{ $permission->unlock_diamond }}
+                                                    <i class="fa fa-diamond"></i>
+                                                </span>
+                                            </a>
                                         </td>
                                     @endif
                                 @else

@@ -43,9 +43,17 @@
 
 </div>
 
-<div class="container footer text-center" style="margin-bottom: 20px;">
-    Copyright &copy; 2017
-</div>
+<footer>
+    <div class="container" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group text-center">
+                    <span>Copyright &copy; 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

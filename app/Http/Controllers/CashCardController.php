@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\MemberMoney;
 use Illuminate\Http\Request;
 use App\HistoryCashCard;
+use Illuminate\Support\Facades\Auth;
 
 class CashCardController extends Controller
 {
@@ -56,11 +58,21 @@ class CashCardController extends Controller
         $history_cashcard->status = strip_tags($result[5]);
         $history_cashcard->save();
 
+        $memberMoney = new MemberMoney;
+        $memberMoney->addCash(Auth::user()->id, strip_tags($result[4]));
+
         if (strip_tags($result[1]) == 0) {
             return redirect()->route('profile')->with('status_truemoney', 'success');
         } else {
             return redirect()->route('topup/form')->with('status_truemoney', strip_tags($result[1]));
         }
 
+    }
+
+    public function getHistoryTopup()
+    {
+        $getHistoryCashCard = HistoryCashCard::orderBy('created_at', 'desc')->get();
+        $historyCashCard = new HistoryCashCard;
+        return view('user.history_topup', compact('getHistoryCashCard', 'historyCashCard'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\Comment;
 use App\Http\Requests\RegisterWriter;
 use App\PermissionSubStory;
 use App\SubStoryStatistic;
+use App\UnlockSubStory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
@@ -67,8 +68,21 @@ class StoryController extends Controller
 
     public function getReadStoryDetail(Request $request)
     {
+
         $sub_story = SubStory::find($request->id);
         $story = Story::find($sub_story->story_id);
+
+        // Check sub story permission cash
+        $permission = PermissionSubStory::find($request->id);
+        if ($permission->unlock_coin != 0 && $permission->unlock_diamond != 0) {
+            $unlockSubStory = UnlockSubStory::where('member_id', Auth::user()->id)
+                ->where('sub_story_id', $request->id)->first();
+            if (!$unlockSubStory) {
+                return redirect('/user/read/story/'.$story->id);
+            }
+        }
+        // End check permission
+
         $author = $story->story_author;
         $category = Category::find($story->category_id);
 

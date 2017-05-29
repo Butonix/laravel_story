@@ -77,6 +77,8 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::group(['middleware' => 'AuthUser'], function () {
         Route::resource('unlock', 'UnlockController');
+        Route::get('history/topup', 'CashCardController@getHistoryTopup');
+        Route::get('history/unlock', 'UnlockController@getHistoryUnlock');
     });
 
 });

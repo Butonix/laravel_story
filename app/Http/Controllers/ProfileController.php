@@ -15,52 +15,9 @@ class ProfileController extends Controller
 {
     public function getProfile()
     {
-
-
-        if (Auth::check()) {
-            $storys = \App\Story::where('member_id', Auth::User()->id)->get();
-        } else {
-            if (Session::get('facebook_login') != '') {
-                $storys = \App\Story::where('username', Session::get('facebook_login'))->get();
-            }
-        }
-
-        if (Auth::check()) {
-            $history_cashcard = \App\HistoryCashCard::where('username', Auth::User()->username)
-                ->where('response_code', 0)
-                ->get();
-        } else {
-            if (Session::get('facebook_login') != '') {
-                $history_cashcard = \App\HistoryCashCard::where('username', Session::get('facebook_login'))
-                    ->where('response_code', 0)
-                    ->get();
-            }
-        }
-
-        $real_amount = 0;
-
-        foreach ($history_cashcard as $data) {
-
-            if ($data->amount == '5000') {
-                $real_amount = $real_amount + 5400;
-            } else if ($data->amount == '9000') {
-                $real_amount = $real_amount + 9800;
-            } else if ($data->amount == '15000') {
-                $real_amount = $real_amount + 16400;
-            } else if ($data->amount == '30000') {
-                $real_amount = $real_amount + 33000;
-            } else if ($data->amount == '50000') {
-                $real_amount = $real_amount + 55200;
-            } else if ($data->amount == '100000') {
-                $real_amount = $real_amount + 111000;
-            }
-
-        }
-
+        $storys = Story::where('member_id', Auth::user()->id)->get();
         return view('user.profile')
-            ->with('storys', $storys)
-            ->with('real_amount', $real_amount);
-
+            ->with('storys', $storys);
     }
 
     public function getProfileAuthor(Request $request)
