@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BanSubStory;
 use App\Http\Requests\Comment;
+use App\Http\Requests\RegisterWriter;
 use App\PermissionSubStory;
 use App\SubStoryStatistic;
 use Illuminate\Http\Request;
@@ -57,9 +58,11 @@ class StoryController extends Controller
 
         $storyStatistic = \App\StoryStatistic::find($request->id);
 
+        ($story->member_id == Auth::user()->id) ? $owner = 1 : $owner = 0;
+
         return view('user.read_story',
             compact('id', 'story', 'category_name', 'status_alert', 'story_comments',
-            'sub_storys', 'status_ban', 'permission_story', 'storyStatistic'));
+            'sub_storys', 'status_ban', 'permission_story', 'storyStatistic', 'owner'));
     }
 
     public function getReadStoryDetail(Request $request)
@@ -75,7 +78,7 @@ class StoryController extends Controller
         $subStoryVisitorUpdate->count_visitor = ++$subStoryVisitorUpdate->count_visitor;
         $subStoryVisitorUpdate->save();
 
-        $comment = ReplyCommentStory::find($sub_story->id);
+        $count_comment = SubStoryComment::where('sub_story_id', $sub_story->id)->count();
         $updated_at = Carbon::parse($sub_story->updated_at)->addYears(543)->format('d / m / Y');
 
         $sub_story_comments = SubStoryComment::where('sub_story_id', $request->id)->orderBy('created_at', 'desc')->get();
@@ -90,9 +93,9 @@ class StoryController extends Controller
             ->with('story', $story)
             ->with('sub_story', $sub_story)
             ->with('author', $author)
-            ->with('category', $category->category_name)
+            ->with('category', $category)
             ->with('SubStoryStatistic', $SubStoryStatistic)
-            ->with('comment', count($comment))
+            ->with('count_comment', $count_comment)
             ->with('updated_at', $updated_at)
             ->with('sub_story_comments', $sub_story_comments)
             ->with('status_ban', $status_ban);
@@ -181,9 +184,17 @@ class StoryController extends Controller
         $id = $request->id;
         $sub_story = SubStory::where('story_id', $id)->get();
         $count_sub_story = count($sub_story);
-        return view('user.write_sub_story')
-            ->with('id', $id)
-            ->with('count_sub_story', $count_sub_story);
+        $check_writer = \App\RegisterWriter::where('member_id', Auth::user()->id)->get();
+        if ($check_writer) {
+            foreach ($check_writer as $item) {
+                if ($item->confirm_status == 1) {
+                    $status_writer = 1;
+                } else {
+                    $status_writer = 0;
+                }
+            }
+        }
+        return view('user.write_sub_story', compact('id', 'count_sub_story', 'status_writer'));
     }
 
     public function postInsertSubStory(Request $request)

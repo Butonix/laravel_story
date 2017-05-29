@@ -94,11 +94,11 @@
                                 <tbody>
                                 <tr>
                                     <td>นักเขียน</td>
-                                    <td>{{ $author }}</td>
+                                    <td><a href="{{ url('user/profile/'.$author) }}">{{ $author }}</a></td>
                                 </tr>
                                 <tr>
                                     <td>หมวดนิยาย</td>
-                                    <td>{{ $category }}</td>
+                                    <td><a href="{{ url('category/'.$category->id) }}">{{ $category->category_name }}</a></td>
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>
@@ -106,7 +106,7 @@
                                 </tr>
                                 <tr>
                                     <td>ความคิดเห็น</td>
-                                    <td>{{ $comment }}</td>
+                                    <td>{{ number_format($count_comment) }}</td>
                                 </tr>
                                 <tr>
                                     <td>อัพเดทล่าสุด</td>

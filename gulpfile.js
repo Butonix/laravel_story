@@ -31,6 +31,6 @@ elixir(function(mix) {
       'sweetalert.min.js'
     ]);
     mix.browserSync({
-        proxy: 'janjaow:8888'
+        proxy: 'story.dev'
     });
 });

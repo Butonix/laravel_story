@@ -52,12 +52,13 @@
                         </div>
                         <hr>
 
-                        @if ($count_sub_story >= 4)
+                        @if ($status_writer == 1 && $count_sub_story >= 4)
                             <div class="form-group">
+                                <input type="checkbox" name="set-permission" id="set-permission">&ensp;
                                 <span style="font-size: 16px;">เปิดรับเหรียญ <span style="color: green;">(กรณีต้องการให้เข้าชมฟรี ให้เว้นว่าง)</span></span>
                             </div>
 
-                            <div class="form-inline">
+                            <div class="form-inline form-permission">
                                 <div class="form-group" style="margin-right: 10px;">
                                     <label for="">
                                         <i class="fa fa-usd fa-lg"></i>
@@ -84,6 +85,18 @@
                                 </div>
                             </div>
                             <hr>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.form-permission').hide();
+                                    $('#set-permission').change(function () {
+                                        if ($(this).is(':checked')) {
+                                            $('.form-permission').show();
+                                        } else {
+                                            $('.form-permission').hide();
+                                        }
+                                    });
+                                });
+                            </script>
                         @endif
 
                         <div class="form-group text-center">

@@ -47,7 +47,7 @@ class CashCardController extends Controller
         echo "Status : " . $result[5] . "<br>";
 
         $history_cashcard = new HistoryCashCard;
-        $history_cashcard->username = Auth::User()->username;
+        $history_cashcard->member_id = Auth::User()->id;
         $history_cashcard->transaction = strip_tags($result[0]);
         $history_cashcard->response_code = strip_tags($result[1]);
         $history_cashcard->response_desc = strip_tags($result[2]);

@@ -98,19 +98,20 @@
                                 </tr>
                                 <tr>
                                     <td>หมวดนิยาย</td>
-                                    <td><a href="{{ url('category/'.$story->category_id) }}">{{ $category_name }}</a></td>
+                                    <td><a href="{{ url('category/'.$story->category_id) }}">{{ $category_name }}</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>
-                                    <td>{{ $storyStatistic->count_visitor }}</td>
+                                    <td>{{ number_format($storyStatistic->count_visitor) }}</td>
                                 </tr>
                                 <tr>
                                     <td>ความคิดเห็น</td>
-                                    <td>none</td>
+                                    <td>{{ number_format(\App\StoryComment::where('story_id', $story->id)->count()) }}</td>
                                 </tr>
                                 <tr>
                                     <td>อัพเดทล่าสุด</td>
-                                    <td>{{ date_format($story->created_at, 'Y/m/d') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($story->updated_at)->addYears(543)->format("d / m / Y") }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -155,7 +156,8 @@
                         <th style="font-size: 18px;">ลำดับตอน / ชื่อตอน</th>
                         <th style="font-size: 18px;">จำนวนการเข้าชม</th>
                         <th style="font-size: 18px;">ความคิดเห็น</th>
-                        <th></th>
+                        @if ($owner == 1)
+                            <th></th> @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -166,13 +168,58 @@
                             $comment = App\SubStoryComment::where('sub_story_id', $sub_story->id)->first();
                         @endphp
                         <tr>
+                            @php($permission = \App\PermissionSubStory::find($sub_story->id))
+
                             <td>{{ $created_at }}</td>
-                            <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
-                                   target="_blank">{{ $sub_story->story_name }}</a></td>
+
+                            @if ($owner == 1)
+                                <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
+                                       target="_blank">{{ $sub_story->story_name }}</a></td>
+                            @else
+                                @if ($permission->unlock_coin != 0)
+                                    @if (\App\UnlockSubStory::where('sub_story_id', $sub_story->id)->where('member_id', Auth::user()->id)->count() == 1)
+                                        <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
+                                               target="_blank">{{ $sub_story->story_name }}</a></td>
+                                    @else
+                                        <td>
+                                            <a href="{{ url('user/unlock/'.$sub_story->id) }}">{{ $sub_story->story_name }}</a>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
+                                           target="_blank">{{ $sub_story->story_name }}</a></td>
+                                @endif
+                            @endif
+
                             <td>{{ $visitor->count_visitor }}</td>
                             <td>{{ count($comment) }}</td>
-                            <td><a href="{{ url('user/update/sub_story/'.$sub_story->id) }}"><i
-                                            class="fa fa-pencil"></i> แก้ไขเนื้อหา</a></td>
+                            @if ($owner == 1)
+                                @if ($permission->unlock_coin == 0)
+                                    <td>
+                                        <a href="{{ url('user/update/sub_story/'.$sub_story->id) }}">
+                                            <i class="fa fa-pencil"></i> แก้ไขเนื้อหา</a></td>
+                                @else
+                                    <td><a href="#" id="error-{{ $sub_story->id }}"><i class="fa fa-pencil"></i>
+                                            แก้ไขเนื้อหา</a></td>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#error-{{ $sub_story->id }}').on('click', function () {
+                                                swal({
+                                                        title: "",
+                                                        text: "<h3>ขออภัย ไม่สามารถแก้ไขได้</h3>" +
+                                                        "<h3><i class='fa fa-usd'></i> / <i class='fa fa-diamond'></i></h3>",
+                                                        html: true,
+                                                        confirmButtonText: "ติดต่อเรา",
+                                                        closeOnConfirm: false
+                                                    },
+                                                    function () {
+                                                        window.location = "{{ url('/contact') }}";
+                                                    })
+                                            });
+                                        });
+                                    </script>
+                                @endif
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>
@@ -180,12 +227,14 @@
             </div>
         </div>
 
-        <div class="form-group text-center">
-            <a href="{{ url('user/write/story/sub/'.$id) }}">
-                <button type="button" class="btn btn-primary" style="width: 20%; font-size: 18px;">เพิ่มตอนใหม่ <i
-                            class="fa fa-plus"></i></button>
-            </a>
-        </div>
+        @if ($owner == 1)
+            <div class="form-group text-center">
+                <a href="{{ url('user/write/story/sub/'.$id) }}">
+                    <button type="button" class="btn btn-primary" style="width: 20%; font-size: 18px;">เพิ่มตอนใหม่ <i
+                                class="fa fa-plus"></i></button>
+                </a>
+            </div>
+        @endif
 
         @if ($permission_story->status_comment == 1)
             <div class="col-xs-12 col-sm-12 col-md-12">

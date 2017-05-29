@@ -75,6 +75,10 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('sub_story/{id}', 'StoryController@postUpdateSubStory');
     });
 
+    Route::group(['middleware' => 'AuthUser'], function () {
+        Route::resource('unlock', 'UnlockController');
+    });
+
 });
 
 /* End Route User */
