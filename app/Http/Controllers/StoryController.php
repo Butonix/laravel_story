@@ -61,9 +61,25 @@ class StoryController extends Controller
 
         ($story->member_id == Auth::user()->id) ? $owner = 1 : $owner = 0;
 
+        // Result Cash
+        $total_coin = 0;
+        foreach ($sub_storys as $sub_story) {
+            $permission = PermissionSubStory::find($sub_story->id);
+            if ($permission->unlock_coin > 0 && $permission->unlock_diamond > 0) {
+                $coin_start = $permission->unlock_coin;
+                $diamond_start = $permission->unlock_diamond;
+                $unlockSubStory = UnlockSubStory::where('sub_story_id', $permission->sub_story_id)->get();
+                if (count($unlockSubStory) > 0) {
+                    foreach ($unlockSubStory as $item) {
+                        $total_coin = $total_coin + $coin_start;
+                    }
+                }
+            }
+        }
+
         return view('user.read_story',
             compact('id', 'story', 'category_name', 'status_alert', 'story_comments',
-            'sub_storys', 'status_ban', 'permission_story', 'storyStatistic', 'owner'));
+            'sub_storys', 'status_ban', 'permission_story', 'storyStatistic', 'owner', 'total_coin'));
     }
 
     public function getReadStoryDetail(Request $request)
@@ -102,6 +118,27 @@ class StoryController extends Controller
         $status_ban = $status_ban->status_ban;
         // End Check Ban
 
+
+        // Get count love story
+        $storyStatistic = \App\StoryStatistic::find($story->id);
+
+        // Result Cash
+        $total_coin = 0;
+        $sub_storys = SubStory::where('story_id', $story->id)->get();
+        foreach ($sub_storys as $sub_story) {
+            $permission = PermissionSubStory::find($sub_story->id);
+            if ($permission->unlock_coin > 0 && $permission->unlock_diamond > 0) {
+                $coin_start = $permission->unlock_coin;
+                $diamond_start = $permission->unlock_diamond;
+                $unlockSubStory = UnlockSubStory::where('sub_story_id', $permission->sub_story_id)->get();
+                if (count($unlockSubStory) > 0) {
+                    foreach ($unlockSubStory as $item) {
+                        $total_coin = $total_coin + $coin_start;
+                    }
+                }
+            }
+        }
+
         return view('user.story_detail')
             ->with('sub_story_id', $request->id)
             ->with('story', $story)
@@ -112,7 +149,9 @@ class StoryController extends Controller
             ->with('count_comment', $count_comment)
             ->with('updated_at', $updated_at)
             ->with('sub_story_comments', $sub_story_comments)
-            ->with('status_ban', $status_ban);
+            ->with('status_ban', $status_ban)
+            ->with('total_coin', $total_coin)
+            ->with('storyStatistic', $storyStatistic);
     }
 
     public function getWriteStory()

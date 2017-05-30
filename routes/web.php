@@ -100,6 +100,7 @@ Route::group(['middleware' => ['AuthAdmin']], function () {
 
         Route::group(['prefix' => 'member'], function () {
             Route::get('all', 'MemberController@getAllMember')->name('member/all');
+            Route::get('all/sort', 'MemberController@getAllMemberSort');
             Route::get('facebook', 'MemberController@getAllFacebook');
             Route::get('add', 'MemberController@getAddMember');
             Route::post('add', 'MemberController@postAddMember');

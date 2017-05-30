@@ -71,7 +71,8 @@ class CashCardController extends Controller
 
     public function getHistoryTopup()
     {
-        $getHistoryCashCard = HistoryCashCard::orderBy('created_at', 'desc')->get();
+        $getHistoryCashCard = HistoryCashCard::where('member_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc')->get();
         $historyCashCard = new HistoryCashCard;
         return view('user.history_topup', compact('getHistoryCashCard', 'historyCashCard'));
     }

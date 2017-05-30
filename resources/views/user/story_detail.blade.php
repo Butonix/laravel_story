@@ -139,18 +139,18 @@
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
-                                    <td>1,200,000</td>
+                                    <td>{{ $total_coin }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td><span id="count-like">{{ number_format($SubStoryStatistic->count_like) }}</span>
+                                    <td><span id="count-like">{{ number_format($storyStatistic->count_like) }}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
                                     <td>ยอดเพชร</td>
-                                    <td>20,000</td>
+                                    <td>none</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -175,7 +175,8 @@
         </div>
     </div>
 
-    @include('user.components.modal_like_sub_story')
+    {{--@include('user.components.modal_like_sub_story')--}}
+    @include('user.components.modal_like_story')
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -19,6 +19,13 @@ class MemberController extends Controller
         return view('admin.member.member', compact('members'));
     }
 
+    public function getAllMemberSort()
+    {
+        Session::put('active_menu', 'member');
+        $members = Member::all();
+        return view('admin.member.sort', compact('members'));
+    }
+
     public function getAllFacebook()
     {
         Session::put('active_menu', 'member');

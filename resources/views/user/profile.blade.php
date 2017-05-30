@@ -91,17 +91,17 @@
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
-                                    <td>none</td>
+                                    <td>{{ $total_coin }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td>50,000</td>
+                                    <td>{{ $total_love }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
                                     <td>ยอดเพชร</td>
-                                    <td>20,000</td>
+                                    <td>none</td>
                                 </tr>
                                 </tbody>
                             </table>
