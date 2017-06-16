@@ -31,7 +31,7 @@
             <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
         </div>
         <div class="form-group">
-            <form action="{{ url('user/comment/story/'.$announce->id) }}" method="post">
+{{--            <form action="{{ url('user/comment/story/'.$announce->id) }}" method="post">--}}
                 {{ csrf_field() }}
                 <div class="form-group">
                     <textarea name="comment_detail" id="" class="form-control summernote" style="resize: none;" cols="30" rows="10"></textarea>
@@ -40,7 +40,7 @@
                     <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;">บันทึก
                     </button>
                 </div>
-            </form>
+            {{--</form>--}}
         </div>
     </div>
 @endif

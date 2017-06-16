@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bonus;
 use App\HowToUnlockStory;
 use App\Http\Requests\RequestRegisterWriter;
+use App\SubStory;
+use App\UnlockSubStory;
 use Illuminate\Http\Request;
 
 use App\Member;
@@ -33,6 +36,8 @@ class UserController extends Controller
 
         $storys = Story::orderBy('created_at', 'desc')->get();
 
+        $sortDescByStory = Story::orderBy('count_like', 'desc')->limit(5)->get();
+
         $announces = new Announce;
         $announces = $announces::orderBy('created_at', 'desc')->get();
 
@@ -47,7 +52,8 @@ class UserController extends Controller
         return view('user.home')
             ->with('storys', $storys)
             ->with('top_visitors', $top_visitors)
-            ->with('announces', $announces);
+            ->with('announces', $announces)
+            ->with('sortDescByStory', $sortDescByStory);
     }
 
     public function getAboutUs()
@@ -244,6 +250,36 @@ class UserController extends Controller
             }
         }
 
+    }
+
+    public function wallet() {
+        $month[1] = array();
+        $month[2] = array();
+        $month[3] = array();
+        $month[4] = array();
+        $month[5] = array();
+        $month[6] = array();
+        $month[7] = array();
+        $month[8] = array();
+        $month[9] = array();
+        $month[10] = array();
+        $month[11] = array();
+        $month[12] = array();
+        $unlocks = UnlockSubStory::all();
+        foreach ($unlocks as $unlock) {
+            $sub_story = SubStory::find($unlock->sub_story_id);
+            $story = Story::find($sub_story->story_id);
+            if ($story->member_id == Auth::user()->id) {
+                array_push($month[$unlock->created_at->month], [
+                    'month' => $unlock->created_at->month,
+                    'year' => ($unlock->created_at->year + 543),
+                    'income' => ($sub_story->unlock_coin / 300)
+                ]);
+            }
+        }
+        $info_writer = RegisterWriter::where('member_id', Auth::user()->id)->first();
+//        dd($month);
+        return view('user.wallet', compact('month', 'info_writer', 'bonus'));
     }
 
 }

@@ -108,7 +108,8 @@
                                         <div class="form-group">
                                             <a href="{{ url('user/read/story/'.$story->id) }}">
                                                 {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
-                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
+                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
+                                                     style="width: 120px; height: 120px; border-radius: 4px;">
                                             </a>
                                         </div>
                                     </div>
@@ -116,7 +117,8 @@
                                         <div class="form-group">
                                             <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
-                                            <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                            <span style="font-size: 16px;"><i
+                                                        class="fa fa-user"></i> {{ $story->story_author }}</span><br>
                                             <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                         </div>
                                     </div>
@@ -153,7 +155,8 @@
                                         <div class="form-group">
                                             <a href="{{ url('user/read/story/'.$story->id) }}">
                                                 {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
-                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
+                                                <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
+                                                     style="width: 120px; height: 120px; border-radius: 4px;">
                                             </a>
                                         </div>
                                     </div>
@@ -161,7 +164,8 @@
                                         <div class="form-group">
                                             <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
-                                            <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                            <span style="font-size: 16px;"><i
+                                                        class="fa fa-user"></i> {{ $story->story_author }}</span><br>
                                             <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                         </div>
                                     </div>
@@ -180,21 +184,21 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="panel panel-success">
-                <div class="panel-heading text-left">
-                    <span style="font-size: 22px;">จัดอันดับสนับสนุน</span>
-                </div>
-                <div class="body" style="//background-color: #ffffe6;">
-                    <div class="media">
+        {{--<div class="col-xs-12 col-sm-12 col-md-12">--}}
+            {{--<div class="panel panel-success">--}}
+                {{--<div class="panel-heading text-left">--}}
+                    {{--<span style="font-size: 22px;">จัดอันดับสนับสนุน</span>--}}
+                {{--</div>--}}
+                {{--<div class="body" style="//background-color: #ffffe6;">--}}
+                    {{--<div class="media">--}}
 
-                        <a href="#" class="pull-right"
-                           style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>
+                        {{--<a href="#" class="pull-right"--}}
+                           {{--style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-success">
@@ -210,7 +214,8 @@
                                     <div class="form-group">
                                         <a href="{{ url('user/read/story/'.$story->id) }}">
                                             {{--<img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 250px; height: 350px; border-radius: 4px;">--}}
-                                            <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" style="width: 120px; height: 120px; border-radius: 4px;">
+                                            <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}"
+                                                 style="width: 120px; height: 120px; border-radius: 4px;">
                                         </a>
                                     </div>
                                 </div>
@@ -218,7 +223,8 @@
                                     <div class="form-group">
                                         <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                         </h4>
-                                        <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
+                                        <span style="font-size: 16px;"><i
+                                                    class="fa fa-user"></i> {{ $story->story_author }}</span><br>
                                         <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                     </div>
                                 </div>
@@ -240,13 +246,19 @@
                 <div class="panel-heading text-left">
                     <span style="font-size: 22px;">อันดับนักเขียน</span>
                 </div>
-                <div class="body" style="//background-color: #ffffe6;">
-                    <div class="media">
+                <div class="body" style="//background-color: #ffffe6; //padding-top: 20px;">
 
-                        <a href="#" class="pull-right"
-                           style="padding-right: 10px; padding-bottom: 10px; font-size: 16px;">ดูทั้งหมด...</a>
-
+                    <div class="list-group" style="//margin-top: 10px;">
+                        @foreach ($sortDescByStory as $story)
+                            @php
+                                $member = \App\Member::find($story->member_id);
+                            @endphp
+                            <button type="button" class="list-group-item"><span class="pull-left"><i class="fa fa-star" style="color: orange;"></i> อันดับ {{ $loop->iteration }}
+                                    <a href="{{ url('user/profile/'.$member->username) }}">{{ $member->username }}</a></span>
+                            </button>
+                        @endforeach
                     </div>
+
                 </div>
             </div>
         </div>

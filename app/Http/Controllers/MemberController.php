@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateMember;
 use Illuminate\Http\Request;
 use App\Member;
+use App\Bonus;
 use Session;
 use Hash;
 
@@ -68,5 +69,19 @@ class MemberController extends Controller
         Member::where('id', $request->id)->update([
             'status_ban' => 0
         ]);
+    }
+
+    public function Bonus() {
+        Session::put('active_menu', 'member');
+        $members = Member::all();
+        return view('admin.member.bonus', compact('members'));
+    }
+
+    public function postBonus(Request $request) {
+        Bonus::create([
+            'member_id' => $request->id,
+            'money' => $request->bonus
+        ]);
+        return redirect()->back()->with('status', 'success');
     }
 }

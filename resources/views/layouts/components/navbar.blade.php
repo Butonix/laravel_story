@@ -32,7 +32,7 @@
                         <li><a href="{{ url('user/history/unlock') }}" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>
                         <li><a href="{{ url('user/register/writer') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ
                                 Point</a></li>
-                        <li><a href="#" style="font-size: 18px;">แสดงรายได้</a></li>
+                        <li><a href="{{ url('user/wallet') }}" style="font-size: 18px;">แสดงรายได้</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ url('user/auth/logout') }}" style="font-size: 18px;"><i
                                         class="fa fa-sign-out"></i> ออกจากระบบ</a></li>

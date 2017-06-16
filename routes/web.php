@@ -21,7 +21,6 @@ Route::get('login/facebook/callback', 'UserController@handleProviderCallback');
 /* Route User */
 
 Route::group(['prefix' => 'user'], function () {
-
     Route::group(['prefix' => 'auth'], function () {
         Route::post('register', 'UserAuthController@postRegister');
         Route::post('login', 'UserAuthController@postLogin');
@@ -31,6 +30,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('profile', 'ProfileController@getProfile')->name('profile');
     Route::get('profile/{author}', 'ProfileController@getProfileAuthor');
 
+    Route::get('wallet', 'UserController@wallet');
 
     Route::get('read/story/{id}', 'StoryController@getReadStory')->name('main_story');
     Route::get('read/story/detail/{id}', 'StoryController@getReadStoryDetail');
@@ -109,6 +109,8 @@ Route::group(['middleware' => ['AuthAdmin']], function () {
             Route::get('delete/{member_id}', 'MemberController@getDeleteMember');
             Route::post('ban/{id}', 'MemberController@BanMember');
             Route::post('unban/{id}', 'MemberController@UnbanMember');
+            Route::get('bonus', 'MemberController@Bonus');
+            Route::post('bonus/{id}', 'MemberController@postBonus');
         });
 
         Route::group(['prefix' => 'category'], function () {

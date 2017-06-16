@@ -30,6 +30,7 @@
                             <li><a href="{{ url('admin/member/all') }}">สมาชิกทั้งหมด</a></li>
                             <li><a href="{{ url('admin/member/add') }}">เพิ่มสมาชิก</a></li>
                             <li><a href="{{ url('admin/writer') }}">นักเขียนระบบ Point</a></li>
+                            <li><a href="{{ url('admin/member/bonus') }}">โบนัส</a></li>
                             {{--<li><a href="{{ url('admin/member/facebook') }}">สมาชิกเฟสบุ๊ค</a></li>--}}
                         </ul>
                     </li>

@@ -82,6 +82,14 @@ class ForeignKey extends Migration
                 ->references('id')->on('story')
                 ->onDelete('cascade');
         });
+
+//        if (Schema::hasTable('bonus')) {
+//            Schema::table('bonus', function (Blueprint $table) {
+//                $table->foreign('member_id')
+//                    ->references('id')->on('member')
+//                    ->onDelete('cascade');
+//            });
+//        }
     }
 
     /**
