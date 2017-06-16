@@ -86,17 +86,17 @@
                                 <tr>
                                     <td></td>
                                     <td>รายได้</td>
-                                    <td>0.00 บาท</td>
+                                    <td>{{ number_format($thai_bath, 2) }} บาท</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
-                                    <td>{{ $total_coin }}</td>
+                                    <td>{{ number_format($total_coin) }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td>{{ $total_love }}</td>
+                                    <td>{{ number_format($total_love) }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
@@ -124,9 +124,6 @@
 
                     @if ($storys)
                         @foreach ($storys as $story)
-                            @php
-                                $story_visitor = \App\StoryStatistic::find($story->id);
-                            @endphp
                             <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                                 <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                     <div class="form-group">
@@ -141,7 +138,7 @@
                                         <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                         </h4>
                                         <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                        <span style="font-size: 16px;">ยอดวิว {{ $story_visitor->count_visitor }}</span><br>
+                                        <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span><br>
                                         @if ($story->member_id == Auth::User()->id)
                                             <a href="{{ url('user/update/story/'.$story->id) }}"><i
                                             class="fa fa-pencil"></i> แก้ไขเนื้อหา</a>

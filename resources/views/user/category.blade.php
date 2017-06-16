@@ -18,13 +18,7 @@
                     <div class="media" style="margin-top: 20px;">
 
                         @foreach ($storys as $story)
-
-                            @php
-                                $permission_story = \App\PermissionStory::find($story->id);
-                                $storyStatistic = \App\StoryStatistic::find($story->id);
-                            @endphp
-
-                            @if ($permission_story->status_public == 1)
+                            @if ($story->status_public == 1)
                                 <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                                     <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                         <div class="form-group">
@@ -39,7 +33,7 @@
                                             <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
                                             <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                            <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
+                                            <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                         </div>
                                     </div>
                                 </div>

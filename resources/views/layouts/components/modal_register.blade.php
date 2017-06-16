@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <div class="icon-addon addon-lg">
                             <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้งาน"
-                                   value="{{ old('username') }}" required>
+                                   value="{{ old('username') }}" maxlength="15" required>
                             <!-- <i class="fa fa-user"></i> -->
                         </div>
                     </div>

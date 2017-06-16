@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateMember;
 use Illuminate\Http\Request;
 use App\Member;
-use App\FacebookLogin;
-use App\PermissionMember;
 use Session;
 use Hash;
 
@@ -24,13 +22,6 @@ class MemberController extends Controller
         Session::put('active_menu', 'member');
         $members = Member::all();
         return view('admin.member.sort', compact('members'));
-    }
-
-    public function getAllFacebook()
-    {
-        Session::put('active_menu', 'member');
-        $facebook = new FacebookLogin;
-        return view('admin.member.facebook')->with('facebooks', $facebook->get());
     }
 
     public function getAddMember()
@@ -65,13 +56,17 @@ class MemberController extends Controller
         return redirect()->back()->with('status_delete', 'done');
     }
 
-    public function BanMember(PermissionMember $permission, $id)
+    public function BanMember(Request $request)
     {
-        $permission->banMember($id);
+        Member::where('id', $request->id)->update([
+            'status_ban' => 1
+        ]);
     }
 
-    public function UnbanMember(PermissionMember $permission, $id)
+    public function UnbanMember(Request $request)
     {
-        $permission->unBanMember($id);
+        Member::where('id', $request->id)->update([
+            'status_ban' => 0
+        ]);
     }
 }

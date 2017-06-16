@@ -102,13 +102,7 @@
                     <div class="media">
 
                         @foreach ($storys as $story)
-
-                            @php
-                                $permission_story = \App\PermissionStory::find($story->id);
-                                $storyStatistic = \App\StoryStatistic::find($story->id);
-                            @endphp
-
-                            @if ($permission_story->status_public == 1)
+                            @if ($story->status_public == 1)
                                 <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                                     <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                         <div class="form-group">
@@ -123,7 +117,7 @@
                                             <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
                                             <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                            <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
+                                            <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -150,12 +144,10 @@
 
                         @foreach ($top_visitors as $top_visitor)
                             @php
-                                $story = App\Story::find($top_visitor->story_id);
-                                $permission_story = \App\PermissionStory::find($story->id);
-                                $storyStatistic = \App\StoryStatistic::find($story->id);
+                                $story = App\Story::find($top_visitor->id);
                             @endphp
 
-                            @if ($permission_story->status_public == 1)
+                            @if ($story->status_public == 1)
                                 <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                                     <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                         <div class="form-group">
@@ -170,7 +162,7 @@
                                             <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                             </h4>
                                             <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                            <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
+                                            <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -213,9 +205,6 @@
                     <div class="media">
 
                         @foreach ($storys as $story)
-                            @php
-                                $storyStatistic = \App\StoryStatistic::find($story->id);
-                            @endphp
                             <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                                 <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                     <div class="form-group">
@@ -230,7 +219,7 @@
                                         <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                         </h4>
                                         <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                        <span style="font-size: 16px;">ยอดวิว {{ $storyStatistic->count_visitor }}</span>
+                                        <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -273,8 +262,11 @@
                     <div class="list-group" style="margin-top: 10px;">
 
                         @foreach ($announces as $announce)
+                            @php
+                                $member = \App\Member::find($announce->member_id);
+                            @endphp
                             <button type="button" class="list-group-item"><span class="pull-left">{{ $loop->iteration }}
-                                    . <a href="{{ url('user/announce/read/'.$announce->id) }}">{{ $announce->announce_title }}</a> โดย {{ $announce->username }}</span>
+                                    . <a href="{{ url('user/announce/read/'.$announce->id) }}">{{ $announce->announce_title }}</a> โดย {{ $member->username }}</span>
                                 <span class="pull-right">{{ $announce->created_at }}</span></button>
                         @endforeach
 

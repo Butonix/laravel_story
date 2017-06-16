@@ -2,7 +2,7 @@
 <html>
 @include('layouts.components.head')
 <body>
-<div class="container">
+<div class="container-fluid">
 
     {{-- @include('layouts.components.banner')
     @include('layouts.components.navbar')

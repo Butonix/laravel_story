@@ -21,7 +21,7 @@
         }
     </style>
 
-    @if ($status_ban == 1)
+    @if ($story->status_ban == 1)
         <script type="text/javascript">
             swal({
                     title: "",
@@ -103,7 +103,7 @@
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>
-                                    <td>{{ number_format($storyStatistic->count_visitor) }}</td>
+                                    <td>{{ number_format($story->count_visitor) }}</td>
                                 </tr>
                                 <tr>
                                     <td>ความคิดเห็น</td>
@@ -164,19 +164,16 @@
                     @foreach ($sub_storys as $sub_story)
                         @php
                             $created_at = \Carbon\Carbon::parse($sub_story->created_at)->addYears(543)->format("d / m / Y");
-                            $visitor = App\SubStoryStatistic::where('sub_story_id', $sub_story->id)->first();
                             $comment = App\SubStoryComment::where('sub_story_id', $sub_story->id)->first();
                         @endphp
                         <tr>
-                            @php($permission = \App\PermissionSubStory::find($sub_story->id))
-
                             <td>{{ $created_at }}</td>
 
                             @if ($owner == 1)
                                 <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
                                        target="_blank">{{ $sub_story->story_name }}</a></td>
                             @else
-                                @if ($permission->unlock_coin != 0)
+                                @if ($sub_story->unlock_coin != 0)
                                     @if (\App\UnlockSubStory::where('sub_story_id', $sub_story->id)->where('member_id', Auth::user()->id)->count() == 1)
                                         <td><a href="{{ url('user/read/story/detail/'.$sub_story->id) }}"
                                                target="_blank">{{ $sub_story->story_name }}</a></td>
@@ -184,9 +181,9 @@
                                         <td>
                                             <a href="{{ url('user/unlock/'.$sub_story->id) }}">{{ $sub_story->story_name }}
                                                 <span style="color: green;" class="pull-right">
-                                                    {{ $permission->unlock_coin }}
+                                                    {{ $sub_story->unlock_coin }}
                                                     <i class="fa fa-usd"></i>&ensp;หรือ&ensp;
-                                                    {{ $permission->unlock_diamond }}
+                                                    {{ $sub_story->unlock_diamond }}
                                                     <i class="fa fa-diamond"></i>
                                                 </span>
                                             </a>
@@ -198,10 +195,10 @@
                                 @endif
                             @endif
 
-                            <td>{{ $visitor->count_visitor }}</td>
+                            <td>{{ $sub_story->count_visitor }}</td>
                             <td>{{ count($comment) }}</td>
                             @if ($owner == 1)
-                                @if ($permission->unlock_coin == 0)
+                                @if ($sub_story->unlock_coin == 0)
                                     <td>
                                         <a href="{{ url('user/update/sub_story/'.$sub_story->id) }}">
                                             <i class="fa fa-pencil"></i> แก้ไขเนื้อหา</a></td>
@@ -243,7 +240,7 @@
             </div>
         @endif
 
-        @if ($permission_story->status_comment == 1)
+        @if ($story->status_comment == 1)
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <span style="font-size: 22px;">ความคิดเห็น / รีวิว</span>
@@ -324,7 +321,7 @@
 
                 {{-- Show Reply --}}
                 @php
-                    $reply_comments = \App\ReplyCommentStory::where('reply_comment_id', $story_comment->id)->get();
+                    $reply_comments = \App\ReplyCommentStory::where('story_comment_id', $story_comment->id)->get();
                 @endphp
 
                 @foreach ($reply_comments as $reply_comment)

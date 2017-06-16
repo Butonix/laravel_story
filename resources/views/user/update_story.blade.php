@@ -14,11 +14,11 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group text-center">
-            <span style="font-size: 28px;">แก้ไขเนื้อหา {{ $update_story->story_name }}</span>
+            <span style="font-size: 28px;">แก้ไขเนื้อหา {{ $story->story_name }}</span>
         </div>
     </div>
 
-    <form action="{{ url('user/update/story/'.$update_story->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('user/update/story/'.$story->id) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <ul class="nav nav-tabs">
@@ -28,7 +28,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <input type="text" name="story_name" class="form-control input-lg" placeholder="ชื่อเรื่อง ..."
-                           value="{{ $update_story->story_name }}" required>
+                           value="{{ $story->story_name }}" required>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <input type="text" name="story_author" class="form-control input-lg" placeholder="นามปากกา ..."
-                           value="{{ $update_story->story_author }}" required>
+                           value="{{ $story->story_author }}" required>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     @foreach ($categorys as $category)
                         <div class="form-group">
 
-                            @if ($category->id == $update_story->category_id)
+                            @if ($category->id == $story->category_id)
                                 <input type="radio" name="category_id" value="{{ $category->id }}" checked required>
                             @else
                                 <input type="radio" name="category_id" value="{{ $category->id }}" required>
@@ -83,9 +83,9 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <!-- <textarea name="story_detail" id="summernote" class="form-control" rows="8" cols="40" style="resize: none;"></textarea> -->
-                        <div id="summernote">{!! $update_story->story_outline !!}</div>
+                        <div id="summernote">{!! $story->story_outline !!}</div>
                         <input type="hidden" name="story_outline" id="story_outline"
-                               value="{{ $update_story->story_outline }}">
+                               value="{{ $story->story_outline }}">
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group text-center">
-                        <img src="{{ url('uploads/images/storys/'.$update_story->story_picture) }}" alt=""
+                        <img src="{{ url('uploads/images/storys/'.$story->story_picture) }}" alt=""
                              style="width: 250px; height: 350px;">
                     </div>
                     <div class="form-group pull-right">
@@ -187,7 +187,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    @if ($permission_story->status_comment == 1)
+                    @if ($story->status_comment == 1)
                         <div class="form-group">
                             <input type="radio" name="status_comment" value="1" checked>
                             <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
@@ -209,7 +209,7 @@
 
                     <hr>
 
-                    @if ($permission_story->status_public == 1)
+                    @if ($story->status_public == 1)
                         <div class="form-group">
                             <input type="radio" name="status_public" value="1" checked>
                             <span style="font-size: 16px;">เผยแพร่</span>

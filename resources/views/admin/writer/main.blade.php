@@ -33,7 +33,7 @@
                                     <td>{{ $member->username }}</td>
                                     <td>{{ $created_at }}</td>
                                     <td>
-                                        @if ($list->confirm_status == 1)
+                                        @if ($list->status_confirm == 1)
                                             <span style="color: green;">ยืนยันแล้ว</span>
                                         @else
                                             <span style="color: #ff6666;">ไม่ยืนยัน</span>

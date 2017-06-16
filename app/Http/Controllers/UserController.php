@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\HowToUnlockStory;
-use App\Http\Requests\RegisterWriter;
-use App\PermissionMember;
+use App\Http\Requests\RequestRegisterWriter;
 use Illuminate\Http\Request;
 
 use App\Member;
 use App\Story;
-use App\StoryStatistic;
 use App\Announce;
 use App\Contact;
 use App\ReportVisitor;
@@ -19,6 +17,7 @@ use App\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use App\RegisterWriter;
 use File;
 use Socialite;
 use Session;
@@ -29,7 +28,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $top_visitors = StoryStatistic::all()->sortByDesc('count_visitor');
+        $top_visitors = Story::all()->sortByDesc('count_visitor');
 //        $top_love = $storys::all()->sortByDesc('love');
 
         $storys = Story::orderBy('created_at', 'desc')->get();
@@ -137,8 +136,8 @@ class UserController extends Controller
     {
         $checkRegister = \App\RegisterWriter::find($request->user()->id);
         if ($checkRegister) {
-            if ($checkRegister->reject_status == 0) {
-                if ($checkRegister->confirm_status == 0) {
+            if ($checkRegister->status_reject == 0) {
+                if ($checkRegister->status_confirm == 0) {
                     return view('user.RegisterWaitingConfirm');
                 } else {
                     return view('user.RegisterWriterConfirm');
@@ -152,19 +151,8 @@ class UserController extends Controller
         }
     }
 
-    public function postRegisterWriter(RegisterWriter $request)
+    public function postRegisterWriter(RequestRegisterWriter $request)
     {
-        $register = new \App\RegisterWriter;
-        $register->member_id = $request->user()->id;
-        $register->full_name = $request->full_name;
-        $register->id_card = $request->id_card;
-        $register->address = $request->address;
-        $register->tel = $request->tel;
-        $register->bank_name = $request->bank_name;
-        $register->bank_sub_branch = $request->bank_sub_branch;
-        $register->bank_account_number = $request->bank_account_number;
-        $register->bank_account_name = $request->bank_account_name;
-
         /* Book Bank File */
         $file = $request->file('book_bank_file');
         $filenameBookBank = $request->user()->id;
@@ -185,14 +173,22 @@ class UserController extends Controller
         $pathIdCard = "uploads/id_card_files/" . $filenameIdCard;
         Image::make($file->getRealPath())->orientate()->save($pathIdCard);
 
-        $register->confirm_status = 0;
-        $register->reject_status = 0;
-        $register->save();
-
+        RegisterWriter::create([
+            'member_id' => $request->user()->id,
+            'full_name' => $request->full_name,
+            'id_card' => $request->id_card,
+            'address' => $request->address,
+            'tel' => $request->tel,
+            'bank_name' => $request->bank_name,
+            'bank_sub_branch' => $request->bank_sub_branch,
+            'bank_account_number' => $request->bank_account_number,
+            'bank_account_name' => $request->bank_account_name,
+            'status_confirm' => 0,
+            'status_reject' => 0
+        ]);
         return redirect()
             ->route('profile')
             ->with('status', 'confirm_register_writer');
-
     }
 
     /**
@@ -218,23 +214,19 @@ class UserController extends Controller
             ->first();
 
         if (!$check_facebook_login) {
-            $member = new Member;
-            $member->username = $user->user['first_name'];
-
+            $email = null;
             if ($user->email == null) {
-                $member->email = $user->id;
+                $email = $user->id;
             } else {
-                $member->email = $user->email;
+                $email = $user->email;
             }
-
-            $member->facebook_id = $user->id;
-            $member->password = Hash::make($user->id);
-            $member->save();
-
-            $permission = new PermissionMember;
-            $permission->member_id = $member->id;
-            $permission->ban_status = 0;
-            $permission->save();
+            Member::create([
+                'username' => $user->user['first_name'],
+                'email' => $email,
+                'facebook_id' => $user->id,
+                'password' => Hash::make($user->id),
+                'status_ban' => 0
+            ]);
         } else {
             if ($check_facebook_login->facebook_id == NULL) {
                 return redirect('/')

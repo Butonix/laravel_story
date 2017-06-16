@@ -183,7 +183,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
 
-                        @if ($permission_story->status_comment == 1)
+                        @if ($story->status_comment == 1)
                             <div class="form-group">
                                 <input type="radio" name="status_comment" value="1" checked>
                                 <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
@@ -205,7 +205,7 @@
 
                         <hr>
 
-                        @if ($permission_story->status_public == 1)
+                        @if ($story->status_public == 1)
                             <div class="form-group">
                                 <input type="radio" name="status_public" value="1" checked>
                                 <span style="font-size: 16px;">เผยแพร่</span>

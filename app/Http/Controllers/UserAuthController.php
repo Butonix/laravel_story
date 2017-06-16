@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\PermissionMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,9 +15,8 @@ class UserAuthController extends Controller
 {
     public function postRegister(Request $request)
     {
-        $member = new Member;
-        $check_username = $member::where('username', $request->username)->count();
-        $check_email = $member::where('email', $request->email)->count();
+        $check_username = Member::where('username', $request->username)->count();
+        $check_email = Member::where('email', $request->email)->count();
 
         if ($check_username > 0 && $check_email > 0) {
             return redirect()->back()
@@ -38,23 +36,19 @@ class UserAuthController extends Controller
                 ->withInput($request->except('password'));
         }
 
-        $member->username = $request->username;
-        $member->email = $request->email;
-        $member->password = Hash::make($request->password);
-        $member->text_password = encrypt($request->password);
-        $member->save();
+        $member = Member::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'text_password' => encrypt($request->password),
+            'status_ban' => 0
+        ]);
 
         MemberMoney::create([
             'member_id' => $member->id,
             'cash' => 0,
             'diamond' => 0
         ]);
-
-        $permission = new PermissionMember;
-        $permission->member_id = $member->id;
-        $permission->ban_status = 0;
-        $permission->save();
-
         return redirect()->back()
             ->with('status_success', 'done');
     }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdate;
 use App\Http\Requests\ProfileUpdateByFacebook;
-use App\PermissionSubStory;
+use App\Member;
+use App\MemberMoney;
 use App\SubStory;
 use App\UnlockSubStory;
 use Illuminate\Http\Request;
@@ -24,62 +25,54 @@ class ProfileController extends Controller
         $storys = Story::where('member_id', Auth::user()->id)->get();
 
         foreach ($storys as $story) {
-            $sub_storys = SubStory::where('story_id', $story->id)->get();
+            $sub_storys = SubStory::where('story_id', $story->id)->where('unlock_coin', '>=', 200)->get();
             foreach ($sub_storys as $sub_story) {
-                $permission = PermissionSubStory::find($sub_story->id);
-                if ($permission->unlock_coin > 0 && $permission->unlock_diamond > 0) {
-                    $coin_start = $permission->unlock_coin;
-                    $diamond_start = $permission->unlock_diamond;
-                    $unlockSubStory = UnlockSubStory::where('sub_story_id', $permission->sub_story_id)->get();
+                    $unlockSubStory = UnlockSubStory::where('sub_story_id', $sub_story->id)->get();
                     if (count($unlockSubStory) > 0) {
                         foreach ($unlockSubStory as $item) {
-                            $total_coin = $total_coin + $coin_start;
+                            $total_coin = $total_coin + $sub_story->unlock_coin;
                         }
                     }
-                }
             }
-            // Get count love story
-            $storyStatistic = \App\StoryStatistic::find($story->id);
-            $total_love = $total_love + $storyStatistic->count_like;
+            $total_love = $total_love + $story->count_like;
         }
 
-        return view('user.profile', compact('storys', 'total_coin', 'total_love'));
+        // Convert coin to thai bath
+        $thai_bath = $total_coin / 300;
+        return view('user.profile', compact('storys', 'total_coin', 'total_love', 'thai_bath'));
     }
 
     public function getProfileAuthor(Request $request)
     {
-        $storys = Story::where('story_author', $request->author)->get();
+//        $storys = Story::where('story_author', $request->author)->get();
+        $member = Member::where('author', $request->author)->first();
+        $wallet = MemberMoney::where('id', $member->id)->first();
 
-        $history_cashcard = new HistoryCashCard;
-
-        if (Auth::check()) {
-            $history_cashcard = $history_cashcard::where('username', $request->author)->where('response_code', 0)->get();
-        }
-
-        $real_amount = 0;
-
-        foreach ($history_cashcard as $data) {
-
-            if ($data->amount == '5000') {
-                $real_amount = $real_amount + 5400;
-            } else if ($data->amount == '9000') {
-                $real_amount = $real_amount + 9800;
-            } else if ($data->amount == '15000') {
-                $real_amount = $real_amount + 16400;
-            } else if ($data->amount == '30000') {
-                $real_amount = $real_amount + 33000;
-            } else if ($data->amount == '50000') {
-                $real_amount = $real_amount + 55200;
-            } else if ($data->amount == '100000') {
-                $real_amount = $real_amount + 111000;
+        // Get total_coin and total_love
+        $total_coin = 0;
+        $total_love = 0;
+        $storys = Story::where('member_id', $member->id)->get();
+        foreach ($storys as $story) {
+            $sub_storys = SubStory::where('story_id', $story->id)->where('unlock_coin', '>=', 200)->get();
+            foreach ($sub_storys as $sub_story) {
+                $unlockSubStory = UnlockSubStory::where('sub_story_id', $sub_story->id)->get();
+                if (count($unlockSubStory) > 0) {
+                    foreach ($unlockSubStory as $item) {
+                        $total_coin = $total_coin + $sub_story->unlock_coin;
+                    }
+                }
             }
-
+            $total_love = $total_love + $story->count_like;
         }
+        // Convert coin to thai bath
+        $thai_bath = $total_coin / 300;
 
         return view('user.profile_author')
             ->with('author', $request->author)
             ->with('storys', $storys)
-            ->with('real_amount', $real_amount);
+            ->with('wallet', $wallet)
+            ->with('thai_bath', $thai_bath)
+            ->with('total_love', $total_love);
     }
 
     public function getProfileUpdate(Request $request)

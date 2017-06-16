@@ -10,6 +10,13 @@ class SubStory extends Model
     protected $fillable = [
         'story_id',
         'story_name',
-        'story_outline'
+        'story_outline',
+        'status_ban',
+        'status_public',
+        'status_comment',
+        'unlock_coin',
+        'unlock_diamond',
+        'count_visitor',
+        'count_like'
     ];
 }

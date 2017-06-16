@@ -33,11 +33,11 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <input type="radio" name="state_comment" value="1" checked>
+                        <input type="radio" name="status_comment" value="1" checked>
                         <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="state_comment" value="0">
+                        <input type="radio" name="status_comment" value="0">
                         <span style="font-size: 16px;">ปิดรับความคิดเห็น</span>
                     </div>
 

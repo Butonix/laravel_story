@@ -19,6 +19,7 @@ class RegisterWriter extends Model
         'bank_account_name',
         'book_bank_file',
         'id_card_file',
-        'confirm_status'
+        'status_confirm',
+        'status_reject'
     ];
 }

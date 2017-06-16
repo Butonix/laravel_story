@@ -8,7 +8,7 @@ class Announce extends Model
 {
     protected $table = 'announce';
     protected $fillable = [
-      'username',
+      'member_id',
       'announce_title',
       'announce_detail',
       'status_comment'

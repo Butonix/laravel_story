@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Support\Facades\Hash;
-use App\PermissionMember;
 
 class Member extends Model implements Authenticatable
 {
@@ -20,6 +19,7 @@ class Member extends Model implements Authenticatable
         'email',
         'password',
         'text_password',
+        'status_ban'
     ];
 
     protected $hidden = [
@@ -28,17 +28,13 @@ class Member extends Model implements Authenticatable
 
     public function insertMember($request)
     {
-        $member = $this->create([
+        $this->create([
             'username' => $request->username,
             'author' => $request->author,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'text_password' => Hash('md5', $request->password)
-        ]);
-
-        PermissionMember::create([
-            'member_id' => $member->id,
-            'ban_status' => 0
+            'text_password' => Hash('md5', $request->password),
+            'status_ban' => 0
         ]);
     }
 
@@ -55,10 +51,4 @@ class Member extends Model implements Authenticatable
             ]);
         }
     }
-
-    public function permissionMember()
-    {
-        return $this->hasMany(PermissionMember::class);
-    }
-
 }

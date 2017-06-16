@@ -60,22 +60,22 @@
                                 <tr>
                                     <td></td>
                                     <td>รายได้</td>
-                                    <td>0.00 บาท</td>
+                                    <td>{{ number_format($thai_bath, 2) }} บาท</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
-                                    <td>{{ number_format($real_amount) }}</td>
+                                    <td>{{ number_format($wallet->cash) }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td>50,000</td>
+                                    <td>{{ number_format($total_love) }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
                                     <td>ยอดเพชร</td>
-                                    <td>20,000</td>
+                                    <td>none</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -96,9 +96,6 @@
                 <div class="panel-body">
 
                     @foreach ($storys as $story)
-                        @php
-                            $story_statistic = \App\StoryStatistic::find($story->id);
-                        @endphp
                         <div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 20px;">
                             <div class="col-xs-12 col-sm-12 col-md-5 text-center">
                                 <div class="form-group">
@@ -113,7 +110,7 @@
                                     <h4>ชื่อเรื่อง <span>{{ $story->story_name }}</span>
                                     </h4>
                                     <span style="font-size: 16px;"><i class="fa fa-user"></i> {{ $story->story_author }}</span><br>
-                                    <span style="font-size: 16px;">ยอดวิว {{ $story_statistic->count_visitor }}</span>
+                                    <span style="font-size: 16px;">ยอดวิว {{ $story->count_visitor }}</span>
                                 </div>
                             </div>
                         </div>

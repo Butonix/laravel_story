@@ -10,27 +10,27 @@
                     <span style="font-size: 22px; color: green;">ยืนยันรายการปลดล็อก</span>
                 </div>
                 <div class="panel-body">
-                    <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6">
+                    <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
                         <div class="form-group">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
                                     <tr>
-                                        <td>ชื่อเรื่อง</td>
+                                        <td style="width: 20%;">ชื่อเรื่อง</td>
                                         <td>{{ $story->story_name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>ชื่อตอน</td>
+                                        <td style="width: 20%;">ชื่อตอน</td>
                                         <td>
                                             <span>{{ $subStory->story_name }}</span>
                                             <span class="pull-right" style="color: green;">
-                                            {{ $permission->unlock_coin }} <i class="fa fa-usd"></i>&ensp;หรือ&ensp;
-                                                {{ $permission->unlock_diamond }} <i class="fa fa-diamond"></i>
+                                            {{ $subStory->unlock_coin }} <i class="fa fa-usd"></i>&ensp;หรือ&ensp;
+                                                {{ $subStory->unlock_diamond }} <i class="fa fa-diamond"></i>
                                         </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>นักเขียน</td>
+                                        <td style="width: 20%;">นักเขียน</td>
                                         <td>{{ $story->story_author }}</td>
                                     </tr>
                                     </tbody>
@@ -42,13 +42,13 @@
                                 <div class="form-group" style="margin-right: 10px;">
                                     <button type="button" id="unlock-coin" class="btn btn-success"
                                             style="width: 100px; font-size: 16px;">
-                                        {{ $permission->unlock_coin }} <i class="fa fa-usd"></i>
+                                        {{ $subStory->unlock_coin }} <i class="fa fa-usd"></i>
                                     </button>
                                 </div>
                                 <div class="form-group" style="margin-right: 10px;">
                                     <button type="button" id="unlock-diamond" class="btn btn-success"
                                             style="width: 100px; font-size: 16px;">
-                                        {{ $permission->unlock_diamond }} <i class="fa fa-diamond"></i>
+                                        {{ $subStory->unlock_diamond }} <i class="fa fa-diamond"></i>
                                     </button>
                                 </div>
                                 <div class="form-group" style="margin-right: 10px;">
@@ -76,7 +76,7 @@
                     method: 'PUT',
                     data: {
                         '_token': '{{ csrf_token() }}',
-                        'cash': '{{ $permission->unlock_coin }}'
+                        'cash': '{{ $subStory->unlock_coin }}'
                     },
                     success: function (data, status) {
                         console.log(data);

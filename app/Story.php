@@ -13,6 +13,11 @@ class Story extends Model
         'story_name',
         'story_author',
         'story_outline',
-        'story_picture'
+        'story_picture',
+        'status_ban',
+        'status_public',
+        'status_comment',
+        'count_visitor',
+        'count_like'
     ];
 }

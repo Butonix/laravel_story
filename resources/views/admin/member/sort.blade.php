@@ -25,7 +25,6 @@
         @php
             $list_desc = array();
             foreach ($members as $member) {
-                $permission = App\PermissionMember::find($member->id);
                 // Result Cash
                 $total_coin = 0;
                 $storys = App\Story::where('member_id', $member->id)->get();
@@ -33,11 +32,10 @@
                 foreach ($storys as $story) {
                     $sub_storys = App\SubStory::where('story_id', $story->id)->get();
                     foreach ($sub_storys as $sub_story) {
-                        $permission = App\PermissionSubStory::find($sub_story->id);
-                        if ($permission->unlock_coin > 0 && $permission->unlock_diamond > 0) {
-                            $coin_start = $permission->unlock_coin;
-                            $diamond_start = $permission->unlock_diamond;
-                            $unlockSubStory = App\UnlockSubStory::where('sub_story_id', $permission->sub_story_id)->get();
+                        if ($sub_story->unlock_coin > 0 && $sub_story->unlock_diamond > 0) {
+                            $coin_start = $sub_story->unlock_coin;
+                            $diamond_start = $sub_story->unlock_diamond;
+                            $unlockSubStory = App\UnlockSubStory::where('sub_story_id', $sub_story->sub_story_id)->get();
                             if (count($unlockSubStory) > 0) {
                                 foreach ($unlockSubStory as $item) {
                                     $total_coin = $total_coin + $coin_start;
@@ -102,11 +100,6 @@
                     </thead>
                     <tbody>
                     @foreach ($list_desc as $item)
-
-                        @php
-                            $permission = App\PermissionMember::find($item['id']);
-                        @endphp
-
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item['username'] }}</td>
@@ -121,7 +114,7 @@
                                         แก้ไข</a></td>
                             @endif
 
-                            @if ($permission->ban_status == 0)
+                            @if ($item['status_ban'] == 0)
                                 <td><a href="#" class="ban-{{ $item['id'] }}" style="//color: orange; text-decoration: none;"><i
                                                 class="fa fa-ban"></i> แบน</a></td>
                                 <script>

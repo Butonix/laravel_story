@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\MemberMoney;
-use App\PermissionSubStory;
 use App\Story;
 use App\SubStory;
 use App\UnlockSubStory;
@@ -32,8 +31,7 @@ class UnlockController extends Controller
     {
         $subStory = SubStory::find($id);
         $story = Story::find($subStory->story_id);
-        $permission = PermissionSubStory::find($id);
-        return view('user.unlock_confirm', compact('story', 'subStory', 'permission'));
+        return view('user.unlock_confirm', compact('story', 'subStory'));
     }
 
     public function edit($id)

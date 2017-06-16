@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Member;
 use Illuminate\Http\Request;
 use App\Announce;
+use Illuminate\Support\Facades\Auth;
 
 class AnnounceController extends Controller
 {
@@ -15,10 +17,10 @@ class AnnounceController extends Controller
     public function postCreateAnnounce(Request $request)
     {
         $announce = new Announce;
-        $announce->username = Auth::User()->username;
+        $announce->member_id = Auth::User()->id;
         $announce->announce_title = $request->announce_title;
         $announce->announce_detail = $request->announce_detail;
-        $announce->state_comment = $request->state_comment;
+        $announce->status_comment = $request->status_comment;
         $announce->save();
         return redirect()->route('index');
     }
@@ -27,6 +29,7 @@ class AnnounceController extends Controller
     {
         $announce = new Announce;
         $announce = $announce::where('id', $id)->first();
-        return view('user.read_announce')->with('announce', $announce);
+        $member = Member::find($announce->member_id);
+        return view('user.read_announce', compact('announce', 'member'));
     }
 }

@@ -115,7 +115,7 @@
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <select name="confirm_status" id="" class="form-control">
+                                <select name="status_confirm" id="" class="form-control">
                                     <option value="1">อนุมัติ</option>
                                     <option value="0">ปฏิเสธ</option>
                                 </select>

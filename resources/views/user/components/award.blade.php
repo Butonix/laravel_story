@@ -23,7 +23,7 @@
                             <tr>
                                 <td><i class="fa fa-heart fa-lg"></i></td>
                                 <td>ยอดหัวใจ</td>
-                                <td><span id="count-like">{{ number_format($storyStatistic->count_like) }}</span></td>
+                                <td><span id="count-like">{{ number_format($story->count_like) }}</span></td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-diamond fa-lg"></i></td>

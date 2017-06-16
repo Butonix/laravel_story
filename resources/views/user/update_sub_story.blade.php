@@ -40,7 +40,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
 
-                        @if ($permission_sub_story->status_comment == 1)
+                        @if ($sub_story->status_comment == 1)
                             <div class="form-group">
                                 <input type="radio" name="status_comment" value="1" checked>
                                 <span style="font-size: 16px;">เปิดรับความคิดเห็น</span>
@@ -62,7 +62,7 @@
 
                         <hr>
 
-                        @if ($permission_sub_story->status_public == 1)
+                        @if ($sub_story->status_public == 1)
                             <div class="form-group">
                                 <input type="radio" name="status_public" value="1" checked>
                                 <span style="font-size: 16px;">เผยแพร่</span>
@@ -96,25 +96,25 @@
                                     </label>
                                     <select name="unlock_coin" id="" class="form-control">
 
-                                        @if ($permission_sub_story->unlock_coin == 0)
+                                        @if ($sub_story->unlock_coin == 0)
                                             <option value="0" selected>--- เลือก ---</option>
                                             <option value="200">200</option>
                                             <option value="300">300</option>
                                             <option value="400">400</option>
                                             <option value="500">500</option>
-                                        @elseif ($permission_sub_story->unlock_coin == 200)
+                                        @elseif ($sub_story->unlock_coin == 200)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="200" selected>200</option>
                                             <option value="300">300</option>
                                             <option value="400">400</option>
                                             <option value="500">500</option>
-                                        @elseif ($permission_sub_story->unlock_coin == 300)
+                                        @elseif ($sub_story->unlock_coin == 300)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="200">200</option>
                                             <option value="300" selected>300</option>
                                             <option value="400">400</option>
                                             <option value="500">500</option>
-                                        @elseif ($permission_sub_story->unlock_coin == 400)
+                                        @elseif ($sub_story->unlock_coin == 400)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="200">200</option>
                                             <option value="300">300</option>
@@ -135,25 +135,25 @@
                                         <i class="fa fa-diamond fa-lg"></i>
                                     </label>
                                     <select name="unlock_diamond" id="" class="form-control">
-                                        @if ($permission_sub_story->unlock_diamond == 0)
+                                        @if ($sub_story->unlock_diamond == 0)
                                             <option value="0" selected>--- เลือก ---</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
-                                        @elseif ($permission_sub_story->unlock_diamond == 2)
+                                        @elseif ($sub_story->unlock_diamond == 2)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="2" selected>2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
-                                        @elseif ($permission_sub_story->unlock_diamond == 3)
+                                        @elseif ($sub_story->unlock_diamond == 3)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="2">2</option>
                                             <option value="3" selected>3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
-                                        @elseif ($permission_sub_story->unlock_diamond == 4)
+                                        @elseif ($sub_story->unlock_diamond == 4)
                                             <option value="0">--- เลือก ---</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

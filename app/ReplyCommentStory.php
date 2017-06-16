@@ -9,7 +9,7 @@ class ReplyCommentStory extends Model
 {
     protected $table = 'reply_comment_story';
     protected $fillable = [
-        'reply_comment_id',
+        'story_comment_id',
         'member_id',
         'comment_detail',
     ];
@@ -17,7 +17,7 @@ class ReplyCommentStory extends Model
     public function addComment($request)
     {
         $this->create([
-            'reply_comment_id' => $request->reply_comment_id,
+            'story_comment_id' => $request->reply_comment_id,
             'member_id' => Auth::user()->id,
             'comment_detail' => $request->comment_detail
         ]);

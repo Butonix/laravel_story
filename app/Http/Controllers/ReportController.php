@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\StoryStatistic;
 use Illuminate\Http\Request;
 use App\Story;
 use App\HistoryCashCard;
@@ -14,8 +13,8 @@ class ReportController extends Controller
     public function getReportVisit()
     {
         Session::put('active_menu', 'report');
-        $story_statistics = StoryStatistic::orderBy('count_visitor', 'desc')->get();
-        return view('admin.report.visit')->with('story_statistics', $story_statistics);
+        $storys = Story::orderBy('count_visitor', 'desc')->get();
+        return view('admin.report.visit', compact('storys'));
     }
 
     public function getReportTopup()

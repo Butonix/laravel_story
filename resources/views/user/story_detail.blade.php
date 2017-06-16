@@ -55,7 +55,7 @@
 
     @endphp
 
-    @if ($status_ban == 1)
+    @if ($sub_story->status_ban == 1)
         <script type="text/javascript">
             swal({
                     title: "",
@@ -102,7 +102,7 @@
                                 </tr>
                                 <tr>
                                     <td>ยอดวิว</td>
-                                    <td>{{ $SubStoryStatistic->count_visitor }}</td>
+                                    <td>{{ $sub_story->count_visitor }}</td>
                                 </tr>
                                 <tr>
                                     <td>ความคิดเห็น</td>
@@ -144,7 +144,7 @@
                                 <tr>
                                     <td><i class="fa fa-heart fa-lg"></i></td>
                                     <td>ยอดหัวใจ</td>
-                                    <td><span id="count-like">{{ number_format($storyStatistic->count_like) }}</span>
+                                    <td><span id="count-like">{{ number_format($story->count_like) }}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -267,7 +267,7 @@
 
                 {{-- Show Reply --}}
                 @php
-                    $reply_comments = \App\ReplyCommentSubStory::where('reply_comment_id', $sub_story_comment->id)->get();
+                    $reply_comments = \App\ReplyCommentSubStory::where('sub_story_comment_id', $sub_story_comment->id)->get();
                 @endphp
 
                 @foreach ($reply_comments as $reply_comment)

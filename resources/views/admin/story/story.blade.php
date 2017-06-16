@@ -24,16 +24,14 @@
                     <tbody>
                     @foreach ($storys as $story)
                         @php
-                            $status_ban = \App\BanStory::where('story_id', $story->id)->first();
-                            $getStoryUsername = \App\Member::find($story->member_id);
+                            $member = \App\Member::find($story->member_id);
                         @endphp
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $story->story_name }}</td>
-                            <td>{{ $getStoryUsername->username }}</td>
+                            <td>{{ $member->username }}</td>
 
-
-                            @if ($status_ban->status_ban == 0)
+                            @if ($story->status_ban == 0)
                                 <td style="color: green;">ปกติ</td>
                             @else
                                 <td style="color: red;">ถูกแบน</td>
