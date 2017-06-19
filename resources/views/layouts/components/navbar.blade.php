@@ -27,12 +27,20 @@
                     @if (Auth::check())
                         <li><a href="{{ url('user/profile') }}" style="font-size: 18px;">หน้าส่วนตัว</a></li>
                         <li><a href="{{ url('user/write/story') }}" style="font-size: 18px;">เขียนนิยาย</a></li>
-                        <li><a href="{{ url('user/topup') }}" style="font-size: 18px;">เติมเหรียญ</a></li>
-                        <li><a href="{{ url('user/history/topup') }}" style="font-size: 18px;">ประวัติการเติมเหรียญ</a></li>
-                        <li><a href="{{ url('user/history/unlock') }}" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>
-                        <li><a href="{{ url('user/register/writer') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ
+                        {{--<li><a href="{{ url('user/topup') }}" style="font-size: 18px;">เติมเหรียญ</a></li>--}}
+                        {{--<li><a href="{{ url('user/history/topup') }}" style="font-size: 18px;">ประวัติการเติมเหรียญ</a></li>--}}
+                        {{--<li><a href="{{ url('user/history/unlock') }}" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>--}}
+                        {{--<li><a href="{{ url('user/register/writer') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ--}}
+                                {{--Point</a></li>--}}
+                        {{--<li><a href="{{ url('user/wallet') }}" style="font-size: 18px;">แสดงรายได้</a></li>--}}
+
+                        <li><a href="{{ url('user/coming_soon') }}" style="font-size: 18px;">เติมเหรียญ</a></li>
+                        <li><a href="{{ url('user/coming_soon') }}" style="font-size: 18px;">ประวัติการเติมเหรียญ</a></li>
+                        <li><a href="{{ url('user/coming_soon') }}" style="font-size: 18px;">ประวัติการปลดล็อก</a></li>
+                        <li><a href="{{ url('user/coming_soon') }}" style="font-size: 18px;">ลงทะเบียนนักเขียนระบบ
                                 Point</a></li>
                         <li><a href="{{ url('user/wallet') }}" style="font-size: 18px;">แสดงรายได้</a></li>
+
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ url('user/auth/logout') }}" style="font-size: 18px;"><i
                                         class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
@@ -76,9 +84,12 @@
                             class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url('AboutUs') }}">จันทร์เจ้าดอทคอม</a></li>
-                    <li><a href="{{ url('HowToUseDiamond') }}">อ่านฟรีโดยใช้เพชร</a></li>
-                    <li><a href="{{ url('Rules') }}">ลุ้นรับ iPhone 7</a></li>
-                    <li><a href="{{ url('HowToUnlockStory') }}">วิธีการปลดล็อกตอนนิยาย</a></li>
+                    {{--<li><a href="{{ url('HowToUseDiamond') }}">อ่านฟรีโดยใช้เพชร</a></li>--}}
+                    {{--<li><a href="{{ url('Rules') }}">ลุ้นรับ iPhone 7</a></li>--}}
+                    {{--<li><a href="{{ url('HowToUnlockStory') }}">วิธีการปลดล็อกตอนนิยาย</a></li>--}}
+
+                    <li><a href="{{ url('user/coming_soon') }}">อ่านฟรีโดยใช้เพชร</a></li>
+                    <li><a href="{{ url('user/coming_soon') }}">วิธีการปลดล็อกตอนนิยาย</a></li>
                 </ul>
             </li>
 

@@ -42,11 +42,11 @@ class UserController extends Controller
         $announces = $announces::orderBy('created_at', 'desc')->get();
 
         // save ip address to report
-        $report_visit = new ReportVisitor;
-        $check_ip = $report_visit::where('ip_address', $request->ip())->first();
-        if (count($check_ip) <= 0) {
-            $report_visit->ip_address = $request->ip();
-            $report_visit->save();
+        $check_ip = ReportVisitor::where('ip_address', $request->ip())->first();
+        if (count($check_ip) == 0) {
+            ReportVisitor::create([
+                'ip_address' => $request->ip()
+            ]);
         }
 
         return view('user.home')
@@ -280,6 +280,11 @@ class UserController extends Controller
         $info_writer = RegisterWriter::where('member_id', Auth::user()->id)->first();
 //        dd($month);
         return view('user.wallet', compact('month', 'info_writer', 'bonus'));
+    }
+
+    public function getComingSoon()
+    {
+        return redirect()->route('index')->with('coming_soon', 'success');
     }
 
 }

@@ -20,9 +20,9 @@ class StorySeeder extends Seeder
             $story = Story::create([
                 'member_id' => $member->id,
                 'category_id' => rand(1, 5),
-                'story_name' => $faker->sentence,
+                'story_name' => 'นิยายเวอร์ชั่น'.$i,
                 'story_author' => $member->author,
-                'story_outline' => $faker->paragraph,
+                'story_outline' => $faker->text,
                 'story_picture' => '345033480.png',
                 'status_ban' => 0,
                 'status_public' => 1,
@@ -34,11 +34,11 @@ class StorySeeder extends Seeder
                 'story_id' => $story->id
             ]);
 
-            for ($j = 0; $j <= 3; $j++) {
+            for ($j = 1; $j <= 4; $j++) {
                 SubStory::create([
                     'story_id' => $story->id,
-                    'story_name' => $faker->sentence,
-                    'story_outline' => $faker->paragraph,
+                    'story_name' => 'ตอนย่อย '.$i.'.'.$j,
+                    'story_outline' => $faker->text,
                     'status_ban' => 0,
                     'status_public' => 1,
                     'status_comment' => 1,
@@ -52,8 +52,8 @@ class StorySeeder extends Seeder
             // Set coin and diamond
             SubStory::create([
                 'story_id' => $story->id,
-                'story_name' => $faker->sentence,
-                'story_outline' => $faker->paragraph,
+                'story_name' => 'ตอนย่อย '.$i.'.5',
+                'story_outline' => $faker->text,
                 'status_ban' => 0,
                 'status_public' => 1,
                 'status_comment' => 1,

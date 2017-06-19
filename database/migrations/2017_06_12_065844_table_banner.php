@@ -15,8 +15,7 @@ class TableBanner extends Migration
     {
         Schema::create('banner', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('banner_file');
-            $table->longText('banner_detail');
+            $table->longText('banner_detail')->nullable();
             $table->timestamps();
         });
     }

@@ -21,6 +21,9 @@ Route::get('login/facebook/callback', 'UserController@handleProviderCallback');
 /* Route User */
 
 Route::group(['prefix' => 'user'], function () {
+
+    Route::get('coming_soon', 'UserController@getComingSoon');
+
     Route::group(['prefix' => 'auth'], function () {
         Route::post('register', 'UserAuthController@postRegister');
         Route::post('login', 'UserAuthController@postLogin');

@@ -15,7 +15,7 @@ class TableHowToUnlockStory extends Migration
     {
         Schema::create('how_to_unlock_story', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('detail');
+            $table->longText('detail')->nullable();
             $table->timestamps();
         });
     }

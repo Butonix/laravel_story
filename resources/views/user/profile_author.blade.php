@@ -57,11 +57,11 @@
                                     <td>ชื่อผู้ใช้งาน</td>
                                     <td>{{ $author }}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>รายได้</td>
-                                    <td>{{ number_format($thai_bath, 2) }} บาท</td>
-                                </tr>
+                                {{--<tr>--}}
+                                    {{--<td></td>--}}
+                                    {{--<td>รายได้</td>--}}
+                                    {{--<td>{{ number_format($thai_bath, 2) }} บาท</td>--}}
+                                {{--</tr>--}}
                                 <tr>
                                     <td><i class="fa fa-usd fa-lg"></i></td>
                                     <td>ยอดเหรียญ</td>
@@ -75,7 +75,7 @@
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
                                     <td>ยอดเพชร</td>
-                                    <td>none</td>
+                                    <td>0</td>
                                 </tr>
                                 </tbody>
                             </table>

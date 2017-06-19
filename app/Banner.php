@@ -8,7 +8,6 @@ class Banner extends Model
 {
     protected $table = 'banner';
     protected $fillable = [
-        'banner_file',
         'banner_detail'
     ];
 }

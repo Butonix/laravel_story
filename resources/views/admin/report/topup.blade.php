@@ -24,6 +24,7 @@
                                 @endphp
                                 @foreach ($history_cashcard as $data)
                                     @php
+                                        $member = \App\Member::find($data->member_id);
                                         if ($data->amount == '5000') {
                                             $display_money = 50;
                                             $real_amount = $real_amount + 50;
@@ -46,7 +47,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $data->username }}</td>
+                                        <td>{{ $member->username }}</td>
                                         <td>{{ $display_money }}</td>
                                         <td>{{ $real_amount }}</td>
                                     </tr>

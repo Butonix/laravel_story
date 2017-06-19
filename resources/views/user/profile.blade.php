@@ -101,7 +101,7 @@
                                 <tr>
                                     <td><i class="fa fa-diamond fa-lg"></i></td>
                                     <td>ยอดเพชร</td>
-                                    <td>none</td>
+                                    <td>0</td>
                                 </tr>
                                 </tbody>
                             </table>

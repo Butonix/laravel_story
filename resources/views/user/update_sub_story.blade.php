@@ -174,7 +174,7 @@
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success" style="font-size: 18px; width: 20%;"><i
-                                        class="fa fa-upload"></i> อัพโหลด
+                                        class="fa fa-save"></i> บันทึกการแก้ไข
                             </button>
                         </div>
 

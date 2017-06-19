@@ -10,6 +10,16 @@
 
     <div class="row">
 
+        @if (session('coming_soon'))
+            <script type="text/javascript">
+                swal({
+                    title: "",
+                    text: "กำลังอยู่ในช่วงพัฒนาระบบ ...",
+                    html: true
+                })
+            </script>
+        @endif
+
         @if (session('status'))
             <script type="text/javascript">
                 swal({

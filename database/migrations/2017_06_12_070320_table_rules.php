@@ -15,7 +15,7 @@ class TableRules extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('detail');
+            $table->longText('detail')->nullable();
             $table->timestamps();
         });
     }
